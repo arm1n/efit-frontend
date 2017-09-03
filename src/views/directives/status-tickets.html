@@ -1,0 +1,9 @@
+<div
+  class="uk-badge uk-padding-small"
+  data-ng-class="{
+    'uk-badge-large': !statusTicketsController.isCompact
+  }">
+  <span data-ng-bind="statusTicketsController.tickets"></span>
+  <span data-ng-if="statusTicketsController.tickets === 1">&nbsp;Los</span>
+  <span data-ng-if="statusTicketsController.tickets !== 1">&nbsp;Lose</span>
+</div>

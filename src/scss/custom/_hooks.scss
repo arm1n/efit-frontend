@@ -1,0 +1,138 @@
+/* ==================================================
+ * HOOKS
+ * @author Armin Pfurtscheller
+ * ================================================== */
+
+// navbar
+@mixin hook-navbar-container() {
+  background-color: $global-background;
+}
+
+@mixin hook-navbar-nav-item() {
+  position: relative;
+
+  &:after{
+    bottom: 0;
+    content: '';
+    height: 3px;
+    display: none;
+    position: absolute;
+    background: $global-primary-background;
+    left: $navbar-nav-item-padding-horizontal;
+    right: $navbar-nav-item-padding-horizontal;
+  }
+}
+
+@mixin hook-navbar-nav-item-active() {
+  &:after{
+    display: block;
+  }
+}
+
+// button
+@mixin hook-inverse-button-primary(){
+  border-color: $inverse-global-color;
+
+  &:disabled{
+    background: transparent !important;
+    color: $inverse-global-color !important;
+  }
+}
+
+// notification
+@mixin hook-notification-message-primary() {
+  color: $global-inverse-color;
+  background-color: $global-primary-background;
+}
+
+@mixin hook-notification-message-success() {
+  color: $global-inverse-color;
+  background-color: $global-success-background;
+}
+
+@mixin hook-notification-message-warning() {
+  color: $global-inverse-color;
+  background-color: $global-warning-background;
+}
+
+@mixin hook-notification-message-danger() {
+  color: $global-inverse-color;
+  background-color: $global-danger-background;
+}
+
+@mixin hook-notification-close() {
+  color: $global-inverse-color !important;
+}
+
+// iconnav
+@mixin hook-iconnav-item() {
+  &:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+    color: inherit !important;
+  }
+}
+
+// icons
+@mixin hook-icon-misc() {
+  span.uk-icon{
+    cursor: default !important;
+  }
+
+  &.uk-icon-filled{
+    [fill] {
+      fill: inherit;
+    }
+  }
+}
+
+// badges
+@mixin hook-badge-misc() {
+  &.uk-badge-large{
+    $size: 50px;
+    $padding: 20px;
+    $font-size: $global-medium-font-size;
+
+    height: $size;
+    min-width: $size;
+    line-height: $size;
+
+    padding: $padding !important;
+
+    font-weight: bold;
+    font-size: $font-size;
+  }
+}
+
+// tabs
+@mixin hook-tab-item-active() {
+  border-color: $tab-item-active-border;
+  cursor: default;
+}
+
+// accordion
+@mixin hook-accordion-title() {
+  @extend .uk-text-truncate;
+
+  position: relative;
+  padding-right: ($accordion-title-line-height * 1em);
+
+  &:after {
+      top: 0;
+      right: 0;
+      content: "";
+      position: absolute;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      width: ($accordion-title-line-height * 1em);
+      height: ($accordion-title-line-height * 1em);
+      @include svg-fill($internal-accordion-close-image, "#000", $accordion-icon-color);
+  }
+
+  .uk-open > &:after { @include svg-fill($internal-accordion-open-image, "#000", $accordion-icon-color); }
+}
+
+// tables
+@mixin hook-table-header-cell() {
+
+}

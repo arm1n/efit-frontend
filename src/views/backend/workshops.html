@@ -1,0 +1,314 @@
+<h1>Workshops</h1>
+
+<div class="uk-grid-medium uk-grid-divider" uk-grid>
+
+  <!-- TABLE -->
+  <div class="uk-width-2-3@m">
+
+    <table class="uk-table uk-table-middle uk-table-divider uk-table-justify">
+      <thead>
+          <tr>
+              <th class="uk-width-1-5 uk-text-left">Name</th>
+              <th class="uk-width-1-5 uk-text-center">Code</th>
+              <th class="uk-width-1-5 uk-text-center">Status</th>
+              <th class="uk-width-1-5 uk-text-center">Schüler</th>
+              <th class="uk-width-1-5 uk-text-right">Aktionen</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="workshop in workshopController.workshops track by workshop.id">
+          <td colspan="5">
+
+            <!-- WORKSHOPS -->
+            <table class="uk-table uk-table-small uk-table-divider table-justify uk-margin-remove">
+              <tbody>
+                <tr>
+                  <td class="uk-width-1-5">
+                    <a
+                      class="uk-text-bold"
+                      href="javascript:void(0)"
+                      data-ng-bind="workshop.name"
+                      data-ng-click="workshopController.expand(workshop)">
+                    </a>
+                  </td>
+                  <td class="uk-width-1-5 uk-text-center">
+                    <span
+                      data-uk-tooltip=""
+                      class="cursor-pointer"
+                      data-ng-bind="workshop.code"
+                      title="Diesen Code benötigen die Schüler für die Anmeldung">
+                    </span>
+                  </td>
+                  <td class="uk-width-1-5 uk-text-center">
+                    <span
+                      data-uk-tooltip=""
+                      data-ng-if="workshop.isActive"
+                      class="uk-label uk-label-success cursor-pointer"
+                      title="Schüler können sich derzeit nur in der Schule anmelden">
+                      Aktiv
+                    </span>
+                    <span
+                      data-uk-tooltip=""
+                      data-ng-if="!workshop.isActive"
+                      class="uk-label uk-label-danger cursor-pointer"
+                      title="Schüler können sich derzeit nur von zuhause anmelden">
+                      Gesperrt
+                    </span>
+                  </td>
+                  <td class="uk-width-1-5 uk-text-center">
+                    <span class="uk-badge">
+                      <span
+                        data-uk-tooltip=""
+                        class="cursor-pointer"
+                        title="Anzahl Benutzer"
+                        data-ng-bind="workshop.$$users">
+                      </span>
+                    </span>
+                  </td>
+                  <td class="uk-width-1-5">
+                    <ul class="uk-iconnav uk-flex-right">
+                      <li>
+                        <button
+                          title="Aufgaben"
+                          data-uk-tooltip=""
+                          data-ng-click="workshopController.expand(workshop)"
+                          data-ng-attr-data-uk-icon="{{workshop.$$expanded ? 'icon: more' : 'icon: more-vertical'}}">
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          data-uk-tooltip=""
+                          data-ng-click="workshopController.toggleWorkshop(workshop)"
+                          data-ng-attr-title="{{workshop.isActive ? 'Sperren' : 'Freigeben'}}"
+                          data-ng-attr-data-uk-icon="{{workshop.isActive ? 'icon: unlock' : 'icon: lock'}}">
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          title="Ziehung"
+                          data-uk-tooltip=""
+                          data-uk-icon="icon: tag"
+                          data-ng-disabled="!workshop.$$users"
+                          data-ng-click="workshopController.markWorkshopForDrawing(workshop)">
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          title="Löschen"
+                          data-uk-tooltip=""
+                          data-uk-icon="icon: trash"
+                          data-ng-disabled="workshop.$$users"
+                          data-ng-click="workshopController.markWorkshopForDeletion(workshop)">
+                        </button>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- TASKS -->
+            <table
+              data-ng-if="workshop.$$expanded"
+              class="uk-table uk-table-small uk-table-divider uk-margin-remove-bottom">
+              <tbody>
+                <tr
+                  data-ng-repeat="task in workshop.tasks track by task.id">
+                  <td class="uk-width-2-5">
+                    <span
+                      class="uk-text-muted"
+                      data-ng-bind="task.type|i18n">
+                    </span>
+                  </td>
+                  <td class="uk-width-1-5 uk-text-center">
+                    <span
+                      data-uk-tooltip=""
+                      data-ng-if="task.isActive"
+                      class="uk-label uk-label-success cursor-pointer"
+                      title="Schüler können derzeit Ergebnisse senden">
+                      Aktiv
+                    </span>
+                    <span
+                      data-uk-tooltip=""
+                      data-ng-if="!task.isActive"
+                      class="uk-label uk-label-danger"
+                      title="Schüler können derzeit keine Ergebnisse senden">
+                      Gesperrt
+                    </span>
+                  </td>
+                  <td class="uk-width-1-5 uk-text-center">
+                    <span class="uk-badge">
+                      <span
+                        data-uk-tooltip=""
+                        class="cursor-pointer"
+                        title="Anzahl Ergebnisse"
+                        data-ng-bind="task.$$results">
+                      </span>
+                    </span>
+                  </td>
+                  <td class="uk-width-1-5 uk-text-right">
+                    <ul class="uk-iconnav uk-flex-right">
+                      <li data-ng-if="task.hasEvaluation">
+                        <button
+                          title="Auswertung"
+                          data-uk-tooltip=""
+                          data-uk-icon="icon: database"
+                          data-ng-if="task.hasEvaluation"
+                          data-ng-disabled="!task.$$results"
+                          data-ng-click="workshopController.markTaskForChart(task)">
+                        </button>
+                      </li>
+                      <li data-ng-if="task.isInteractive">
+                        <button
+                          data-uk-tooltip=""
+                          data-ng-click="workshopController.toggleTask(task)"
+                          data-ng-attr-title="{{task.isActive ? 'Sperren' : 'Freigeben'}}"
+                          data-ng-attr-data-uk-icon="{{task.isActive ? 'icon: unlock' : 'icon: lock'}}">
+                        </button>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </td>
+        </tr>
+
+        <tr data-ng-if="workshopController.workshops.length === 0">
+          <td colspan="5">
+            <div data-uk-alert class="uk-alert-warning">
+              Noch keine Workshops vorhanden!
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+  <!-- FORM -->
+  <div class="uk-width-1-3@m">
+    <div class="uk-card uk-card-default uk-card-small uk-card-body">
+
+      <h3 class="uk-card-title">Neuer Workshop</h3>
+      <form
+        name="workshopForm"
+        class="uk-form-stacked"
+        novalidate="novalidate">
+
+        <div
+          class="uk-margin"
+          data-form-field="">
+          <label>Name:</label>
+          <input
+            type="text"
+            name="name"
+            class="uk-input"
+            placeholder="Name"
+            data-ng-required="true"
+            data-form-field-model=""
+            data-ng-model="workshopController.name"
+            data-ng-minlength="workshopController.nameMinLength">
+          <message-required>Ein Name ist erforderlich!</message-required>
+          <message-minlength>Der Name ist zu kurz!</message-minlength>
+        </div>
+
+        <div
+          class="uk-margin"
+          data-form-field="">
+          <label>Code:</label>
+          <input
+              type="text"
+              class="uk-input"
+              placeholder="Code"
+              data-ng-required="true"
+              data-form-field-model=""
+              data-validator-workshop-unique=""
+              data-ng-model="workshopController.code"
+              data-ng-pattern="workshopController.codePattern"
+              data-ng-minlength="workshopController.codeMinLength">
+          <message-minlength>Der Code ist zu kurz!</message-minlength>
+          <message-required>Ein Code ist erforderlich!</message-required>
+          <message-pattern>Nur Buchstaben und Zahlen sind erlaubt!</message-pattern>
+          <messages-custom>
+            <div data-ng-message="validatorWorkshopUnique">
+              Dieser Code existiert bereits im System!
+            </div>
+          </messages-custom>
+        </div>
+
+        <button
+          type="button"
+          class="uk-button uk-button-success"
+          data-ng-click="workshopController.create()"
+          data-ng-disabled="workshopForm.$invalid || workshopForm.$pending">
+          Anlegen
+        </button>
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL: -->
+<div data-modal="workshopController.drawingWorkshop">
+  <div class="uk-modal-dialog uk-modal-body text-center">
+    <h2 class="uk-modal-title">
+      Gewinnerziehung für {{workshopController.drawingWorkshop.name}}
+    </h2>
+    <div data-ng-if="workshopController.drawingTickets.length > 0">
+      <p>Die folgenden Tickets wurden gezogen aus insgesamt {{workshopController.drawingTickets.length}}:</p>
+      <div
+        data-ng-bind="'#' + ticket.id"
+        data-ng-repeat="ticket in workshopController.drawingTickets | limitTo: workshopController.drawingAmount"
+        class="uk-badge uk-badge-large uk-margin-small-top uk-margin-small-bottom uk-margin-small-left uk-margin-small-right">
+      </div>
+    </div>
+    <div
+      class="uk-alert uk-alert-danger"
+      data-ng-if="workshopController.drawingTickets.length === 0">
+      Es sind noch keine Tickets für die Ziehung verfügbar.
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: DELETE -->
+<div data-modal="workshopController.deleteWorkshop">
+  <div class="uk-modal-dialog uk-modal-body">
+      <h2 class="uk-modal-title">Bestätigen</h2>
+      <p>Möchten Sie den Workshop <span class="uk-text-uppercase uk-text-bold">{{workshopController.deleteWorkshop.name}}</span> wirklich löschen?</p>
+      <p class="uk-text-right">
+          <button
+            type="button"
+            class="uk-button uk-button-default uk-modal-close">
+            Abbrechen
+          </button>
+          <button
+            type="button"
+            class="uk-button uk-button-primary uk-modal-close"
+            data-ng-click="workshopController.delete(workshopController.deleteWorkshop)">
+            Löschen
+          </button>
+      </p>
+  </div>
+</div>
+
+<!-- MODAL: CHART -->
+<div data-modal="workshopController.chartResults" class="uk-modal-container">
+  <div class="uk-modal-dialog uk-modal-body">
+    <h2 class="uk-modal-title text-center">
+      Auswertung für {{workshopController.chartTask.type|i18n}}
+    </h2>
+    <div
+      data-chart
+      class="ct-major-tenth"
+      data-chart-task="workshopController.chartTask"
+      data-chart-results="workshopController.chartResults">
+    </div>
+  </div>
+</div>
+

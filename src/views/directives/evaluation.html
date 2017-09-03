@@ -1,0 +1,49 @@
+<div
+  class="uk-margin-medium uk-margin-medium-top">
+
+  <div data-locked-state="evaluationController.parent.isLocked()">
+    <!-- use default text -->
+  </div>
+
+  <div data-ng-transclude="customButtons">
+    <!-- additional buttons -->
+  </div>
+
+  <div data-ng-transclude="defaultButtons">
+
+    <button
+      type="submit"
+      class="uk-button uk-button-success"
+      data-ng-click="evaluationController.parent.resolve()"
+      data-ng-disabled="!evaluationController.parent.canResolve()">
+      <span>Auflösen</span>
+    </button>
+
+    <a
+      data-uk-scroll="offset: 80"
+      class="uk-button uk-button-primary"
+      data-ng-if="evaluationController.parent.resolved"
+      data-ng-href="{{'#' + evaluationController.domId}}">
+      <span>Auswertung</span>
+    </a>
+
+  </div>
+
+</div>
+
+<div
+  class="uk-margin-medium-top"
+  data-ng-attr-id="{{evaluationController.domId}}"
+  data-ng-if="evaluationController.parent.resolved">
+
+    <div class="uk-animation-slide-top-small">
+      <hr>
+      <h2>Auswertung</h2>
+      <div
+
+        class="uk-text-small"
+        data-ng-transclude="text">
+      </div>
+    </div>
+
+</div>

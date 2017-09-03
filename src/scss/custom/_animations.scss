@@ -1,0 +1,75 @@
+/* ==================================================
+ * ANIMATIONS
+ * @author Armin Pfurtscheller
+ * ================================================== */
+
+@include keyframes(bounce) {
+  0%, 90% {
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+  }
+  10% {
+    -webkit-animation-timing-function: cubic-bezier(0, 0.4, 0.6, 1);
+    animation-timing-function: cubic-bezier(0, 0.4, 0.6, 1);
+  }
+  50% {
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0, 1, 0.6);
+    animation-timing-function: cubic-bezier(0.4, 0, 1, 0.6);
+  }
+  0% {
+    -webkit-transform: translate(0%, 30%) scaleY(0.5);
+    transform: translate(0%, 30%) scaleY(0.5);
+  }
+  10% {
+    -webkit-transform: translate(0%, 5%) scaleY(1.1);
+    transform: translate(0%, 5%) scaleY(1.1);
+  }
+  50% {
+    -webkit-transform: translate(0%, -50%) scaleY(1.1);
+    transform: translate(0%, -50%) scaleY(1.1);
+  }
+  90% {
+    -webkit-transform: translate(0%, 5%) scaleY(1.1);
+    transform: translate(0%, 5%) scaleY(1.1);
+  }
+  100% {
+    -webkit-transform: translate(0%, 30%) scaleY(0.5);
+    transform: translate(0%, 30%) scaleY(0.5);
+  }
+}
+
+@include keyframes(flip) {
+  0%, 100% {
+    -webkit-animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+  }
+  50% {
+    -webkit-animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  0% {
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+  }
+  50% {
+    -webkit-transform: rotateX(1800deg);
+    transform: rotateX(1800deg);
+  }
+  100% {
+    -webkit-transform: rotateX(3600deg);
+    transform: rotateX(3600deg);
+  }
+}
+
+@include keyframes(pop) {
+  from {
+    -webkit-transform: translateZ(0) scale(1,1);
+    transform: translateZ(0) scale(1, 1);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: translateZ(0) scale(1.75, 1.75);
+    transform: translateZ(0) scale(1.75, 1.75);
+    opacity: 0;
+  }
+}

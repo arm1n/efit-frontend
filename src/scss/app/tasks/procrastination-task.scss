@@ -1,0 +1,97 @@
+/* ==================================================
+ * PROCRASTINATION TASK
+ * @author Armin Pfurtscheller
+ * ================================================== */
+.procrastination-task{}
+
+.procrastination-task .viewport{
+  width: 480px;
+  height: 480px;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: #c1e9f7;
+
+  &:after,
+  &:before{
+    left: 0;
+    right: 0;
+    z-index: 2;
+    content: '';
+    height: 50px;
+    position: absolute;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: top center;
+  }
+
+  &:before{
+    top: 0;
+    background-size: cover;
+    background-image: url(../img/clouds.svg);
+  }
+
+  &:after{
+    bottom: 0;
+    background-size: cover;
+    background-image: url(../img/grass.svg);
+  }
+}
+
+.procrastination-task .bubble{
+  $colors: #f44 #f84 #ff8 #8f8 #88f;
+
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+  }
+  &:before {
+    top: 12%;
+    left: 20%;
+    width: 15%;
+    height: 6%;
+    background: #fff;
+
+    -webkit-transform: rotate(-35deg);
+    transform: rotate(-35deg);
+  }
+
+  &:after {
+    top: 5%;
+    left: 5%;
+    width: 100%;
+    height: 100%;
+    opacity: 0.025;
+
+    -webkit-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+
+    background: transparent;
+    background: -webkit-radial-gradient(transparent, #000 60%, transparent 70%, transparent);
+    background: -moz-radial-gradient(transparent, #000 60%, transparent 70%, transparent);
+    background: -o-radial-gradient(transparent, #000 60%, transparent 70%, transparent);
+    background: radial-gradient(transparent, #000 60%, transparent 70%, transparent);
+  }
+
+  &.catched {
+    @include animation(pop, 0.1s, cubic-bezier(0.16, 0.87, 0.48, 0.99), 0, 1, normal, forwards);
+  }
+
+  @for $i from 1 through 5 {
+    &.theme-#{$i} {
+      @include bubbleShadow(nth($colors, $i));
+    }
+  }
+}

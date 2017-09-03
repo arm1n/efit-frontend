@@ -1,0 +1,24 @@
+<p>Melde dich mit deinem persönlichen Code an, den du bei der Anmeldung in der Schule verwendet hast:</p>
+
+<div data-ng-include="'code-field.html'">
+  <!-- @see: login.html -->
+</div>
+
+<div class="uk-margin">
+  <a
+    data-ui-sref="login.frontend.index"
+    class="uk-button uk-button-default">
+    Zurück
+  </a>
+
+  <button
+    type="submit"
+    class="uk-button uk-button-primary"
+    data-ng-click="loginFrontendController.signin()"
+    data-ng-disabled="loginForm.$invalid || loginForm.$pending">
+    Anmelden
+  </button>
+</div>
+
+<div data-ng-include="'code-info.html'">
+</div>

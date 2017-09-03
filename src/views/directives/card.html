@@ -1,0 +1,46 @@
+<div
+  data-ng-click="cardController.isCheckbox ? cardController.click($event) : null"
+  class="uk-card uk-card-default uk-card-hover uk-card-small"
+  data-ng-class="{
+    'uk-card-primary': cardController.selected===true,
+    'opacity-50': cardController.disabled===true,
+    'cursor-pointer': (
+      cardController.isCheckbox &&
+      !cardController.disabled
+    )
+  }">
+
+    <div class="uk-card-body">
+
+      <div
+        data-uk-grid=""
+        class="uk-text-center uk-text-left@s">
+
+        <div
+          class="uk-width-auto@s"
+          data-ng-if="cardController.hasIcon">
+          <div
+            data-ng-transclude="icon">
+          </div>
+        </div>
+        <div class="uk-width-expand@s">
+          <h4
+            data-ng-transclude="title"
+            class="uk-card-title uk-margin-small-bottom uk-margin-remove-top">
+          </h4>
+          <div data-ng-transclude="text"></div>
+          <div data-ng-transclude="buttons">
+            <button
+              data-ng-click="cardController.click($event)"
+              class="uk-button uk-button-success uk-button-small uk-margin-top"
+              data-ng-disabled="cardController.selected || cardController.disabled">
+              <span data-ng-if="cardController.selected">Gewählte Antwort</span>
+              <span data-ng-if="!cardController.selected">Antwort wählen</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+</div>

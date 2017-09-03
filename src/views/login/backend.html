@@ -1,0 +1,48 @@
+<h1>Administration</h1>
+<p>Sie müssen sich am System anmelden:</p>
+
+<div
+  data-form-field=""
+  class="uk-margin uk-text-left">
+  <label class="uk-text-uppercase uk-text-bold">Ihr Benutzername:</label>
+  <input
+      type="text"
+      class="uk-input"
+      data-ng-required="true"
+      data-form-field-model=""
+      placeholder="Benutzername"
+      data-ng-model="loginBackendController.username"
+      data-ng-minlength="loginBackendController.usernameMinLength">
+
+  <message-required>Ein Benutzername ist erforderlich!</message-required>
+  <message-minlength>Der Benutzername ist zu kurz!</message-minlength>
+</div>
+
+<div
+  data-form-field=""
+  class="uk-margin uk-text-left">
+  <label class="uk-text-uppercase uk-text-bold">Ihr Passwort:</label>
+  <input
+      type="password"
+      class="uk-input"
+      data-ng-required="true"
+      data-form-field-model=""
+      placeholder="Passwort"
+      data-ng-model="loginBackendController.password"
+      data-ng-minlength="loginBackendController.passwordMinLength"
+      data-ng-maxlength="loginBackendController.passwordMaxLength">
+
+  <message-required>Ein Passwort ist erforderlich!</message-required>
+  <message-minlength>Das Passwort ist zu kurz!</message-minlength>
+  <message-maxlength>Das Passwort ist zu lang!</message-maxlength>
+</div>
+
+<div class="uk-margin">
+  <button
+    type="submit"
+    class="uk-button uk-button-primary"
+    data-ng-click="loginBackendController.signin()"
+    data-ng-disabled="loginForm.$invalid || loginForm.$pending">
+    Anmelden
+  </button>
+</div>

@@ -1,0 +1,105 @@
+/* ==================================================
+ * INTEREST TASK
+ * @author Armin Pfurtscheller
+ * ================================================== */
+
+.interest-task{}
+
+.interest-task .exercise{
+  width: 300px;
+
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+
+  &.disabled{
+    opacity: 0.75;
+  }
+
+  @media (min-width: $breakpoint-small) {
+      width: 400px;
+  }
+}
+
+.interest-task .draggables{}
+.interest-task .drag-items{}
+
+.drag-item{
+
+    &.coin,
+    &.note{
+        z-index: 5;
+        margin: 3px;
+        font-size: 10px;
+        line-height: 40px;
+        text-align: center;
+        position: relative;
+        display: inline-block;
+        background-size: 100%;
+
+        cursor: move;
+        cursor: grab;
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+
+        -moz-user-select: -moz-none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        -webkit-transition: opacity 0.3s;
+        transition: opacity 0.3s;
+    }
+
+    &.coin{
+        width: 40px;
+        color: #cc8d00;
+        background-image: url(../img/coin.svg);
+    }
+
+    &.note{
+        width: 78px;
+        color: #8b9b2c;
+        background-image: url(../img/note.svg);
+    }
+
+    &.active{
+        opacity: 0.75;
+        cursor: grabbing;
+        cursor: -moz-grabbing;
+        cursor: -webkit-grabbing;
+    }
+
+    &.disabled{
+      cursor: not-allowed;
+    }
+}
+
+.interest-task .dropzone{
+    z-index: 1;
+    width: 150px;
+    height: 165px;
+    color: #bfbcba;
+    display: block;
+    position: relative;
+    background-size: 100%;
+    vertical-align: middle;
+    background-image: url(../img/bag.svg);
+
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+
+    &.enter{
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+}
+
+.interest-task .sum{
+    top: 50%;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+}

@@ -1,0 +1,18 @@
+<div
+  class="coin"
+  data-ng-class="{
+    'bounce': diversificationTaskCoinController.flip
+  }">
+  <div
+    class="wrap"
+    data-ng-class="{
+      'flip': diversificationTaskCoinController.flip
+    }">
+
+    <div
+      data-ng-bind="side.value"
+      data-ng-class="side.class"
+      data-ng-repeat="side in diversificationTaskCoinController.sides">
+    </div>
+  </div>
+</div>

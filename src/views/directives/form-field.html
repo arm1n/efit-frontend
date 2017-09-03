@@ -1,0 +1,78 @@
+<div data-ng-form="form">
+
+  <!-- label -->
+  <div data-ng-attr-id="{{'label-' + formFieldController.id}}">
+    <!-- replaced by `label` transclusion content -->
+  </div>
+
+  <!-- field -->
+  <div class="uk-form-controls">
+
+    <!-- validation -->
+    <div
+
+      data-ng-messages="form.$error"
+      data-ng-if="formFieldController.showMessages"
+      class="uk-margin-xsmall-bottom uk-text-small uk-text-danger">
+
+      <!-- messages -->
+      <div data-ng-message="required">
+        <div data-ng-transclude="messageRequired">
+          {{"This field is required!"|i18n}}
+        </div>
+      </div>
+      <div data-ng-message="min">
+        <div data-ng-transclude="messageMin">
+          {{"This field has a too low input value!"|i18n}}
+        </div>
+      </div>
+      <div data-ng-message="max">
+        <div data-ng-transclude="messageMax">
+          {{"This field has a too hight input value!"|i18n}}
+        </div>
+      </div>
+      <div data-ng-message="url">
+        <div data-ng-transclude="messageUrl">
+          {{"This field requires a valid url!"|i18n}}
+        </div>
+      </div>
+      <div data-ng-message="email">
+        <div data-ng-transclude="messageEmail">
+          {{"This field requires a valid email!"|i18n}}
+        </div>
+      </div>
+      <div data-ng-message="number">
+        <div data-ng-transclude="messageNumber">
+          {{"This field requires numeric input!"|i18n}}
+        </div>
+      </div>
+      <div data-ng-message="pattern">
+        <div data-ng-transclude="messagePattern">
+          {{"This field requires special pattern!"|i18n}}
+        </div>
+      </div>
+      <div data-ng-message="maxlength">
+        <div data-ng-transclude="messageMaxlength">
+          {{"This field exceeds allowed maximum length!"|i18n}}
+        </div>
+      </div>
+      <div data-ng-message="minlength">
+        <div data-ng-transclude="messageMinlength">
+          {{"This field undercuts required minimum length!"|i18n}}
+        </div>
+      </div>
+
+      <div data-ng-transclude="messagesCustom">
+        <!-- custom ng-messages -->
+      </div>
+    </div>
+
+    <!-- element -->
+    <div data-ng-attr-id="{{'default-' + formFieldController.id}}">
+      <!-- replaced by `default` transclusion content -->
+    </div>
+
+  </div>
+
+
+</div>

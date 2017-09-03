@@ -1,0 +1,74 @@
+<div data-uk-sticky="" class="uk-navbar-container uk-sticky uk-sticky-fixed">
+  <div class="uk-navbar-container">
+    <div class="uk-container">
+      <nav class="uk-navbar" data-uk-navbar="">
+        <div class="uk-navbar-left">
+          <div class="uk-navbar-item">
+            <a href="#home" class="uk-navbar-item" data-uk-scroll="offset: 80">
+              <img
+                id="logo-efit"
+                alt="Financial Training"
+                src="img/logo-efit.png">
+              </a>
+          </div>
+        </div>
+
+        <div class="uk-navbar-right">
+          <ul class="uk-navbar-nav uk-visible@s" data-uk-scrollspy-nav="closest: li; scroll: true; offset: 80">
+              <li>
+                <a href="#topics">Themen</a>
+                <div class="uk-navbar-dropdown">
+                  <ul class="uk-nav uk-navbar-dropdown-nav">
+                    <li><a href="#financial-knowledge">Finanzwissen</a></li>
+                    <li><a href="#consumer-behaviour">Konsumverhalten</a></li>
+                    <li><a href="#self-control">Selbstkontrolle</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a href="#status">Status</a>
+                <div class="uk-navbar-dropdown">
+                  <div
+                    data-status=""
+                    data-status-is-compact="true"
+                    data-status-icon-ratio="1.25"
+                    class="uk-text-center">
+                      <a
+                        href="#status"
+                        data-uk-scroll="offset: 80"
+                        class="uk-display-block uk-text-small">
+                        Was heißt das?
+                      </a>
+                  </div>
+                </div>
+              </li>
+              <li><a href="#contact">Kontakt</a></li>
+              <li data-ng-if="!frontendController.user.isUser()">
+                <a
+                  href="javascript:void(0)"
+                  data-ng-click="frontendController.goTo('backend')">
+                  Administration
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  data-ng-click="frontendController.logout()">
+                  Abmelden
+                </a>
+              </li>
+          </ul>
+
+          <a
+            href="javascript:void(0)"
+            class="uk-navbar-toggle uk-hidden@s"
+            data-uk-toggle="target: #off-canvas; cls: uk-open">
+            <span data-uk-navbar-toggle-icon></span>
+            <span class="uk-margin-small-left">Menü</span>
+          </a>
+
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

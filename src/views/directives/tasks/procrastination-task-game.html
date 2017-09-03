@@ -1,0 +1,73 @@
+<div
+  class="viewport cursor-pointer uk-inline uk-text-center"
+  data-ng-class="{
+    'cursor-pointer': (
+      procrastinationTaskGameController.state === 'IDLE' ||
+      procrastinationTaskGameController.state === 'RUNNING' ||
+      (procrastinationTaskGameController.state === 'GAME_OVER' && procrastinationTaskGameController.canRetry()) ||
+      (procrastinationTaskGameController.state === 'GAME_DONE' && procrastinationTaskGameController.canRestart())
+    ),
+    'cursor-default': (
+      (procrastinationTaskGameController.state === 'GAME_OVER' && !procrastinationTaskGameController.canRetry()) ||
+      (procrastinationTaskGameController.state === 'GAME_DONE' && !procrastinationTaskGameController.canRestart())
+    ),
+    'cursor-not-allowed': procrastinationTaskGameController.state === 'TIMEOUT'
+  }"
+  data-ng-attr-id="{{procrastinationTaskGameController.domId}}"
+  data-ng-click="procrastinationTaskGameController.onClick($event)">
+  <div
+    data-procrastination-task-bubble="id"
+    data-procrastination-task-bubble-on-escape=""
+    data-ng-repeat="(id, bubble) in procrastinationTaskGameController.bubbles">
+  </div>
+
+  <div
+    class="uk-text-bold uk-text-inverse uk-position-center"
+    data-ng-switch="procrastinationTaskGameController.state">
+    <div data-ng-switch-when="IDLE">
+      <div class="uk-text-large">Neues Spiel</div>
+      <div class="uk-text-small">Klicke zum Starten</div>
+    </div>
+    <div data-ng-switch-when="GAME_OVER">
+      <div class="uk-text-large">Game Over</div>
+      <div class="uk-text-small">Versuche es noch einmal</div>
+      <div
+        class="uk-text-small uk-margin-top"
+        data-ng-if="procrastinationTaskGameController.canRetry()">
+        Klicke zum Neustarten
+      </div>
+    </div>
+    <div data-ng-switch-when="GAME_DONE">
+      <div class="uk-text-large">Gratulation</div>
+      <div class="uk-text-small">Du hast die Aufgabe gelöst</div>
+      <div
+        class="uk-text-small uk-margin-top"
+        data-ng-if="procrastinationTaskGameController.canRestart()">
+        Klicke zum Neustarten
+      </div>
+    </div>
+    <div data-ng-switch-when="TIMEOUT">
+      <div class="uk-text-large">Zeit abgelaufen</div>
+      <div class="uk-text-small">Das war leider zu langsam</div>
+    </div>
+  </div>
+</div>
+
+<div class="uk-margin-small">
+  <div class="uk-label uk-label-success uk-margin-xsmall-bottom uk-margin-xsmall-top uk-margin-xsmall-right uk-margin-xsmall-left">
+    <span>Geplatzt: </span>
+    <span data-ng-bind="procrastinationTaskGameController.catched"></span>
+  </div>
+
+  <div class="uk-label uk-label-danger uk-margin-xsmall-bottom uk-margin-xsmall-top uk-margin-xsmall-right uk-margin-xsmall-left">
+    <span>Entwischt: </span>
+    <span data-ng-bind="procrastinationTaskGameController.escaped"></span>
+  </div>
+
+  <div class="uk-label uk-label-primary uk-margin-xsmall-bottom uk-margin-xsmall-top uk-margin-xsmall-right uk-margin-xsmall-left">
+    <span>Genauigkeit: </span>
+    <span data-ng-bind="procrastinationTaskGameController.accuracy|percent"></span>
+  </div>
+</div>
+
+

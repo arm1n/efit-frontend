@@ -1,0 +1,264 @@
+/* ==================================================
+ * HELPERS
+ * @author Armin Pfurtscheller
+ * ================================================== */
+
+// dimensions
+.width-full{
+  width: 100%;
+}
+.width-auto{
+  width: auto;
+}
+.height-full{
+  height: 100%;
+}
+.height-auto{
+  height:auto;
+}
+
+// images
+.img-retina{
+  height: 50%;
+}
+
+.img-responsive{
+  height:auto;
+  max-width:100%;
+  display: block !important;
+}
+
+.img-center{
+  margin:auto;
+  top:-9999px;
+  left:-9999px;
+  right:-9999px;
+  bottom:-9999px;
+  position: absolute;
+}
+
+// position
+.position-absolute{
+  position: absolute;
+}
+
+.position-relative{
+  position: relative;
+}
+
+// floats
+.clear-fix{
+  &:after {
+      content: "";
+      clear: both;
+      display: table;
+  }
+}
+
+.pull-right{
+  float:right;
+}
+
+.pull-left{
+  float:left;
+}
+
+// visibility
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.visible{
+  visibility: visible;
+}
+
+.opacity-75 {
+  opacity: 0.75;
+}
+
+.opacity-50 {
+  opacity: 0.50;
+}
+
+// appeareance
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.cursor-default{
+  cursor: default;
+}
+
+.cursor-not-allowed{
+  cursor: not-allowed;
+}
+
+// font families
+/*
+.font-alto-con-medium{
+  font-family:$fontFamilyDefault;
+}
+
+.font-alto-con-bold{
+  font-family:$fontFamilyBold;
+}
+
+.font-alto-con-italic{
+  font-family:$fontFamilyItalic;
+}
+
+.font-alto-con-extra-light{
+  font-family:$fontFamilyExtraLight;
+}
+*/
+
+// font sizes
+.font-size-default{
+  font-size:1rem;
+}
+.font-size-14{
+  font-size:0.875rem;
+}
+.font-size-16{
+  font-size:1rem;
+}
+.font-size-18{
+  font-size:1.125rem;
+}
+.font-size-20{
+  font-size:1.25rem;
+}
+.font-size-22{
+  font-size: 1.375rem;
+}
+.font-size-24{
+  font-size:1.5rem;
+}
+.font-size-32{
+  font-size:2rem;
+}
+.font-size-36{
+  font-size:2.25rem;
+}
+.font-size-48{
+  font-size:3rem;
+}
+.font-size-52{
+  font-size:3.25rem;
+}
+.font-size-62{
+  font-size:3.875rem;
+}
+.font-size-80{
+  font-size:5rem;
+}
+.font-size-120{
+  font-size:7.5rem;
+}
+
+.font-smaller{
+  font-size: smaller;
+}
+.font-larger{
+  font-size: larger;
+}
+
+// font style
+.font-italic{
+  font-style: italic;
+}
+.font-bold{
+  font-weight: bold;
+}
+.font-normal{
+  font-style: normal;
+}
+.font-uppercase{
+  text-transform: uppercase;
+}
+.font-lowercase{
+  text-transform: lowercase;
+}
+
+// line height
+.no-line-height{
+  line-height: 1;
+}
+
+// display
+.display-block{
+  display: block;
+}
+.display-inline{
+  display: inline-block;
+}
+.display-table{
+  display: table;
+}
+.display-table-row{
+  display: table-row;
+}
+.display-table-cell{
+  display: table-cell;
+}
+.layout-fixed{
+  table-layout: fixed;
+}
+
+// alignment
+.text-left{
+  text-align: left;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.text-right{
+  text-align: right;
+}
+
+.text-overflow{
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.align-middle{
+  vertical-align: middle;
+}
+
+.align-bottom{
+  vertical-align: bottom;
+}
+
+.align-top{
+  vertical-align: top;
+}

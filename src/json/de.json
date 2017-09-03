@@ -1,0 +1,156 @@
+{
+  "___FRONTEND___": "",
+
+  "Loading...": "Lade...",
+
+  "___AUTH_MESSAGES___": "",
+
+  "You are logged in now!": "Sie sind nun angemeldet!",
+  "You have successfully signed in!": "Du hast dich erfolgreich angemeldet!",
+  "You have successfully signed up!": "Du hast dich erfolgreich für den Workshop angemeldet!",
+
+  "___GAME_MESSAGES___": "",
+
+  "Congratulations, you have reached the state %s!": "Gratulation, du hast den Status %s erreicht!",
+  "Congratulations, you have earned 1 new ticket!": "Gratulation, du hast ein neues Los verdient!",
+  "Congratulations, you have earned %s new tickets!": "Gratulation, du hast %s neue Lose verdient!",
+  "No task found for this result!": "Aufgabe für das Ergebnis wurde nicht gefunden!",
+  "Task for result is currently locked!": "Die Aufgabe ist derzeit gesperrt!",
+  "Only one result permitted during workshop!": "Du kannst eine Aufgabe nur einmal machen während des Workshops!",
+  "Only users can post results!": "Nur Schüler dürfen Aufgaben absenden!",
+
+  "Thank you for your input!": "Vielen Dank für deine Eingabe!",
+
+  "day": "Tag",
+  "days": "Tage",
+  "hour": "Stunde",
+  "hours": "Stunden",
+  "minute": "Minute",
+  "minutes": "Minuten",
+  "second": "Sekunde",
+  "seconds": "Sekunden",
+  "ALL": "Alles auf einmal (1 x 150)",
+  "SPLIT": "In drei kleineren Teilen (3 x 50)",
+  "Target reached": "Ziel erreicht",
+  "Target dismissed": "Ziel nicht erreicht",
+  "Super, you have succeeded exercise %s of %s!": "Super, du hast Teilaufgabe %s von %s gelöst!",
+  "Super, you have successfully done this exercise and retrieve 5 tickets!": "Super, du hast die Aufgabe erfolgreich gelöst und erhälst 5 Lose!",
+  "Sorry, but the time has expired for this exercise and you retrieve only 1 ticket!": "Sorry, aber die Zeit für diese Aufgabe ist abgelaufen und du erhälst nur 1 Los!",
+
+  "___USER_STATES___": "",
+
+  "STATE_BEGINNER": "Einsteiger/in",
+  "STATE_AMATEUR": "Amateur/in",
+  "STATE_ADVANCED": "Fortgeschrittene/r",
+  "STATE_EXPERT": "Expert/in",
+
+  "___USER_GROUPS___": "",
+
+  "GROUP_A": "Gruppe A",
+  "GROUP_B": "Gruppe B",
+
+  "___TASK_TYPES___": "",
+
+  "INTEREST": "Der Zinseffekt",
+  "DIVERSIFICATION": "Diversifikation",
+  "RISK": "Der Bomb-Task",
+  "ANCHORING": "Anchoring",
+  "MENTAL_BOOKKEEPING": "Mentale Buchführung",
+  "FRAMING": "Framing",
+  "SAVINGS_TARGET": "Sparziel vergegenwärtigen",
+  "SAVINGS_SUPPORTED": "Sparen mit Unterstützung",
+  "SELF_COMMITMENT": "Selbstbindung",
+  "PROCRASTINATION": "Aufschieberitis",
+
+  "___TASK_BLOCKS___": "",
+
+  "FINANCIAL_KNOWLEDGE": "Finanzwissen",
+  "CONSUMER_BEHAVIOUR": "Konsumverhalten",
+  "SELF_CONTROL": "Selbstkontrolle",
+
+  "__TASK_MISC___": "",
+
+  "Choice 1": "Option 1",
+  "Choice 2": "Option 2",
+
+  "___WORKSHOP_MESSAGES___": "",
+
+  "Workshop has been created successfully!": "Der Workshop wurde erfolgreich angelegt!",
+  "Workshop has been deleted successfully!": "Der Workshop wurde erfolgreich gelöscht!",
+  "Workshop has been unlocked successfully. Students can register now!": "Der Workshop wurde erfolgreich freigegeben. Die Schüler können sich nun registrieren!",
+  "Workshop has been locked successfully. Students can now only use their access from home!": "Der Workshop wurde erfolgreich gesperrt. Die Schüler können sich nun nur mehr von zuhause anmelden!",
+  "Task has been unlocked successfully. Students can send results now!": "Die Aufgabe wurde erfolgreich freigeben. Die Schüler können nun Ergebnisse absenden!",
+  "Task has been locked successfully. Students cannot send results currently!": "Die Aufgabe wurde erfolgreich gesperrt. Die Schüler können derzeit keine Ergebnisse absenden!",
+
+  "___FORM_MESSAGES___": "",
+
+  "This field is required!":"Dieses Feld ist verpflichtend!",
+  "This field has a too low input value!": "Dieses Feld hat einen zu kleinen Wert!",
+  "This field has a too hight input value!": "Dieses Feld hat einen zu großen Wert!",
+  "This field requires a valid url!":"Dieses Feld benötigt eine korrekte URL!",
+  "This field requires a valid email!":"Dieses Feld benötigt eine korrekte Email!",
+  "This field requires numeric input!":"Dieses Feld benötigt eine numerische Eingabe!",
+  "This field requires special pattern!":"Dieses Feld benötigt ein spezielles Eingabemuster!",
+  "This field exceeds allowed maximum length!":"Dieses Feld überschreitet die erlaubte Maximallänge!",
+  "This field undercuts required minimum length!":"Dieses Feld unterschreitet die erforderliche Minimumlänge!",
+
+  "___BACKEND___": "",
+
+  "___EMAIL_MESSAGES___": "",
+
+  "Your email has been sent!": "Danke, wir melden uns so schnell wie möglich bei dir!",
+  "Your email could not be sent!": "Deine Email konnte leider nicht verschickt werden - versuche es bitte später noch einmal!",
+
+  "___AUTH_MESSAGES___": "",
+
+  "Bad credentials.": "Die Zugangsdaten sind ungültig!",
+  "Your credentials are invalid!": "Die Zugangsdaten sind ungültig!",
+  "The token was not found!": "Kein Sicherheitstoken gefunden!",
+  "The token is invalid!": "Der Sicherheitsschlüssel ist ungültig!",
+  "The token has expired!": "Der Sicherheitsschlüssel ist abgelaufen!",
+  "You need to sign in for gaining access!": "Anmeldung erforderlich für Zugang!",
+  "No code has been submitted!": "Es wurde kein Code übermittelt!",
+  "This code is invalid!": "Dieser Code ist leider ungültig!",
+
+  "Password is too long!": "Das Passwort ist zu lang!",
+  "Password is too short!": "Das Passwort ist zu kurz!",
+  "Username is too short!": "Der Benutzername ist zu kurz!",
+  "Workshop doesn't exist!": "Der Code des Workshops ist ungültig!",
+  "Workshop is currently locked!": "Der Workshop ist derzeit gesperrt!",
+  "Username already exists on the system!": "Dieser persönliche Code existiert bereits im System!",
+  "Username already registered to another workshop!": "Dieser persönliche Code ist bereits einem anderen Workshop zugewiesen!",
+  "Workshop is still active!": "Dein Workshop ist noch aktiv, du kannst dich nicht von zuhause anmelden!",
+
+  "___WORKSHOP_MESSAGES___": "",
+
+  "Workshop name is required!": "Ein Workshop erfordert einen Namen!",
+  "Workshop name is too short!": "Der Name des Workshops ist zu kurz!",
+  "Workshop code is required!": "Ein Workshop erfordert einen Code!",
+  "Workshop code is too short!": "Der Code des Workshops ist zu kurz!",
+  "Workshop code allows letters and numbers only!": "Der Code des Workshops darf nur Buchstaben und Zahlen enthalten!",
+  "Workshop code already exists on the system!": "Der Code des Workshops existiert bereits im System!",
+
+  "___ADMIN_MESSAGES___": "",
+
+  "Admin has been created successfully!": "Der Trainer wurde erfolgreich angelegt!",
+  "Admin has been deleted successfully!": "Der Trainer wurde erfolgreich gelöscht!",
+  "Password has been successfully updated!": "Das Passwort wurde erfolgreich aktualisiert!",
+
+  "___FALLBACK_MESSAGES___": "",
+
+  "The request data contains invalid data!": "Die Anfrage enthält fehlerhafte Daten!",
+  "This operation requires authorization!": "Sie sind nicht berecht für diese Operation!",
+  "You have no access to this resource!": "Sie haben keinen Zugriff auf diese Ressource!",
+  "The resource could not be found!": "Die Ressource wurde nicht gefunden!",
+  "This method is not allowed!": "Diese Methode ist nicht erlaubt!",
+  "The resource is not acceptable!": "Die Ressource kann nicht akzeptiert werden!",
+  "The resource has gone!": "Die Ressource ist nicht mehr verfügbar!",
+  "There is a conflict with this resource!": "Es besteht ein Ressourcen-Konflikt!",
+  "The resource requires length data!": "Die Ressource erfordert eine Minimumlänge!",
+  "The resource precondition failed!": "Die Voraussetzung für diese Ressource ist fehlgeschlagen!",
+  "This media type is not supported!": "Dieser Medientyp wird nicht unterstützt!",
+  "This entity is not processable!": "Die Entität kann nicht verarbeitet werden!",
+  "There were too many requests!": "Es sind zu viele gleichzeitige Anfragen aufgetreten!",
+  "This service is unavailable!": "Der Service ist nicht verfügbar!",
+  "An unknown server error occured!": "Ein unbekannter Serverfehler ist aufgetreten!"
+}

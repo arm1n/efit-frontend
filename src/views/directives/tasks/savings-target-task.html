@@ -1,0 +1,190 @@
+<div class="savings-target-task">
+  <div data-locked-state="savingsTargetTaskController.isLocked()">
+    <user-text>Eingabe beendet - bitte warte auf weitere Instruktionen!</user-text>
+  </div>
+
+  <form
+    class="uk-form-stacked"
+    novalidate="novalidate"
+    name="savingsTargetTaskController.form"
+    data-ng-if="!savingsTargetTaskController.isLocked()">
+
+    <!-- STEP 1 -->
+    <div data-ng-if="savingsTargetTaskController.step === 1">
+
+      <p>Hast du einen finanziellen Wunsch (Moped, Reise, Smartphone, Schmuck, Snowboard, ...), den du dir gerne erfüllen würdest?</p>
+
+      <div
+        class="uk-margin"
+        data-form-field=""
+        data-form-field-reset-empty="false">
+        <label class="uk-text-uppercase uk-text-bold">
+          Bitte trage deinen Wunsch hier ein:
+        </label>
+        <input
+          type="text"
+          name="wish"
+          data-ng-required="true"
+          data-form-field-model=""
+          class="uk-input uk-width-1-2@s"
+          data-ng-model="savingsTargetTaskController.wish">
+        <message-required>
+          Bitte gib deinen finanziellen Wunsch an!
+        </message-required>
+      </div>
+
+      <div
+        class="uk-margin"
+        data-form-field=""
+        data-form-field-reset-empty="false">
+        <label class="uk-text-uppercase uk-text-bold">
+          Wieviel würdest du monatlich dafür sparen?
+        </label>
+        <input
+          type="number"
+          name="amount"
+          data-ng-required="true"
+          data-form-field-model=""
+          class="uk-input uk-width-1-2@s"
+          data-ng-model="savingsTargetTaskController.amount"
+          data-ng-min="savingsTargetTaskController.minAmount"
+          data-ng-max="savingsTargetTaskController.maxAmount">
+        <message-required>
+          Bitte gib deinen monatlichen Sparbetrag an!
+        </message-required>
+        <message-min>
+          <span>Deine Eingabe unterschreitet den Minimalbetrag von </span>
+          <span data-ng-bind="savingsTargetTaskController.minAmount|currency:'€ ':2"></span>
+          <span>!</span>
+        </message-min>
+        <message-max>
+          <span>Deine Eingabe überschreitet den Maximalbetrag von </span>
+          <span data-ng-bind="savingsTargetTaskController.maxAmount|currency:'€ ':2"></span>
+          <span>!</span>
+        </message-max>
+      </div>
+
+      <div class="uk-margin">
+        <button
+          type="submit"
+          class="uk-button uk-button-success"
+          data-ng-click="savingsTargetTaskController.update()"
+          data-ng-disabled="!savingsTargetTaskController.canResolve()">
+          Weiter
+        </button>
+      </div>
+
+    </div>
+
+    <!-- STEP 2 -->
+    <div data-ng-if="savingsTargetTaskController.step === 2">
+
+      <div class="uk-inline">
+        <div class="uk-card uk-card-default uk-card-small">
+          <div class="uk-card-header">
+            <strong>Dein finanzieller Wunsch war:</strong>
+          </div>
+          <div class="uk-card-body">
+            <p
+              class="uk-text-uppercase "
+              data-ng-bind="savingsTargetTaskController.wish">
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <button
+          type="button"
+          class="uk-button uk-button-success"
+          data-ng-click="savingsTargetTaskController.update()"
+          data-ng-disabled="!savingsTargetTaskController.canResolve()">
+          Weiter
+        </button>
+      </div>
+
+    </div>
+
+    <!-- STEP 3 -->
+    <div data-ng-if="savingsTargetTaskController.step === 3">
+      <p>Bitte gib nun ein, wie viel du bereit wärst, monatlich für dieses Ziel anzusparen:</p>
+
+      <div
+        class="uk-margin"
+        data-form-field=""
+        data-form-field-reset-empty="false">
+        <label class="uk-text-uppercase uk-text-bold">
+          Mein monatlicher Sparbetrag lautet:
+        </label>
+        <input
+          type="number"
+          name="amountRepeated"
+          data-ng-required="true"
+          data-form-field-model=""
+          class="uk-input uk-width-1-2@s"
+          data-ng-min="savingsTargetTaskController.minAmount"
+          data-ng-max="savingsTargetTaskController.maxAmount"
+          data-ng-model="savingsTargetTaskController.amountRepeated">
+        <message-required>
+          Bitte gib den monatlichen Sparbetrag an!
+        </message-required>
+        <message-min>
+          <span>Deine Eingabe unterschreitet den Minimalbetrag von </span>
+          <span data-ng-bind="savingsTargetTaskController.minAmount|currency:'€ ':2"></span>
+          <span>!</span>
+        </message-min>
+        <message-max>
+          <span>Deine Eingabe überschreitet den Maximalbetrag von </span>
+          <span data-ng-bind="savingsTargetTaskController.maxAmount|currency:'€ ':2"></span>
+          <span>!</span>
+        </message-max>
+      </div>
+
+      <div data-evaluation="savingsTargetTaskController">
+        <evaluation-text>
+          <p>Deine Sparbereitschaft hat sich folgendermaßen geändert:</p>
+          <div class="uk-inline">
+            <table class="uk-table uk-table-middle uk-table-divider uk-table-striped uk-width-1-2@s uk-width-1-4@m uk-margin-auto">
+              <thead>
+                <tr>
+                  <th class="uk-text-left">Beschreibung</th>
+                  <th class="uk-text-center">Wert</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="uk-text-left">Eingabe 1</td>
+                  <td class="uk-text-center">
+                    <span data-ng-bind="savingsTargetTaskController.amount"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="uk-text-left">Eingabe 2</td>
+                  <td class="uk-text-center">
+                    <span data-ng-bind="savingsTargetTaskController.amountRepeated"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="uk-text-left"><strong>Differenz</strong></td>
+                  <td class="uk-text-center">
+                    <span
+                      class="uk-label"
+                      data-ng-class="{
+                        'uk-label-danger': savingsTargetTaskController.getDifference() < 0,
+                        'uk-label-success': savingsTargetTaskController.getDifference() > 0,
+                        'uk-label-warning': savingsTargetTaskController.getDifference() === 0
+                      }"
+                      data-ng-bind="savingsTargetTaskController.getDifference()">
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </evaluation-text>
+      </div>
+
+    </div>
+
+  </form>
+</div>

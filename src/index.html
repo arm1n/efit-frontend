@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html
+  data-ng-app="eFit"
+  data-ng-class="state.name">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Ein interaktives Finanz-Training für Schüler und Schülerinnen.">
+    <title>FiT - Werde FiT für deine Träume</title>
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="img/icon.png">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <!-- build:css css/styles.min.css -->
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
+    <!-- endbuild -->
+  </head>
+
+  <body class="uk-background-muted">
+
+    <!-- load -->
+    <div
+      id="load"
+      class="load-animation"
+      data-ng-show="isBusy">
+
+      <div class="uk-overlay-default uk-position-cover">
+          <div class="uk-position-center uk-text-center">
+              <div data-uk-spinner="ratio: 2"></div>
+              <div class="uk-margin-top uk-text-center">
+                Einen Moment bitte...
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- view -->
+    <div
+      id="wrap"
+      data-ui-view=""
+      class="tm-wrap uk-offcanvas-content uk-vertical-align-middle">
+    </div>
+
+    <!-- off-canvas -->
+    <div
+      id="off-canvas"
+      data-ui-view="offcanvas"
+      data-uk-offcanvas="mode: reveal; flip: true; overlay: true" >
+    </div>
+
+    <!-- polyfills -->
+    <script>
+      (function() {
+        var supportsCustomElements = ("customElements" in window);
+        if (!supportsCustomElements) {
+
+          var script = document.createElement('script');
+          script.src = 'js/custom-elements.min.js';
+          document.body.appendChild(script);
+        }
+
+        var supportsEventSource = ("EventSource" in window);
+        if (!supportsEventSource) {
+          var script = document.createElement('script');
+          script.src = 'js/EventSource.min.js';
+          document.body.appendChild(script);
+        }
+      })();
+    </script>
+
+    <!-- vendors -->
+
+    <!-- build:js js/vendor.min.js -->
+    <script src="vendor/jQuery/dist/jquery.js"></script>
+    <script src="vendor/uikit/dist/js/uikit.js"></script>
+    <script src="vendor/uikit/dist/js/uikit-icons.js"></script>
+    <script src="vendor/angular/angular.js"></script>
+    <script src="vendor/angular-resource/angular-resource.js"></script>
+    <script src="vendor/angular-messages/angular-messages.js"></script>
+    <script src="vendor/angular-sanitize/angular-sanitize.js"></script>
+    <script src="vendor/angular-i18n/angular-locale_de.js"></script>
+    <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="vendor/interactjs/dist/interact.js"></script>
+    <script src="vendor/chartist/dist/chartist.js"></script>
+    <script src="vendor/chartist-plugin-legend/chartist-plugin-legend.js"></script>
+    <script src="vendor/fastclick/lib/fastclick.js"></script>
+    <script src="vendor/moment/moment.js"></script>
+    <!-- endbuild -->
+
+    <!-- dependencies -->
+
+    <!-- build:js(./dist) js/deps.min.js -->
+    <script src="js/config.js"></script>
+    <script src="js/views.js"></script>
+    <!-- endbuild -->
+
+    <!-- application -->
+
+    <!-- build:js js/app.min.js -->
+    <script src="js/app/module.js"></script>
+    <script src="js/app/services/http-interceptor.js"></script>
+    <script src="js/app/services/notification.js"></script>
+    <script src="js/app/services/app-state.js"></script>
+    <script src="js/app/services/animation.js"></script>
+    <script src="js/app/services/random.js"></script>
+    <script src="js/app/services/string.js"></script>
+    <script src="js/app/services/storage.js"></script>
+    <script src="js/app/services/auth.js"></script>
+    <script src="js/app/services/i18n.js"></script>
+    <script src="js/app/services/jwt.js"></script>
+    <script src="js/app/services/user.js"></script>
+    <script src="js/app/services/mail.js"></script>
+    <script src="js/app/services/sse.js"></script>
+    <script src="js/app/directives/card.js"></script>
+    <script src="js/app/directives/chart.js"></script>
+    <script src="js/app/directives/modal.js"></script>
+    <script src="js/app/directives/status.js"></script>
+    <script src="js/app/directives/tabber.js"></script>
+    <script src="js/app/directives/dragdrop.js"></script>
+    <script src="js/app/directives/scroll-to.js"></script>
+    <script src="js/app/directives/evaluation.js"></script>
+    <script src="js/app/directives/locked-state.js"></script>
+    <script src="js/app/directives/form-field.js"></script>
+    <script src="js/app/directives/form-validators.js"></script>
+    <script src="js/app/directives/tasks/interest-task.js"></script>
+    <script src="js/app/directives/tasks/diversification-task.js"></script>
+    <script src="js/app/directives/tasks/bomb-task.js"></script>
+    <script src="js/app/directives/tasks/anchoring-task.js"></script>
+    <script src="js/app/directives/tasks/mental-bookkeeping-task.js"></script>
+    <script src="js/app/directives/tasks/framing-task.js"></script>
+    <script src="js/app/directives/tasks/savings-target-task.js"></script>
+    <script src="js/app/directives/tasks/self-commitment-task.js"></script>
+    <script src="js/app/directives/tasks/procrastination-task.js"></script>
+    <script src="js/app/controllers/login/frontend.js"></script>
+    <script src="js/app/controllers/login/backend.js"></script>
+    <script src="js/app/controllers/frontend/contact.js"></script>
+    <script src="js/app/controllers/frontend.js"></script>
+    <script src="js/app/controllers/backend/workshop.js"></script>
+    <script src="js/app/controllers/backend/admin.js"></script>
+    <script src="js/app/controllers/backend.js"></script>
+    <script src="js/app/resources/workshop.js"></script>
+    <script src="js/app/resources/ticket.js"></script>
+    <script src="js/app/resources/result.js"></script>
+    <script src="js/app/resources/admin.js"></script>
+    <script src="js/app/resources/task.js"></script>
+    <script src="js/app/resources/user.js"></script>
+    <script src="js/app/filters/filters.js"></script>
+
+    <script src="js/uikit/components.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

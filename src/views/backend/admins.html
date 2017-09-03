@@ -1,0 +1,194 @@
+<h1>Admins</h1>
+
+<div class="uk-grid-medium uk-grid-divider" uk-grid>
+
+  <!-- TABLE -->
+  <div class="uk-width-2-3@m">
+
+    <table class="uk-table uk-table-middle uk-table-divider uk-table-justify">
+      <thead>
+          <tr>
+              <th class="uk-table-expand uk-text-left">Username</th>
+              <th class="uk-table-shrink uk-text-center">Workshops</th>
+              <th class="uk-table-shrink uk-text-right">Aktionen</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="admin in adminController.admins track by admin.id">
+          <td class="uk-table-expand">
+            <span
+              class="uk-text-bold"
+              data-ng-bind="admin.username">
+            </span>
+          </td>
+          <td class="uk-table-shrink uk-text-center">
+            <span
+              data-uk-tooltip=""
+              class="cursor-pointer"
+              data-ng-bind="admin.workshops.length"
+              title="Anzahl an erstellten Workshops">
+            </span>
+          </td>
+          <td class="uk-table-shrink">
+            <ul class="uk-iconnav uk-flex-right">
+              <li>
+                <button
+                  title="Editieren"
+                  data-uk-tooltip=""
+                  data-uk-icon="icon: file-edit"
+                  data-ng-click="adminController.markAdminForEdit(admin)">
+                </button>
+              </li>
+              <li>
+                <button
+                  title="Löschen"
+                  data-uk-tooltip=""
+                  data-uk-icon="icon: trash"
+                  data-ng-disabled="admin.workshops.length"
+                  data-ng-click="adminController.markAdminForDeletion(admin)">
+                </button>
+              </li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr data-ng-if="adminController.admins.length === 0">
+          <td colspan="3">
+            <div data-uk-alert class="uk-alert-warning">
+              Noch keine Trainer vorhanden!
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+  <!-- FORM -->
+  <div class="uk-width-1-3@m">
+    <div class="uk-card uk-card-default uk-card-small uk-card-body">
+
+      <h3 class="uk-card-title">Neuer Trainer</h3>
+      <form
+        name="adminForm"
+        class="uk-form-stacked"
+        novalidate="novalidate">
+
+        <div
+          class="uk-margin"
+          data-form-field="">
+          <label>Username:</label>
+          <input
+            type="text"
+            name="name"
+            class="uk-input"
+            placeholder="Username"
+            data-ng-required="true"
+            data-form-field-model=""
+            data-validator-admin-unique=""
+            data-ng-model="adminController.username"
+            data-ng-minlength="adminController.usernameMinLength">
+          <message-required>Ein Username ist erforderlich!</message-required>
+          <message-minlength>Der Username ist zu kurz!</message-minlength>
+          <messages-custom>
+            <div data-ng-message="validatorAdminUnique">
+              Dieser Username existiert bereits im System!
+            </div>
+          </messages-custom>
+        </div>
+
+        <div
+          class="uk-margin"
+          data-form-field="">
+          <label>Passwort:</label>
+          <input
+              type="password"
+              class="uk-input"
+              placeholder="Passwort"
+              data-ng-required="true"
+              data-form-field-model=""
+              data-ng-model="adminController.password"
+              data-ng-minlength="adminController.passwordMinLength">
+          <message-minlength>Das Passwort ist zu kurz!</message-minlength>
+          <message-required>Ein Passwort ist erforderlich!</message-required>
+        </div>
+
+        <button
+          type="button"
+          class="uk-button uk-button-success"
+          data-ng-click="adminController.create()"
+          data-ng-disabled="adminForm.$invalid || adminForm.$pending">
+          Anlegen
+        </button>
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL: EDIT -->
+<div data-modal="adminController.editAdmin">
+  <div class="uk-modal-dialog uk-modal-body">
+      <h2 class="uk-modal-title">Passwort ändern</h2>
+      <p>Hier ändern Sie das Passwort für den Admin <span class="uk-text-bold">{{adminController.editAdmin.username}}</span>:</p>
+
+      <form
+        name="editForm"
+        novalidate="novalidate">
+        <div
+          class="uk-margin"
+          data-form-field="">
+          <input
+              type="password"
+              class="uk-input"
+              data-ng-required="true"
+              data-form-field-model=""
+              placeholder="Neues Passwort"
+              data-ng-model="adminController.editAdmin.password"
+              data-ng-minlength="adminController.passwordMinLength">
+          <message-minlength>Das Passwort ist zu kurz!</message-minlength>
+          <message-required>Ein Passwort ist erforderlich!</message-required>
+        </div>
+
+        <p class="uk-text-right">
+          <button
+            type="button"
+            class="uk-button uk-button-default uk-modal-close">
+            Abbrechen
+          </button>
+          <button
+            type="submit"
+            class="uk-button uk-button-primary uk-modal-close"
+            data-ng-disabled="editForm.$invalid ||editForm.$pending"
+            data-ng-click="adminController.update(adminController.editAdmin)">
+            Bestätigen
+          </button>
+        </p>
+
+      </form>
+  </div>
+</div>
+
+<!-- MODAL: DELETE -->
+<div data-modal="adminController.deleteAdmin">
+  <div class="uk-modal-dialog uk-modal-body">
+      <h2 class="uk-modal-title">Bestätigen</h2>
+      <p>Möchten Sie den Trainer <span class="uk-text-bold">{{adminController.deleteAdmin.username}}</span> wirklich löschen?</p>
+      <p class="uk-text-right">
+          <button
+            type="button"
+            class="uk-button uk-button-default uk-modal-close">
+            Abbrechen
+          </button>
+          <button
+            type="button"
+            class="uk-button uk-button-primary uk-modal-close"
+            data-ng-click="adminController.delete(adminController.deleteAdmin)">
+            Löschen
+          </button>
+      </p>
+  </div>
+</div>

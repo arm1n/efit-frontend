@@ -1,0 +1,119 @@
+<div class="anchoring-task">
+
+  <div data-ng-switch="mentalBookkeepingTaskController.group">
+
+    <div data-ng-switch-when="GROUP_A">
+      <div class="description">
+        <p>Du willst dir ein Konzertticket um 20 Euro kaufen. Am Eingang angekommen siehst du, dass du auf dem Weg 20 Euro verloren hast. Kaufst du dir ein Ticket (du hast noch genug Geld dabei)?</p>
+      </div>
+
+      <div
+        data-uk-grid=""
+        data-card-container=""
+        class="uk-grid-match uk-child-width-1-2@s">
+
+        <div
+          data-card=""
+          data-card-data="1"
+          data-card-is-checkbox="true"
+          data-card-disabled="mentalBookkeepingTaskController.resolved"
+          data-card-on-click="mentalBookkeepingTaskController.update(data, selected)">
+          <card-title>
+            Option 1
+          </card-title>
+          <card-text>
+            Ja, du kaufst das Ticket.
+          </card-text>
+          <card-buttons>
+          </card-buttons>
+        </div>
+
+        <div
+          data-card=""
+          data-card-data="2"
+          data-card-is-checkbox="true"
+          data-card-disabled="mentalBookkeepingTaskController.resolved"
+          data-card-on-click="mentalBookkeepingTaskController.update(data, selected)">
+          <card-title>
+            Option 2
+          </card-title>
+          <card-text>
+            Nein, du kaufst das Ticket nicht.
+          </card-text>
+          <card-buttons>
+          </card-buttons>
+        </div>
+
+      </div>
+    </div>
+
+    <div data-ng-switch-when="GROUP_B">
+
+      <div class="description">
+        <p>Du hast dir ein Konzertticket um 20 Euro gekauft. Am Eingang angekommen siehst du, dass du das Ticket verloren hast. Kaufst du dir dort erneut ein Ticket (du hast noch genug Geld dabei)?</p>
+      </div>
+
+      <div
+        data-uk-grid=""
+        data-card-container=""
+        class="uk-grid-match uk-child-width-1-2@s">
+
+        <div
+          data-card=""
+          data-card-data="1"
+          data-card-is-checkbox="true"
+          data-card-disabled="mentalBookkeepingTaskController.resolved"
+          data-card-on-click="mentalBookkeepingTaskController.update(data, selected)">
+          <card-title>
+            Option 1
+          </card-title>
+          <card-text>
+            Ja, du kaufst das Ticket.
+          </card-text>
+          <card-buttons>
+          </card-buttons>
+        </div>
+
+        <div
+          data-card=""
+          data-card-data="2"
+          data-card-is-checkbox="true"
+          data-card-disabled="mentalBookkeepingTaskController.resolved"
+          data-card-on-click="mentalBookkeepingTaskController.update(data, selected)">
+          <card-title>
+            Option 2
+          </card-title>
+          <card-text>
+            Nein, du kaufst das Ticket nicht.
+          </card-text>
+          <card-buttons>
+          </card-buttons>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div data-ng-switch-default="">
+      Die Aufgabe ist nur für Schüler sichtbar.
+    </div>
+
+  </div>
+
+  <div data-evaluation="mentalBookkeepingTaskController">
+    <evaluation-text>
+      <p>Wie so oft bei <strong>persönlichen Entscheidungen</strong> gibt es auch hier <strong>kein "richtig" oder "falsch"</strong>. Dass sich viele Menschen in den beiden oben beschriebenen Situationen anders verhalten würden, ist auf die sogenannte <strong>"mentale Buchführung"</strong> (also gedachte Buchführung) zurückzuführen. Mentale Buchführung bedeutet, dass wir <strong>unser Geld im Kopf auf bestimmte Konten verteilen</strong> – unabhängig davon, ob es diese verschiedenen Konten auch in der Wirklichkeit gibt. Die Einteilung erfolgt dabei nach unterschiedlichen Maßstäben, wie etwa der Herkunft des Geldes, dem Verwendungszweck oder der Frage, ob das Geld mit anderen Menschen geteilt wird.</p>
+
+      <p>Was passiert in unserem Beispiel? Die meisten Menschen würden in beiden Situationen ein mentales Konto "Ticketkauf" anlegen und diesem Konto 20 Euro zuweisen. Im Text der ersten Gruppe verlieren wir 20 Euro, das Konto "Ticketkauf" ist davon aber nicht betroffen – hier befinden sich immer noch 20 Euro. Deshalb entscheiden sich viele dafür, das Ticket trotzdem zu kaufen. Im Text der zweiten Gruppe hingegen haben wir die 20 Euro auf dem Konto "Ticketkauf" bereits verbraucht – das Konto ist daher leer. Bei strikter mentaler Buchführung können wir uns daher kein neues Ticket kaufen. Aus finanzieller Sicht sind beide Situationen jedoch gleich: 20 Euro sind verloren, egal ob als Geldschein oder als Ticket. Das Beispiel zeigt, dass die Einteilung in mentale Konten eine direkte Auswirkung auf unser Verhalten haben kann.</p>
+
+      </p>Mentale Buchführung <strong>hilft uns dabei, den Überblick über unsere Einnahmen und Ausgaben zu behalten</strong>. Manchmal kann sie aber auch die Sicht auf kluge Entscheidungen verstellen.</p>
+
+      <p><strong>Beispiel 1:</strong> Laura hat sich vor einiger Zeit ein eigenes Auto gekauft. Sie führt ein mentales Konto für ihre Tankkosten und möchte die Ausgaben auf diesem Konto möglichst gering halten. Für die Autofahrten selbst führt sie ein getrenntes mentales Konto. Da die Tankstelle im 10 Kilometer entfernten Nachbarort Benzin etwas billiger anbietet, fährt sie einmal im Monat dorthin, um zu tanken. Durch die getrennten mentalen Konten übersieht sie jedoch, dass die Autofahrt in den Nachbarort und zurück mehr kostet, als die Ersparnis beim Tanken ausmacht (ganz abgesehen von der Zeit, die sich durch den zusätzlichen Weg verliert).</p>
+
+      <p><strong>Beispiel 2:</strong> Felix hat für eine neue Wohnung einen Kredit aufgenommen und führt nun ein mentales Konto für seine Schulden und die anfallenden Zinsen in Höhe von 3% jährlich. Auf der anderen Seite führt er ein mentales Konto für seine Ersparnisse, das er auch real angelegt hat. Auf diesem Sparkonto (siehe auch Übung 3.3) erhält er 0,2% Zinsen jährlich. Durch eine unerwartete Erbschaft bekommt Felix 10.000 Euro, die er gleich auf seinem Konto für Ersparnisse verbucht. Leider fällt ihm durch diese mentale Buchführung nicht auf, dass es viel besser für ihn wäre, mit der Erbschaft einen Teil seiner Schulden zurückzuzahlen, da die Zinsen für den Kredit viel höher sind als die für seine Ersparnisse. Durch die Rückzahlung der Schulden würde er sich jedes Jahr ein Vielfaches von dem an Zinsen sparen, was er auf dem Sparkonto erhält.</p>
+
+      <p>Viele Finanzexperten empfehlen, einen <strong>gewissen finanziellen Polster für Notfälle</strong> anzusparen, sagen aber, dass es darüber hinaus die <strong>beste Form des Sparens</strong> ist, seine <strong>Schulden zu verringern</strong>.</p>
+    </evaluation-text>
+  </div>
+
+</div>

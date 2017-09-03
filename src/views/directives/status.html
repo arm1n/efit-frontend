@@ -1,0 +1,100 @@
+<div data-ng-if="!statusController.isCompact">
+  <h1>Mein Status</h1>
+  <p>Hier siehst du, wie viele Aufgaben du bereits bearbeitet hast. Je öfter du übst, umso besser kennst du dich mit Finanzangelegenheiten aus und umso höher wird dein Status und desto mehr Lose erhälst du für die Ziehung!</p>
+  <div
+    data-status-icons=""
+    data-status-icons-ratio="statusController.iconRatio"
+    data-status-icons-color="statusController.iconColor"
+    class="uk-margin-small-top uk-margin-small-bottom">
+  </div>
+  <h3>Dein aktueller Status</h3>
+  <div data-status-label=""></div>
+
+  <h3>Deine aktuellen Lose</h3>
+  <div data-status-tickets="">
+  </div>
+
+  <h3>Deine Auswertungen</h3>
+
+  <div class="uk-margin">
+    <button
+      data-ng-click="statusController.toggleTasks()"
+      class="uk-button uk-button-small uk-button-primary"
+      data-ng-class="{'uk-active': statusController.tasksVisible }">
+      Aufgaben anzeigen
+    </button>
+
+    <div class="uk-margin-small-top" data-ng-if="statusController.tasksVisible">
+      <p>Die Tabelle zeigt dir, welche Aufgaben du bereits erledigt hast:</p>
+      <table class="uk-table uk-table-divider uk-table-small uk-width-1-2@s uk-margin-auto">
+        <thead>
+            <tr>
+              <th class="uk-text-left uk-table-expand">Aufgabe</th>
+              <th class="uk-text-center uk-table-shrink">Erledigt</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="(type, task) in statusController.tasks">
+              <td class="uk-text-left" data-ng-bind="type|i18n"></td>
+              <td class="uk-text-center">
+                <span
+                  data-uk-icon="icon: check"
+                  data-ng-if="task.$$results">
+                </span>
+                <span
+                  data-uk-icon="icon: close"
+                  data-ng-if="!task.$$results">
+                </span>
+
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="uk-margin">
+    <button
+      data-ng-click="statusController.toggleTickets()"
+      class="uk-button uk-button-small uk-button-primary"
+      data-ng-class="{'uk-active': statusController.ticketsVisible }">
+      Losnummern anzeigen
+    </button>
+
+    <div class="uk-margin-small-top" data-ng-if="statusController.ticketsVisible">
+      <p>Hier siehst du alle deine Losnummern für die Gewinnerziehung:</p>
+      <div
+        data-ng-bind="'#' + ticket.id"
+        data-ng-repeat="ticket in statusController.tickets"
+        class="uk-badge uk-margin-xsmall-bottom uk-margin-xsmall-top uk-margin-xsmall-right uk-margin-xsmall-left">
+      </div>
+    </div>
+  </div>
+
+  <div data-ng-transclude="">
+    <!-- transclusion -->
+  </div>
+</div>
+
+<div data-ng-if="statusController.isCompact">
+    <h4>Mein Status</h4>
+    <div
+      data-status-icons=""
+      data-status-icons-ratio="statusController.iconRatio"
+      data-status-icons-color="statusController.iconColor"
+      class="uk-margin-bottom">
+    </div>
+    <div
+      class="uk-margin-small"
+      data-status-label=""
+      data-status-label-is-compact="true">
+    </div>
+    <div
+      class="uk-margin-small"
+      data-status-tickets=""
+      data-status-tickets-is-compact="true">
+    </div>
+    <div data-ng-transclude="">
+      <!-- transclusion -->
+    </div>
+</div>

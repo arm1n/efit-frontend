@@ -1,0 +1,19 @@
+/* ==================================================
+ * OVERRIDES
+ * @author Armin Pfurtscheller
+ * ================================================== */
+
+// forms
+$form-focus-border: darken($form-border, 10%);
+
+// cards
+$card-hover-box-shadow: $global-small-box-shadow;
+
+$card-default-box-shadow: $global-small-box-shadow;
+$card-default-hover-box-shadow: $global-medium-box-shadow;
+
+$card-primary-box-shadow: $global-small-box-shadow;
+$card-primary-hover-box-shadow: $global-medium-box-shadow;
+
+$card-secondary-box-shadow: $global-small-box-shadow;
+$card-secondary-hover-box-shadow: $global-medium-box-shadow;

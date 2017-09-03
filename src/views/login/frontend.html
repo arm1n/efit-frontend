@@ -1,0 +1,96 @@
+<div data-ui-view="">
+</div>
+
+<!-- reusable code field -->
+<script type="text/ng-template" id="code-field.html">
+
+  <div
+    data-form-field=""
+    class="uk-text-left">
+    <label class="uk-text-uppercase uk-text-bold">Dein persönlicher Code:</label>
+    <input
+      name="code"
+      type="password"
+      class="uk-input"
+      data-ng-required="true"
+      data-form-field-model=""
+      placeholder="__  __  __ __  __  __"
+      data-ng-model="loginFrontendController.username"
+      data-ng-pattern="loginFrontendController.userpattern">
+
+    <message-pattern>
+      Dein persönlicher Code hat nicht <a href="javascript:void(0)" data-uk-toggle="target: #code-info" class="uk-text-bold uk-link-reset">das richtige Format</a>!
+    </message-pattern>
+    <message-required>
+      Du musst deinen persönlichen Code angegeben!
+    </message-required>
+  </div>
+
+  <div class="uk-margin-bottom uk-text-left uk-text-meta">
+    <span class="tm-code">(1)</span>
+    <span class="tm-code">(2)</span>
+    <span class="tm-code double">(3)</span>
+    <span class="tm-code">(4)</span>
+    <span class="tm-code">(5)</span>
+  </div>
+</script>
+
+<!-- reusable code hint -->
+<script type="text/ng-template" id="code-info.html">
+  <a
+    href="javascript:void(0)"
+    data-uk-toggle="target: #code-info"
+    class="uk-display-block uk-text-small">
+    Was ist mein persönlicher Code?
+  </a>
+
+  <div
+    id="code-info"
+    hidden="hidden"
+    aria-hidden="true">
+    <table class="uk-table uk-table-responsive uk-table-small uk-text-meta uk-margin-small-top">
+      <tbody>
+          <tr>
+            <td class="uk-text-right@m">
+              Zweiter Buchstabe deines Vornamens (a-z):
+            </td>
+            <td class="uk-text-left@m">
+              (1) = __
+            </td>
+          </tr>
+          <tr>
+            <td class="uk-text-right@m">
+              Dritter Buchstabe deines Nachnamens (a-z):
+            </td>
+            <td class="uk-text-left@m">
+              (2) = __
+            </td>
+          </tr>
+          <tr>
+            <td class="uk-text-right@m">
+              Tag deines Geburtstages (01 - 31):
+            </td>
+            <td class="uk-text-left@m">
+              (3) = __ __
+            </td>
+          </tr>
+          <tr>
+            <td class="uk-text-right@m">
+              Erster Buchstabe deines Geburtsmonates (A-Z):
+            </td>
+            <td class="uk-text-left@m">
+              (4) = __
+            </td>
+          </tr>
+          <tr>
+            <td class="uk-text-right@m">
+              Anzahl deiner Geschwister (0 - ...):
+            </td>
+            <td class="uk-text-left@m">
+              (5) = __
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</script>

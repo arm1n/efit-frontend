@@ -1,0 +1,225 @@
+/* --------------------------------------------------
+ *  IMPORTS
+ * -------------------------------------------------- */
+
+// 1) uk custom
+@import "custom/variables";
+@import "custom/mixins";
+@import "custom/helpers";
+@import "custom/fonts";
+@import "custom/animations";
+
+// 2) uk defaults
+@import "variables-theme.scss";
+@import "mixins-theme.scss";
+
+// 3) uk hooks
+@import "custom/override";
+@import "custom/hooks";
+
+// 4) uk theme
+@import "uikit-theme.scss";
+
+// 5) uk addons
+@import "custom/addons";
+
+// 6) other
+$ct-series-names: (a, b);
+$ct-series-colors: (#b2c326, #6188e2);
+@import "chartist.scss";
+
+// 7) app
+@import "app/tasks/interest-task";
+@import "app/tasks/diversification-task";
+@import "app/tasks/bomb-task";
+@import "app/tasks/anchoring-task";
+@import "app/tasks/mental-bookkeeping-task";
+@import "app/tasks/framing-task";
+@import "app/tasks/savings-supported-task";
+@import "app/tasks/savings-target-task";
+@import "app/tasks/self-commitment-task";
+@import "app/tasks/procrastination-task";
+@import "app/chart";
+
+/* --------------------------------------------------
+ *  TAGS
+ * -------------------------------------------------- */
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* --------------------------------------------------
+ *  WRAPPER
+ * -------------------------------------------------- */
+#wrap{}
+
+/* --------------------------------------------------
+ *  SPINNER
+ * -------------------------------------------------- */
+#load{
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  opacity: 1;
+  position: fixed;
+}
+
+.load-animation.ng-hide {
+  opacity: 0;
+}
+
+.load-animation.ng-hide-add,
+.load-animation.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+
+/* --------------------------------------------------
+ *  HEADER
+ * -------------------------------------------------- */
+#header{}
+#logo-efit{
+  max-height: 70px;
+}
+
+/* --------------------------------------------------
+ *  MAIN
+ * -------------------------------------------------- */
+#main{}
+#content{}
+
+/* --------------------------------------------------
+ *  FOOTER
+ * -------------------------------------------------- */
+#footer{
+}
+
+#logo-ak,
+#logo-uibk{
+  max-height: 40px;
+}
+
+/* --------------------------------------------------
+ *  OFF-CANVAS
+ * -------------------------------------------------- */
+#off-canvas{
+  .uk-offcanvas-bar{
+    background: #222;
+  }
+}
+
+/* --------------------------------------------------
+ *  404
+ * -------------------------------------------------- */
+[class*="404"] {
+  &, body{
+    height: 100%;
+  }
+}
+
+/* --------------------------------------------------
+ *  LOGIN
+ * -------------------------------------------------- */
+[class*="login"] {
+  &{
+    height: 100%;
+  }
+  body {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    position: absolute;
+  }
+
+  #wrap{
+    width: 100%;
+    height: 100%;
+    display: table;
+    table-layout: fixed;
+    @extend .uk-background-muted;
+  }
+
+  #main {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  #loginForm{
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    max-width: 100%;
+  }
+}
+
+/* --------------------------------------------------
+ *  BACKEND
+ * -------------------------------------------------- */
+[class*="backend"]:not([class*="login"]) {
+  /**
+   * Sticky footer
+   *
+   * 1. Avoid the IE 10-11 `min-height` bug.
+   * 2. Set `flex-shrink` to `0` to prevent some browsers from
+   *    letting these items shrink to smaller than their content's default
+   *    minimum size. See http://bit.ly/1Mn35US for details.
+   * 3. Use `%` instead of `vh` since `vh` is buggy in older mobile Safari.
+   */
+  &, body {
+    height: 100%;
+  }
+
+  #wrap {
+    height: 100%; // 1 & 3
+    display: flex;
+    flex-direction: column;
+  }
+
+  #main{
+    width: 100%;
+    flex: 1 0 auto; // 2
+  }
+
+  #header,
+  #footer {
+    flex: none; // 2
+  }
+}
+
+/* --------------------------------------------------
+ *  MISC
+ * -------------------------------------------------- */
+.tm-code {
+  margin-top: 5px;
+  display: inline-block;
+
+  &.double{
+    &:before{
+      @include code-number(10px, 0);
+    }
+    &:after{
+      @include code-number(0, 10px);
+    }
+  }
+
+  &:first-child {
+    &:before {
+      @include code-number(10px, 0);
+    }
+  }
+
+  &:last-child{
+    &:after{
+      display: none;
+    }
+  }
+
+  &:after{
+    @include code-number(3px, 0);
+  }
+}

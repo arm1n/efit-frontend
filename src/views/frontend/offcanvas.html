@@ -1,0 +1,55 @@
+<div class="uk-offcanvas-bar">
+    <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+    <ul class="uk-nav uk-nav-default" data-uk-scrollspy-nav="closest: li; scroll: true; offset: 80">
+      <li class="uk-nav-header uk-margin-small-bottom">Menü</li>
+      <li><a href="#home" data-uk-off-canvas-scroll="target: #off-canvas; offset: 80">Start</a></li>
+      <li class="uk-parent">
+        <a href="#topics" data-uk-off-canvas-scroll="target: #off-canvas; offset: 80">Themen</a>
+        <ul class="uk-nav-sub">
+          <li><a href="#financial-knowledge" data-uk-off-canvas-scroll="target: #off-canvas; offset: 80">Finanzwissen</a></li>
+          <li><a href="#consumer-behaviour" data-uk-off-canvas-scroll="target: #off-canvas; offset: 80">Konsumverhalten</a></li>
+          <li><a href="#self-control" data-uk-off-canvas-scroll="target: #off-canvas; offset: 80">Selbstkontrolle</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#status" data-uk-off-canvas-scroll="target: #off-canvas; offset: 80">Status</a>
+      </li>
+      <li>
+        <a href="#contact" data-uk-off-canvas-scroll="target: #off-canvas; offset: 80">Kontakt</a>
+      </li>
+      <li data-ng-if="!frontendController.user.isUser()">
+        <a
+          href="javascript:void(0)"
+          data-ng-click="frontendController.goTo('backend')"
+          data-uk-off-canvas-scroll="target: #off-canvas; offset: 80">
+          Administration
+        </a>
+      </li>
+      <li>
+        <a
+          href="javascript:void(0)"
+          data-ng-click="frontendController.logout()"
+          data-uk-off-canvas-scroll="target: #off-canvas; offset: 80">
+          Abmelden
+        </a>
+      </li>
+    </ul>
+
+    <hr>
+
+    <div
+      data-status=""
+      data-status-is-compact="true"
+      data-status-icon-ratio="1.25"
+      data-status-icon-color="'white'"
+      class="uk-text-center">
+      <a
+        href="#status"
+        class="uk-display-block uk-text-small"
+        data-uk-off-canvas-scroll="target: #off-canvas; offset: 80">
+        Was heißt das?
+      </a>
+    </div>
+
+</div>

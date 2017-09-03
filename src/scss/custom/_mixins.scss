@@ -1,0 +1,37 @@
+/* ==================================================
+ * MIXINS
+ * @author Armin Pfurtscheller
+ * ================================================== */
+
+// login
+@mixin code-number($margin-left: 0, $margin-right: 0){
+  content: '';
+  display: inline-block;
+  margin: 0 $margin-right 0 $margin-left;
+}
+
+// keyframes
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+// animation
+@mixin animation($name, $duration: 1s, $timing: ease, $delay: 0, $count: 1, $direction: normal, $fill: none, $state: running) {
+  -webkit-animation: #{$name} $duration $timing $count $direction $fill $state;
+  animation: #{$name} $duration $timing $count $direction $fill $state;
+}
+
+// bubble
+@mixin bubbleShadow($color) {
+  box-shadow:
+    0 -1px 3px #fff inset,
+    0 -2px 1px $color inset,
+    0 -1px 1px $color inset,
+    1px 0 2px #fff inset,
+    -1px 0 2px #fff inset;
+}

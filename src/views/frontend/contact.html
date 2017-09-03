@@ -1,0 +1,111 @@
+<div
+  class="tm-section uk-background-secondary uk-light"
+  data-uk-scrollspy="cls: uk-animation-scale-up; target: .tm-scrollspy; delay: 500; repeat: false">
+
+  <div class="uk-container">
+    <div class="uk-margin-large-top uk-margin-large-bottom">
+
+      <div class="tm-scrollspy uk-margin-auto uk-width-1-2@m">
+        <h1>Kontakt</h1>
+        <p>Du hast eine Frage zum Inhalt oder zur App? Kein Problem - schick uns einfach dein Anliegen und wir helfen dir so schnell wie möglich!</p>
+        <form
+          name="contactForm"
+          class="uk-form-stacked"
+          novalidate="novalidate"
+          data-ng-submit="contactController.submit()">
+
+          <div
+            data-form-field=""
+            class="uk-margin uk-text-left"
+            data-form-field-reset-empty="false">
+            <input
+                type="text"
+                class="uk-input"
+                placeholder="Name"
+                data-ng-required="true"
+                data-form-field-model=""
+                data-ng-model="contactController.name">
+            <message-required class="uk-text-muted">
+              <span class="uk-text-danger"><strong>*</strong></span>
+              <span class="uk-text-inverse">Bitte gib einen Namen an!</span>
+            </message-required>
+          </div>
+
+          <div
+            data-form-field=""
+            class="uk-margin uk-text-left"
+            data-form-field-reset-empty="false">
+            <input
+                type="email"
+                class="uk-input"
+                placeholder="Email"
+                data-ng-required="true"
+                data-form-field-model=""
+                data-ng-model="contactController.email"
+                data-ng-model-options="{ updateOn: 'blur' }">
+            <message-required class="uk-text-muted">
+              <span class="uk-text-danger"><strong>*</strong></span>
+              <span class="uk-text-inverse">Bitte gib eine Email an!</span>
+            </message-required>
+            <message-email class="uk-text-muted">
+              <span class="uk-text-danger"><strong>*</strong></span>
+              <span class="uk-text-inverse">Bitte gib eine gültige Email an!</span>
+            </message-email>
+          </div>
+
+          <div
+            data-form-field=""
+            class="uk-margin uk-text-left"
+            data-form-field-reset-empty="false">
+            <input
+                type="text"
+                class="uk-input"
+                placeholder="Betreff"
+                data-ng-required="true"
+                data-form-field-model=""
+                data-ng-model="contactController.subject"
+                data-ng-model-options="{ updateOn: 'blur' }">
+            <message-required class="uk-text-muted">
+              <span class="uk-text-danger"><strong>*</strong></span>
+              <span class="uk-text-inverse">Bitte gib einen Betreff an!</span>
+            </message-required>
+          </div>
+
+          <div
+            data-form-field=""
+            class="uk-margin uk-text-left"
+            data-form-field-reset-empty="false">
+            <textarea
+                rows="5"
+                class="uk-textarea"
+                placeholder="Nachricht"
+                data-ng-required="true"
+                data-form-field-model=""
+                data-ng-model="contactController.message"
+                data-ng-model-options="{ updateOn: 'blur' }"
+                data-ng-minlength="contactController.messageMinLength">
+            </textarea>
+            <message-required class="uk-text-muted">
+              <span class="uk-text-danger"><strong>*</strong></span>
+              <span class="uk-text-inverse">Bitte gib eine Nachricht an!</span>
+            </message-required>
+            <message-minlength class="uk-text-muted">
+              <span class="uk-text-danger"><strong>*</strong></span>
+              <span class="uk-text-inverse">Deine Nachricht ist zu kurz!</span>
+            </message-minlength>
+          </div>
+
+          <button
+            type="submit"
+            class="uk-button uk-button-primary"
+            data-ng-disabled="contactForm.$invalid">
+            Absenden
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <hr class="uk-margin-remove">
+
+</div>

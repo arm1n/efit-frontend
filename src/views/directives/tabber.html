@@ -1,0 +1,60 @@
+<ul
+  data-uk-switcher=""
+  data-ng-attr-id="{{tabberController.domId}}"
+  data-uk-tab="animation: uk-animation-slide-top-small">
+  <li>
+    <a href="#">Beschreibung</a>
+  </li>
+  <li data-ng-if="tabberController.hasExercise">
+    <a href="#">Aufgabe</a>
+  </li>
+</ul>
+<ul class="uk-switcher">
+    <li>
+      <div
+        data-uk-grid=""
+        data-ng-if="tabberController.icon">
+        <div class="uk-text-center uk-text-left@m uk-width-1-4@m">
+          <img data-ng-src="{{'img/' + tabberController.icon}}" width="275">
+        </div>
+        <div class="uk-text-center uk-text-left@m uk-width-3-4@m">
+          <div
+            data-ng-transclude="description"
+            class="uk-text-small uk-margin-bottom">
+            <!-- description -->
+          </div>
+          <a
+            href="javascript:void(0)"
+            data-uk-switcher-item="next"
+            class="uk-button uk-button-primary"
+            data-scroll-to="tabberController.domId"
+            data-ng-if="tabberController.hasExercise">
+            Zur Aufgabe
+          </a>
+        </div>
+      </div>
+      <div
+        data-ng-if="!tabberController.icon"
+        class="uk-text-center uk-text-left@m">
+        <div
+          data-ng-transclude="description"
+          class="uk-text-small uk-margin-bottom">
+          <!-- description -->
+        </div>
+        <a
+          href="javascript:void(0)"
+          data-uk-switcher-item="next"
+          class="uk-button uk-button-primary"
+          data-scroll-to="tabberController.domId"
+          data-ng-if="tabberController.hasExercise">
+          Zur Aufgabe
+        </a>
+      </div>
+    </li>
+    <li
+      data-ng-transclude="exercise"
+      class="uk-text-small uk-text-center uk-text-left@m">
+      <!-- exercise -->
+    </li>
+</ul>
+

@@ -1,0 +1,111 @@
+/* ==================================================
+ * DIVERSIFICATION TASK
+ * @author Armin Pfurtscheller
+ * ================================================== */
+
+.diversification-task{}
+
+.diversification-task .vouchers{}
+
+.diversification-task .voucher{
+    z-index: 2;
+
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+
+    &.active{
+        opacity: 0.75;
+        cursor: grabbing;
+        cursor: -moz-grabbing;
+        cursor: -webkit-grabbing;
+    }
+
+    &.disabled{
+      cursor: not-allowed;
+    }
+}
+
+.diversification-task .company {
+  max-width: 45%; // margin
+}
+
+.diversification-task .dropzone{
+    z-index: 1;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+
+    &.enter{
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+}
+
+.coin{
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+
+  &.bounce{
+    @include animation(bounce);
+  }
+
+  .wrap {
+    $size: 60px;
+
+    width: $size;
+    height: $size;
+    line-height: $size;
+    text-align: center;
+
+    font-size: 2em;
+    font-weight: bold;
+
+    color: #cc8d00;
+    background-size: 100%;
+    background-image: url(../img/coin.svg);
+
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    position: relative;
+
+    &.flip{
+      @include animation(flip);
+    }
+  }
+
+  .front, .back{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .front {
+    z-index: 2;
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+  }
+
+  .back {
+    z-index: 1;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+}

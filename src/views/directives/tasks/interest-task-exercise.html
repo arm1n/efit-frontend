@@ -1,0 +1,48 @@
+<div class="draggables uk-margin-medium-bottom">
+  <div class="coins drag-items uk-margin-small-bottom">
+      <div
+        data-draggable=""
+        class="coin drag-item"
+        data-draggable-data="coin"
+        data-draggable-clone="true"
+        data-ng-repeat="coin in interestTaskExerciseController.coins"
+        data-draggable-disabled="interestTaskExerciseController.disabled">
+        <span data-ng-bind-html="coin|coin"></span>
+      </div>
+  </div>
+
+  <div class="notes drag-items uk-margin-small-bottom">
+    <div
+      data-draggable=""
+      class="note drag-item"
+      data-draggable-data="note"
+      data-draggable-clone="true"
+      data-ng-repeat="note in interestTaskExerciseController.notes"
+      data-draggable-disabled="interestTaskExerciseController.disabled">
+      <span data-ng-bind-html="note|note"></span>
+    </div>
+  </div>
+</div>
+
+<div class="uk-inline">
+  <div
+    data-dropable=""
+    class="dropzone uk-inline"
+    data-dropable-on-drop="interestTaskExerciseController.onDrop($data)">
+    <div class="sum">
+      {{interestTaskExerciseController.sum|currency:'€ ':2}}
+    </div>
+  </div>
+</div>
+
+<div class="uk-margin">
+  <button
+    class="uk-button uk-button-warning uk-button-small"
+    data-ng-disabled="(
+      interestTaskExerciseController.disabled ||
+      !interestTaskExerciseController.stack.length
+    )"
+    data-ng-click="interestTaskExerciseController.revert()">
+    Rückgängig
+  </button>
+</div>

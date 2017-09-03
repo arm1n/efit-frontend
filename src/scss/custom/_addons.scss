@@ -1,0 +1,79 @@
+/* ==================================================
+ * ADDONS
+ * @author Armin Pfurtscheller
+ * ================================================== */
+
+// texts
+.uk-text-inverse{
+  color: $global-inverse-color;
+}
+
+// margin
+$margin-xsmall-margin:                          $global-small-margin / 2;
+
+.uk-margin-xsmall { margin-bottom: $margin-xsmall-margin; }
+* + .uk-margin-xsmall { margin-top: $margin-xsmall-margin !important; }
+
+.uk-margin-xsmall-top { margin-top: $margin-xsmall-margin !important; }
+.uk-margin-xsmall-bottom { margin-bottom: $margin-xsmall-margin !important; }
+.uk-margin-xsmall-left { margin-left: $margin-xsmall-margin !important; }
+.uk-margin-xsmall-right { margin-right: $margin-xsmall-margin !important; }
+
+// buttons
+$button-success-background:                      $global-success-background !default;
+$button-success-color:                           $global-inverse-color !default;
+$button-success-hover-background:                darken($button-success-background, 5%) !default;
+$button-success-hover-color:                     $global-inverse-color !default;
+$button-success-active-background:               darken($button-success-background, 10%) !default;
+$button-success-active-color:                    $global-inverse-color !default;
+
+.uk-button-success {
+  color: $button-success-color;
+  background-color: $button-success-background;
+  border: $button-border-width solid transparent;
+}
+
+.uk-button-success:hover,
+.uk-button-success:focus {
+    color: $button-success-hover-color;
+    background-color: $button-success-hover-background;
+}
+
+.uk-button-success:active,
+.uk-button-success.uk-active {
+    color: $button-success-active-color;
+    background-color: $button-success-active-background;
+}
+
+$button-warning-background:                      $global-warning-background !default;
+$button-warning-color:                           $global-inverse-color !default;
+$button-warning-hover-background:                darken($button-warning-background, 5%) !default;
+$button-warning-hover-color:                     $global-inverse-color !default;
+$button-warning-active-background:               darken($button-warning-background, 10%) !default;
+$button-warning-active-color:                    $global-inverse-color !default;
+
+.uk-button-warning {
+  color: $button-warning-color;
+  background-color: $button-warning-background;
+  border: $button-border-width solid transparent;
+}
+
+.uk-button-warning:hover,
+.uk-button-warning:focus {
+    color: $button-warning-hover-color;
+    background-color: $button-warning-hover-background;
+}
+
+.uk-button-warning:active,
+.uk-button-warning.uk-active {
+    color: $button-warning-active-color;
+    background-color: $button-warning-active-background;
+}
+
+
+.uk-button-success:disabled,
+.uk-button-warning:disabled{
+    background-color: $button-disabled-background;
+    color: $button-disabled-color;
+    @if(mixin-exists(hook-button-disabled)) {@include hook-button-disabled();}
+}

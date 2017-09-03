@@ -1,0 +1,40 @@
+<div class="uk-offcanvas-bar">
+    <button class="uk-offcanvas-close" type="button" data-uk-close=""></button>
+
+    <ul class="uk-nav uk-nav-default">
+        <li class="uk-nav-header uk-margin-small-bottom">Menü</li>
+        <li data-ng-class="{ 'uk-active': state.name === 'backend.workshops' }">
+          <a
+            href="javascript:void(0)"
+            data-ng-click="backendController.goTo('backend')"
+            data-uk-off-canvas-scroll="target: #off-canvas; offset: 80">
+            Workshops
+          </a>
+        </li>
+        <li data-ng-class="{ 'uk-active': state.name === 'backend.admins' }">
+          <a
+            href="javascript:void(0)"
+            data-ng-if="backendController.isSuperAdmin"
+            data-ng-click="backendController.goTo('backend.admins')"
+            data-uk-off-canvas-scroll="target: #off-canvas; offset: 80">
+            Trainer
+          </a>
+        </li>
+        <li data-ng-class="{ 'uk-active': state.name === 'frontend' }">
+          <a
+            href="javascript:void(0)"
+            data-ng-click="backendController.goTo('frontend')"
+            data-uk-off-canvas-scroll="target: #off-canvas; offset: 80">
+            Zur App
+          </a>
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            data-ng-click="backendController.logout()"
+            data-uk-off-canvas-scroll="target: #off-canvas; offset: 80">
+            Abmelden
+          </a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,38 @@
+{
+  "name": "FiT",
+  "authors": [
+    "Armin Pfurtscheller <armin.pfurtscheller@googlemail.com>"
+  ],
+  "description": "Patscherkofel Blog",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "uikit": "^3.0.0",
+    "jQuery": "^3.1.1",
+    "angular": "^1.6.4",
+    "angular-i18n": "^1.6.4",
+    "angular-resource": "^1.6.4",
+    "angular-sanitize": "^1.6.4",
+    "angular-messages": "^1.6.4",
+    "angular-ui-router": "^1.0.4",
+    "interactjs": "^1.2.8",
+    "scratchcard": "^0.5.6",
+    "chartist": "^0.11.0",
+    "html5-polyfills": "remy/polyfills",
+    "custom-elements": "webcomponents/custom-elements#1.0.2",
+    "chartist-plugin-legend": "CodeYellowBV/chartist-plugin-legend#0.6.2",
+    "fastclick": "^1.0.6",
+    "moment": "^2.18.1"
+  }
+}
