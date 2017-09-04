@@ -173,12 +173,14 @@
       var successCallback = function(response)
         {
           me._saveToken(response.data);
-          return response;
         };
 
       var failureCallback = function(rejection)
         {
-          return rejection;
+          // invalidate possibly stored jwt
+          // token to avoid further lookups
+          // especially from router resolve
+          jwt.invalidate();
         };
 
       var promise = $http.post(
@@ -189,14 +191,17 @@
           /* jshint camelcase: true */
         },
         angular.extend(config || {}, {
+          skipGlobalErrorMessage: true,
           skipAuthorization: true
         })
       );
 
-      return promise.then(
+      promise.then(
         successCallback,
         failureCallback
       );
+
+      return promise;
     };
 
   /**
@@ -285,10 +290,9 @@
 
         if (hasRole) {
           defer.resolve();
-          return;
+        } else {
+          defer.reject();
         }
-
-        defer.reject();
       };
 
       // immediately resolve valid tokens

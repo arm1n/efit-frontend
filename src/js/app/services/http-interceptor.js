@@ -58,23 +58,8 @@
       // save url in internal cache
       this._setUrl(config);
 
-      // common headers
+      // set common headers
       config.headers['X-Requested-With'] = 'XMLHttpRequest';
-
-      // custom settings
-      /*
-      switch(config.method)
-      {
-        case 'POST':
-        case 'PUT':
-          var $httpParamSerializer = this.$injector.get('$httpParamSerializer');
-          config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-          config.data = $httpParamSerializer(config.data);
-          break;
-
-        default:
-      }
-      */
 
       // JWT authorization
       var successCallback = function(token) {

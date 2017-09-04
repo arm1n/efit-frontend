@@ -341,7 +341,7 @@
           // with auth roles to configured route
           var user = auth.getUser();
           if (user === null) {
-            return;
+            return true;
           }
 
           var roles = user.roles || [];
@@ -369,6 +369,7 @@
           {
             // redirect to login page depending on
             // given role with unsufficient rights
+            // or possibly failed refresh process!
             switch(role[0])
             {
               case 'ROLE_ADMIN':
