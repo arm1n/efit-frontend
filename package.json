@@ -1,8 +1,9 @@
 {
-  "name": "eFit Website",
-  "title": "An app for financial training in educational environments",
+  "name": "efit-frontend",
+  "title": "eFit Frontend",
+  "description": "An app for financial training in educational environments",
+  "url": "http://www.finanz-training.at",
   "author": "Armin Pfurtscheller",
-  "url": "http://www.e-fit.com",
   "version": "1.0.0",
   "license": "MIT",
   "repository": {
@@ -31,7 +32,7 @@
     "gulp-svgo": "^1.2.5",
     "gulp-uglify": "^1.5.1",
     "gulp-useref": "^3.1.2",
-    "jshint": "^2.8.0",
-    "lazypipe": "^1.0.1"
+    "lazypipe": "^1.0.1",
+    "jshint": "^2.8.0"
   }
 }
