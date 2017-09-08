@@ -48,6 +48,7 @@ var paths = {
   js: 'js/',
   css: 'css/',
   img: 'img/',
+  maps: 'maps/',
   scss: 'scss/',
   views: 'views/',
   vendor: 'vendor/',
@@ -232,25 +233,32 @@ gulp.task('lazy', ['copy'], function(){
 gulp.task('useref', ['lazy'], function () {
 
   var minifyJS = lazypipe()
-    .pipe(sourcemaps.init)
     .pipe(jshint, '.jshintrc')
     .pipe(jshint.reporter, 'default')
     .pipe(header, banner, { package : package })
-    .pipe(uglify)
-    .pipe(sourcemaps.write);
+    .pipe(uglify);
 
   var minifyCSS = lazypipe()
-    .pipe(sourcemaps.init)
     .pipe(header, banner, { package : package })
-    .pipe(cssnano)
-    .pipe(sourcemaps.write);
+    .pipe(cssnano);
+
+  var minifyHTML = lazypipe()
+    .pipe(htmlmin, settings.htmlmin);
+
+  var startRev = lazypipe()
+    .pipe(sourcemaps.init)
+    .pipe(rev);
+
+  var closeRev = lazypipe()
+    .pipe(revReplace)
+    .pipe(sourcemaps.write, paths.maps);
 
   return gulp.src(paths.src + 'index.html')
     .pipe(useref())
-    .pipe(gif('*.html', htmlmin(settings.htmlmin), rev()))
+    .pipe(gif('*.html', minifyHTML(), startRev()))
     .pipe(gif('*.js', minifyJS()))
     .pipe(gif('*.css', minifyCSS()))
-    .pipe(revReplace())
+    .pipe(closeRev())
     .pipe(gulp.dest(paths.dist));
 
 });
