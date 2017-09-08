@@ -12,4 +12,9 @@
     data-ng-if="lockedStateController.user.isAdmin()">
     <span>Trainer dürfen keine Aufgaben machen!</span>
   </p>
+  <p
+    data-ng-transclude="adminText"
+    data-ng-if="lockedStateController.user.isSuperAdmin()">
+    <span>Administratoren dürfen keine Aufgaben machen!</span>
+  </p>
 </div>
