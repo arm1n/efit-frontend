@@ -262,9 +262,14 @@
       this.onResolve :
       this.onUpdate;
 
+    var payload = this.getPayload();
     var result = callback({
-      payload: this.getPayload()
+      payload: payload
     });
+
+    if (payload.isPending) {
+      this._flag = true;
+    }
 
     var me = this;
     var successCallback = function(result) {
@@ -279,7 +284,6 @@
           me._storageKey,
           me.task.updatedAt
         );
-        me._flag = true;
         return;
       }
 
@@ -287,6 +291,7 @@
     };
 
     var failureCallback = function() {
+      this._flag = false;
     };
 
     var promise = $q.when(result);
