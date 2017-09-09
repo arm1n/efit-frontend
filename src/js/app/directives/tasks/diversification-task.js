@@ -33,6 +33,9 @@
   /** @var {boolean} resolved If player has resolved the game. */
   DiversificationTask.prototype.resolved = false;
 
+  /** @var {number} initialTickets Amount of base tickets. */
+  DiversificationTask.prototype.initialTickets = 2;
+
   /** @var {string} heads Current class of heads side. */
   DiversificationTask.prototype.heads = 'K';
 
@@ -46,9 +49,6 @@
   DiversificationTask.prototype.tickets = {};
 
   /** @var {array} sides Two values for coin. */
-  DiversificationTask.prototype.sides = [];
-
-  /** @var {number} result Final result. */
   DiversificationTask.prototype.sides = [];
 
   //
@@ -268,13 +268,13 @@
   };
 
   /**
-   * Calculates final ticket amount by predefined formula.
+   * Calculates total ticket amount by predefined formula.
    *
    * @public
-   * @method getTicketCount
+   * @method getTotalTickets
    * @return {number}
    */
-  DiversificationTask.prototype.getTicketCount = function(){
+  DiversificationTask.prototype.getTicketTotal = function(){
     var factorA = this.throws.one.toss === this.heads ? 2 : 1;
     var factorB = this.throws.two.toss === this.heads ? 2 : 1;
 
@@ -282,6 +282,20 @@
     var ticketsB = this.companies.two.count * factorB;
 
     return ticketsA + ticketsB;
+  };
+
+  /**
+   * Calculates won ticket amount (only newly added ones).
+   *
+   * @public
+   * @method getTotalTickets
+   * @return {number}
+   */
+  DiversificationTask.prototype.getTicketCount = function(){
+    var newTickets = this.getTicketTotal();
+    var oldTickets = this.initialTickets;
+
+    return newTickets - oldTickets;
   };
 
   //
