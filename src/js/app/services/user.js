@@ -379,7 +379,7 @@
       var newCount = newTickets && newTickets.length;
 
       var tickets = newCount - oldCount;
-      if (tickets < 0) {
+      if (tickets <= 0) {
         return;
       }
 
