@@ -1132,11 +1132,12 @@
     this.theme = random.pick(this.themes);
 
     this.radius = random.between(0, 15) + 20;
-    this.speed = random.between(0, 2.5)  + 2;
-    this.wave = 2 + this.radius;
+    this.speed = random.between(0, 1)  + 2;
+    this.wave = 1.5 + this.radius;
 
+    var xOffset = this.radius * 2;
     this.y = game.viewport.height + random.between(0, 50) + 50;
-    this.x = random.between(this.radius, game.viewport.width) - this.radius;
+    this.x = random.between(xOffset, game.viewport.width - xOffset);
 
     this._originalR = game.ratio;
     this._originalX = this.x;
@@ -1222,7 +1223,6 @@
   ProcrastinationTaskBubble.prototype.onClick = function() {
     var animation = this.$injector.get('animation');
     var $timeout = this.$injector.get('$timeout');
-    var endEvent = animation.animationEndEvent;
 
     var me = this;
 
@@ -1232,11 +1232,17 @@
 
     var onAnimationEnd = function() {
       me.$scope.$evalAsync(evalAsync);
-      me.$element.off(endEvent, onAnimationEnd);
+      me.$element.off(
+        animation.animationEndEvent,
+        onAnimationEnd
+      );
     };
 
-    if (event) {
-      this.$element.on(endEvent, onAnimationEnd);
+    if (animation.animationEndEvent) {
+      this.$element.on(
+        animation.animationEndEvent,
+        onAnimationEnd
+      );
     } else {
       $timeout(evalAsync, 50);
     }
