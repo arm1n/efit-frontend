@@ -137,7 +137,6 @@
 
       var successCallback = function()
         {
-          jwt.invalidate();
           user.unload();
         };
 

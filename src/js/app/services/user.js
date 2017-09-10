@@ -109,6 +109,7 @@
    * @return {void}
    */
   User.prototype.unload = function() {
+    var jwt = this.$injector.get('jwt');
     var sse = this.$injector.get('sse');
 
     if (this._eventSource) {
@@ -132,6 +133,8 @@
     this.tickets = null;
     this.state = null;
     this.group = null;
+
+    jwt.invalidate();
   };
 
   /**
