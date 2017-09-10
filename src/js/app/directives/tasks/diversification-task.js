@@ -333,7 +333,6 @@
     this.$injector = $injector;
 
     this._element = this.$element.find('.coin');
-    this._animationEndEvent = this._getAnimationEndEvent();
   };
 
   DiversificationTaskCoin.$inject = ['$scope','$element','$attrs','$injector'];
@@ -381,7 +380,9 @@
    * @return {void}
    */
   DiversificationTaskCoin.prototype.$onInit = function() {
+    var animation = this.$injector.get('animation');
     var $timeout = this.$injector.get('$timeout');
+
     var me = this;
 
     this.sides = [
@@ -448,8 +449,11 @@
 
     this.onInit({toss: me._toss.value});
 
-    if (this._animationEndEvent) {
-      this._element.on(this._animationEndEvent, _animationEndCallback);
+    if (animation.animationEndEvent) {
+      this._element.on(
+        animation.animationEndEvent,
+        _animationEndCallback
+      );
     }
 
     this._unwatchFlip = this.$scope.$watch(_watchFlipExpression, _watchFlipCallback);
@@ -464,34 +468,11 @@
    * @return {void}
    */
   DiversificationTaskCoin.prototype.$onDestroy = function() {
-    this._element.off(this._animationEndEvent);
+    var animation = this.$injector.get('animation');
+
+    this._element.off(animation.animationEndEvent);
     this._unwatchToss();
     this._unwatchFlip();
-  };
-
-  /**
-   * Gets correctly prefixed transition event.
-   *
-   * @private
-   * @method _getTransitionEvent
-   * @return {void}
-   */
-  DiversificationTaskCoin.prototype._getAnimationEndEvent = function() {
-    var dummy = document.createElement('div');
-    var transitions = {
-      'WebkitAnimation': 'webkitAnimationEnd',
-      'MozTAnimation': 'animationend',
-      'animation': 'animationend'
-    };
-
-    for(var key in transitions){
-        var event = dummy.style[key];
-        if( event !== undefined ){
-          return transitions[key];
-        }
-    }
-
-    return null;
   };
 
   /**
