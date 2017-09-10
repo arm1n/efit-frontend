@@ -8,7 +8,7 @@ To install and run the application on `http://localhost:3000` please run:
 
 ## Deployment
 
-To deploy the appliation to Github pages please run:
+To deploy the appliation to Github pages please run (requires SSH access):
 
 * `gulp deploy`
 
