@@ -10,15 +10,15 @@
     class="uk-button uk-button-default">
     Zurück
   </a>
-
   <button
     type="submit"
     class="uk-button uk-button-primary"
-    data-ng-click="loginFrontendController.signin()"
+    data-ng-click="loginFrontendController.signup()"
     data-ng-disabled="loginForm.$invalid||loginForm.$pending">
     Anmelden
   </button>
 </div>
 
 <div data-ng-include="'code-info.html'">
+  <!-- @see: login.html -->
 </div>

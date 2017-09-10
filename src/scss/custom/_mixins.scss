@@ -3,13 +3,6 @@
  * @author Armin Pfurtscheller
  * ================================================== */
 
-// login
-@mixin code-number($margin-left: 0, $margin-right: 0){
-  content: '';
-  display: inline-block;
-  margin: 0 $margin-right 0 $margin-left;
-}
-
 // keyframes
 @mixin keyframes($name) {
   @-webkit-keyframes #{$name} {

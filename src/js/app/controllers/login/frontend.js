@@ -5,12 +5,15 @@
  /**
   * @constructor
   */
-  var LoginFrontend = function($scope, $injector) {
+  var LoginFrontend = function($scope, $injector, code) {
     this.$injector = $injector;
     this.$scope = $scope;
+
+    // @see: next()
+    this.code = code;
   };
 
-  LoginFrontend.$inject = ['$scope', '$injector'];
+  LoginFrontend.$inject = ['$scope', '$injector', 'code'];
 
   //
   // PROPERTIES
@@ -29,7 +32,7 @@
   LoginFrontend.prototype.codePattern = /^[A-Za-z0-9]+$/;
 
   /** @var {RegExp} userpattern Regular expression for `username` property. */
-  LoginFrontend.prototype.userpattern = /^[A-Za-z][A-Za-z](?:0[1-9]|[12]\d|3[01])[A-Za-z]\d$/;
+  LoginFrontend.prototype.userpattern = /^[A-Za-z][A-Za-z](?:0[1-9]|[12]\d|3[01])(?:0[1-9]|1[012])\d$/;
 
   //
   // METHODS
@@ -113,6 +116,28 @@
           successCallback,
           failureCallback
         );
+    };
+
+  /**
+   * Persists code in storage and navigates to `step2` of signup.
+   *
+   * @public
+   * @method continue
+   * @return {Void}
+   */
+  LoginFrontend.prototype.next = function()
+    {
+      var CODE_STORAGE_KEY = this.$injector.get('CODE_STORAGE_KEY');
+      var storage = this.$injector.get('storage').getProxy();
+      var $state = this.$injector.get('$state');
+
+      storage.setItem(CODE_STORAGE_KEY, this.code);
+      $state.go('login.frontend.signup.step2', {}, {
+        // note: this is important to avoid usual
+        // redirection by refetching resolve data
+        // of `login.frontend` parent state
+        reload: true
+      });
     };
 
   angular.module(module).controller('LoginFrontendController', LoginFrontend);

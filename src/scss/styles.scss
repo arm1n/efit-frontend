@@ -190,36 +190,3 @@ $ct-series-colors: (#b2c326, #6188e2);
     flex: none; // 2
   }
 }
-
-/* --------------------------------------------------
- *  MISC
- * -------------------------------------------------- */
-.tm-code {
-  margin-top: 5px;
-  display: inline-block;
-
-  &.double{
-    &:before{
-      @include code-number(10px, 0);
-    }
-    &:after{
-      @include code-number(0, 10px);
-    }
-  }
-
-  &:first-child {
-    &:before {
-      @include code-number(10px, 0);
-    }
-  }
-
-  &:last-child{
-    &:after{
-      display: none;
-    }
-  }
-
-  &:after{
-    @include code-number(3px, 0);
-  }
-}

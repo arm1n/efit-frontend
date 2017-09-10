@@ -1,5 +1,4 @@
-<div data-ui-view="">
-</div>
+<div data-ui-view=""></div>
 
 <!-- reusable code field -->
 <script type="text/ng-template" id="code-field.html">
@@ -12,9 +11,9 @@
       name="code"
       type="password"
       class="uk-input"
+      autofocus="autofocus"
       data-ng-required="true"
       data-form-field-model=""
-      placeholder="__  __  __ __  __  __"
       data-ng-model="loginFrontendController.username"
       data-ng-pattern="loginFrontendController.userpattern">
 
@@ -24,14 +23,6 @@
     <message-required>
       Du musst deinen persönlichen Code angegeben!
     </message-required>
-  </div>
-
-  <div class="uk-margin-bottom uk-text-left uk-text-meta">
-    <span class="tm-code">(1)</span>
-    <span class="tm-code">(2)</span>
-    <span class="tm-code double">(3)</span>
-    <span class="tm-code">(4)</span>
-    <span class="tm-code">(5)</span>
   </div>
 </script>
 
@@ -47,50 +38,14 @@
   <div
     id="code-info"
     hidden="hidden"
-    aria-hidden="true">
-    <table class="uk-table uk-table-responsive uk-table-small uk-text-meta uk-margin-small-top">
-      <tbody>
-          <tr>
-            <td class="uk-text-right@m">
-              Zweiter Buchstabe deines Vornamens (a-z):
-            </td>
-            <td class="uk-text-left@m">
-              (1) = __
-            </td>
-          </tr>
-          <tr>
-            <td class="uk-text-right@m">
-              Dritter Buchstabe deines Nachnamens (a-z):
-            </td>
-            <td class="uk-text-left@m">
-              (2) = __
-            </td>
-          </tr>
-          <tr>
-            <td class="uk-text-right@m">
-              Tag deines Geburtstages (01 - 31):
-            </td>
-            <td class="uk-text-left@m">
-              (3) = __ __
-            </td>
-          </tr>
-          <tr>
-            <td class="uk-text-right@m">
-              Erster Buchstabe deines Geburtsmonates (A-Z):
-            </td>
-            <td class="uk-text-left@m">
-              (4) = __
-            </td>
-          </tr>
-          <tr>
-            <td class="uk-text-right@m">
-              Anzahl deiner Geschwister (0 - ...):
-            </td>
-            <td class="uk-text-left@m">
-              (5) = __
-            </td>
-          </tr>
-      </tbody>
-    </table>
+    aria-hidden="true"
+    class="uk-text-left uk-text-small">
+    <ol class="uk-margin-top uk-margin-remove-bottom">
+      <li>Dritter Buchstabe des Vornamens deiner Mutter (a-z)</li>
+      <li>Dritter Buchstabe des Vornamens deines Vaters (a-z)</li>
+      <li>Dein Geburtstag (01 - 31)</li>
+      <li>Dein Geburtsmonat (01 - 12)</li>
+      <li>Anzahl deiner Geschwister (0 - 9)</li>
+    </ol>
   </div>
 </script>

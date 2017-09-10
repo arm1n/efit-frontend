@@ -28,6 +28,9 @@ all:
   # TEMPLATE PATHS
   VIEWS_PATH: "views/"
 
+  # CODE STORAGE KEY
+  CODE_STORAGE_KEY: "gQL4tGLK2EqMjm5A"
+
 dev:
   # change to your real webserver to test whole
   # functionality of backend (server sent events)

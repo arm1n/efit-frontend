@@ -10440,28 +10440,3 @@ td.uk-text-break {
   [class*="backend"]:not([class*="login"]) #footer {
     -ms-flex: none;
         flex: none; }
-
-/* --------------------------------------------------
- *  MISC
- * -------------------------------------------------- */
-.tm-code {
-  margin-top: 5px;
-  display: inline-block; }
-  .tm-code.double:before {
-    content: '';
-    display: inline-block;
-    margin: 0 0 0 10px; }
-  .tm-code.double:after {
-    content: '';
-    display: inline-block;
-    margin: 0 10px 0 0; }
-  .tm-code:first-child:before {
-    content: '';
-    display: inline-block;
-    margin: 0 0 0 10px; }
-  .tm-code:last-child:after {
-    display: none; }
-  .tm-code:after {
-    content: '';
-    display: inline-block;
-    margin: 0 0 0 3px; }

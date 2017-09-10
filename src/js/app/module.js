@@ -277,6 +277,17 @@
 
       $stateProvider.state('login.frontend', {
         url: '/app',
+        resolve: {
+          code: [
+            'CODE_STORAGE_KEY', 'storage',
+            function(CODE_STORAGE_KEY, storage){
+              var proxy = storage.getProxy();
+              return proxy.getItem(
+                CODE_STORAGE_KEY
+              );
+            }
+          ]
+        },
         data: {
           redirects: {
             ROLE_USER: 'frontend'
@@ -292,7 +303,44 @@
       });
 
       $stateProvider.state('login.frontend.signup', {
-        url: '/schule'
+        url: '/schule',
+        redirectTo: 'login.frontend.signup.step1'
+      });
+
+      $stateProvider.state('login.frontend.signup.step1', {
+        url: '/schritt-1',
+        redirectTo: function(transition){
+          var redirectTo = function(code) {
+            if (!code) {
+              return null;
+            }
+
+            return 'login.frontend.signup.step2';
+          };
+
+          var $injector = transition.injector();
+          var code = $injector.getAsync('code');
+          return code.then(redirectTo);
+        }
+      });
+
+      $stateProvider.state('login.frontend.signup.step2', {
+        url: '/schritt-2',
+        resolvePolicy: { when: 'EAGER' },
+        redirectTo: function(transition){
+          var redirectTo = function(code) {
+            console.log(code);
+            if (code) {
+              return null;
+            }
+
+            return 'login.frontend.signup.step1';
+          };
+
+          var $injector = transition.injector();
+          var code = $injector.getAsync('code');
+          return code.then(redirectTo);
+        }
       });
 
       $stateProvider.state('login.frontend.signin', {
