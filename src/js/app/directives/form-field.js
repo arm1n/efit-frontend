@@ -316,6 +316,13 @@
   FormFieldModel.$inject = ['$scope', '$attrs', '$element', '$log'];
 
   //
+  // PROPERTIES
+  //
+
+  /** @var {boolean} autoFocus If true element receives focus on init. */
+  FormFieldModel.prototype.autoFocus = false;
+
+  //
   // METHODS
   //
 
@@ -333,6 +340,10 @@
         return;
       }
 
+      if (this.autoFocus) {
+        this.$element.focus();
+      }
+
       this.formField.setModel(this.ngModel);
     };
 
@@ -341,10 +352,13 @@
   //
   angular.module(module).directive('formFieldModel', function(){
     return {
+      scope: {
+        'autoFocus': '=?formFieldModelAutoFocus'
+      },
       restrict: 'A',
       require: {
         'ngModel': 'ngModel',
-        'formField': '^?formField'
+        'formField': '^?formField',
       },
       bindToController: true,
       controller: FormFieldModel
