@@ -311,11 +311,9 @@
         url: '/schritt-1',
         redirectTo: function(transition){
           var redirectTo = function(code) {
-            if (!code) {
-              return null;
+            if (code) {
+              return 'login.frontend.signup.step2';
             }
-
-            return 'login.frontend.signup.step2';
           };
 
           var $injector = transition.injector();
@@ -329,12 +327,9 @@
         resolvePolicy: { when: 'EAGER' },
         redirectTo: function(transition){
           var redirectTo = function(code) {
-            console.log(code);
-            if (code) {
-              return null;
+            if (!code) {
+              return 'login.frontend.signup.step1';
             }
-
-            return 'login.frontend.signup.step1';
           };
 
           var $injector = transition.injector();
