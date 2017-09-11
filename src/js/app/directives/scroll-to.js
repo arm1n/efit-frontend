@@ -19,9 +19,12 @@
     this.$element = $element;
     this.$injector = $injector;
 
+    this.options = {};
+
     this._source = null;
     this._target = null;
     this._scroller = null;
+    this._init = this._init.bind(this);
     this._onClick = this._onClick.bind(this);
     this._onScrolled = this._onScrolled.bind(this);
   };
@@ -33,7 +36,7 @@
   //
 
   /** @var {object} options Options for `scroll` service. */
-  ScrollTo.prototype.options = {};
+  ScrollTo.prototype.options = null;
 
   /** @var {function} callback Callback for scroll finished. */
   ScrollTo.prototype.callback = null;
@@ -43,13 +46,41 @@
   //
 
   /**
-   * Watches user's `state` property and maps them for view.
+   * Waits for rendering and invokes `_init()`.
    *
    * @public
    * @method $onInit
    * @return {Void}
    */
   ScrollTo.prototype.$onInit = function() {
+    var $timeout = this.$injector.get('$timeout');
+
+    // wait for being rendered
+    $timeout(this._init, 1);
+  };
+
+  /**
+   * Removes event listener and watches.
+   *
+   * @public
+   * @method $onDestroy
+   * @return {void}
+   */
+  ScrollTo.prototype.$onDestroy = function() {
+    this._source.off('scrolled', this._onScrolled);
+    this.$element.off('click', this._onClick);
+
+    this._scroller.$destroy(true);
+  };
+
+  /**
+   * Extracts dom element and sets up scroller.
+   *
+   * @private
+   * @method _init
+   * @return {void}
+   */
+  ScrollTo.prototype._init = function() {
     // try to grab target from - can be either
     // a jquery element or a string id / hash
     if (this.element instanceof jQuery) {
@@ -64,7 +95,7 @@
       }
     }
 
-    if (this._target === null) {
+    if (this._target.length === 0) {
       console.warn('scroll-to.js: Invalid target element!');
       return;
     }
@@ -83,24 +114,6 @@
     this._source.on('scrolled', this._onScrolled);
 
     this._scroller = UIkit.scroll(this._source, this.options);
-  };
-
-  /**
-   * Removes event listener and watches.
-   *
-   * @public
-   * @method $onDestroy
-   * @return {void}
-   */
-  ScrollTo.prototype.$onDestroy = function() {
-    this._source.off('scrolled', this._onScrolled);
-    this.$element.off('click', this._onClick);
-
-    this._scroller.$destroy(true);
-
-    this._scroller = null;
-    this._source = null;
-    this._target = null;
   };
 
   /**
