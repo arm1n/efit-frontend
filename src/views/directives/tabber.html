@@ -1,29 +1,16 @@
 <ul
-  class="uk-tab"
-  data-ng-attr-id="{{tabberController.domId}}">
-  <li data-ng-class="{'uk-active': tabberController.isDescriptionActive()}">
-    <a
-      href="javascript:void(0)"
-      data-scroll-to="tabberController.domId"
-      data-ng-click="tabberController.onClick(tabberController.tabDescription)">
-      Beschreibung
-    </a>
+  data-uk-switcher=""
+  data-ng-attr-id="{{tabberController.domId}}"
+  data-uk-tab="animation: uk-animation-slide-top-small">
+  <li>
+    <a href="#">Beschreibung</a>
   </li>
-  <li
-    data-ng-if="tabberController.hasExercise"
-    data-ng-class="{'uk-active': tabberController.isExerciseActive()}">
-    <a
-      href="javascript:void(0)"
-      data-scroll-to="tabberController.domId"
-      data-ng-click="tabberController.onClick(tabberController.tabExercise)">
-      Aufgabe
-    </a>
+  <li data-ng-if="tabberController.hasExercise">
+    <a href="#">Aufgabe</a>
   </li>
 </ul>
-<ul class="uk-switcher" data-ng-switch="tabberController.activeTab">
-    <li
-      data-ng-switch-when="description"
-      data-ng-class="{'uk-active': tabberController.isDescriptionActive()}">
+<ul class="uk-switcher">
+    <li>
       <div
         data-uk-grid=""
         data-ng-if="tabberController.icon">
@@ -38,10 +25,10 @@
           </div>
           <a
             href="javascript:void(0)"
+            data-uk-switcher-item="next"
             class="uk-button uk-button-primary"
             data-scroll-to="tabberController.domId"
-            data-ng-if="tabberController.hasExercise"
-            data-ng-click="tabberController.onClick(tabberController.tabExercise)">
+            data-ng-if="tabberController.hasExercise">
             Zur Aufgabe
           </a>
         </div>
@@ -56,6 +43,7 @@
         </div>
         <a
           href="javascript:void(0)"
+          data-uk-switcher-item="next"
           class="uk-button uk-button-primary"
           data-scroll-to="tabberController.domId"
           data-ng-if="tabberController.hasExercise">
@@ -65,10 +53,7 @@
     </li>
     <li
       data-ng-transclude="exercise"
-      data-ng-switch-when="exercise"
-      class="uk-text-small uk-text-center uk-text-left@m"
-      data-ng-class="{'uk-active': tabberController.isExerciseActive()}">
+      class="uk-text-small uk-text-center uk-text-left@m">
       <!-- exercise -->
     </li>
 </ul>
-
