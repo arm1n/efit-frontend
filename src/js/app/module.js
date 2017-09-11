@@ -123,9 +123,9 @@
         resolve: {
           current: [
             'user', '$state', '$q',
-            function(user, $state, $q){
+            function(user, $state){
               var promise = user.load().$promise;
-              return promise.catch(function(e){
+              return promise.catch(function(){
                 $state.go('login.frontend');
               });
             }
@@ -199,7 +199,7 @@
                 defer.resolve(false);
               };
 
-              var promise = auth.hasRole(
+              auth.hasRole(
                 'ROLE_SUPER_ADMIN'
               ).then(
                 successCallback,

@@ -133,7 +133,6 @@
     {
       var $http = this.$injector.get('$http');
       var user = this.$injector.get('user');
-      var jwt = this.$injector.get('jwt');
 
       var successCallback = function()
         {
@@ -174,7 +173,7 @@
           me._saveToken(response.data);
         };
 
-      var failureCallback = function(rejection)
+      var failureCallback = function(/*rejection*/)
         {
           // invalidate possibly stored jwt
           // token to avoid further lookups

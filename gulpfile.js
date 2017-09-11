@@ -1,3 +1,7 @@
+/* jshint node: true */
+
+'use strict';
+
 /* =========================
  * GULPFILE
  * ========================= */
@@ -15,7 +19,6 @@ var lazypipe = require('lazypipe');
 var rename = require('gulp-rename');
 var useref = require('gulp-useref');
 var jshint = require('gulp-jshint');
-var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var header  = require('gulp-header');
 var htmlmin = require('gulp-htmlmin');
@@ -29,8 +32,6 @@ var autoprefixer = require('gulp-autoprefixer');
 
 var ngConfig = require('gulp-ng-config');
 var ngTemplateCache = require('gulp-angular-templatecache');
-
-var package = require('./package.json');
 
 //
 // CONFIG
@@ -295,7 +296,7 @@ gulp.task('config', function() {
         settings.ngConfig
       )
     ))
-    .pipe(gulp.dest(paths.src + paths.js))
+    .pipe(gulp.dest(paths.src + paths.js));
 });
 
 //
@@ -307,7 +308,7 @@ gulp.task('views', function() {
       paths.templates,
       settings.ngTemplate
     ))
-    .pipe(gulp.dest(paths.src))
+    .pipe(gulp.dest(paths.src));
 });
 
 //
@@ -316,7 +317,7 @@ gulp.task('views', function() {
 gulp.task('sync', function() {
   browserSync.init(null, {
     server: {
-        baseDir: "src"
+        baseDir: 'src'
     },
     // important: having this enabled
     // would cause multiple events in

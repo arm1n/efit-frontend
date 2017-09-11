@@ -155,8 +155,6 @@
       var notification = this.$injector.get('notification');
       var i18n = this.$injector.get('i18n');
 
-      var me = this;
-
       var successCallback = function()
         {
           var message = i18n.get('Password has been successfully updated!');
