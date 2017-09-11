@@ -33,6 +33,8 @@ var autoprefixer = require('gulp-autoprefixer');
 var ngConfig = require('gulp-ng-config');
 var ngTemplateCache = require('gulp-angular-templatecache');
 
+var pkg = require('./package.json');
+
 //
 // CONFIG
 //
@@ -240,11 +242,11 @@ gulp.task('useref', ['lazy'], function () {
   var minifyJS = lazypipe()
     .pipe(jshint, '.jshintrc')
     .pipe(jshint.reporter, 'default')
-    .pipe(header, banner, { package : package })
+    .pipe(header, banner, { package : pkg })
     .pipe(uglify);
 
   var minifyCSS = lazypipe()
-    .pipe(header, banner, { package : package })
+    .pipe(header, banner, { package : pkg })
     .pipe(cssnano);
 
   var minifyHTML = lazypipe()
