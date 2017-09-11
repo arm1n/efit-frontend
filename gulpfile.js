@@ -79,6 +79,10 @@ var globs = {
     'src/scss/*.scss'
   ],
 
+  scssWatch: [
+    'src/scss/**/*.scss'
+  ],
+
   scssInclude: [
     'src/vendor/uikit/src/scss',
     'src/vendor/chartist/dist/scss'
@@ -333,9 +337,9 @@ gulp.task('reload', function () {
 // TASK: WATCH
 //
 gulp.task('watch', function(){
-  gulp.watch(globs.scss, ['scss']);
   gulp.watch(globs.views, ['views', 'reload']);
   gulp.watch(globs.config, ['config', 'reload']);
+  gulp.watch(globs.scssWatch, ['scss', 'reload']);
 });
 
 //
