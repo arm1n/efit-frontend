@@ -600,6 +600,8 @@
     this.$element = $element;
     this.$injector = $injector;
 
+    this.bubbles = {};
+    this.viewport = {};
     this.domId = 'viewport-' + $scope.$id;
 
     this._nextId = 0;
@@ -633,10 +635,10 @@
   ProcrastinationTaskGame.prototype.accuracy = 0;
 
   /** @var {object} bubbles Hash map keeping bubble objects. */
-  ProcrastinationTaskGame.prototype.bubbles = {};
+  ProcrastinationTaskGame.prototype.bubbles = null;
 
   /** @var {object} viewport Viewport holding dimensions and offsets. */
-  ProcrastinationTaskGame.prototype.viewport = {};
+  ProcrastinationTaskGame.prototype.viewport = null;
 
   /** @var {boolean} state One of `IDLE`, `RUNNING`, `TIMEOUT`, `GAME_OVER` or `GAME_DONE`. */
   ProcrastinationTaskGame.prototype.state = 'IDLE';
@@ -671,8 +673,10 @@
    * @return {void}
    */
   ProcrastinationTaskGame.prototype.$onInit = function() {
+    var $timeout = this.$injector.get('$timeout');
+
     this._window.on('resize', this._resize);
-    this._resize();
+    $timeout(this._resize, 1); // render
 
     var me = this;
     this._unwatch = this.$scope.$watch(
@@ -696,6 +700,8 @@
    */
   ProcrastinationTaskGame.prototype.$onDestroy = function() {
     this._window.off('resize', this._resize);
+    this._unwatch();
+    this._unloop();
   };
 
   /**
