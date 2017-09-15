@@ -130,7 +130,7 @@
           <span data-ng-bind="diversificationTaskController.companies.two.count"></span>
 
           <span> = </span>
-          <span data-ng-bind="diversificationTaskController.getTicketTotal()"></span>
+          <span data-ng-bind="diversificationTaskController.getTicketCount()"></span>
         </code>
       </p>
 
@@ -144,115 +144,109 @@
 
       <p>Die folgende Grafik verdeutlicht dieses Prinzip. Sie zeigt dir eine Übersicht über die 4 möglichen Ausgänge des Spiels. Die vorletzte Spalte zeigt dir an, wie viele Lose du jeweils dazugewinnst, wenn du deine Investitionen auf beide Firmen aufgeteilt hast. Die allerletzte Spalte zeigt dir an, wie viele Lose du jeweils dazugewinnst, wenn du nur in die Firma Smart investiert hast.</p>
 
-      <div class="uk-inline">
-        <div class="uk-overflow-auto">
-          <table class="uk-table uk-table-middle uk-table-divider uk-table-striped uk-width-1-2@m">
-            <thead>
-              <tr>
-                <th class="uk-text-center">Ausgang</th>
-                <th class="uk-text-center">Firma Smart</th>
-                <th class="uk-text-center">Firma Phone</th>
-                <th class="uk-text-center">1 Los auf Smart,<br>1 Los auf Phone</th>
-                <th class="uk-text-center">2 Lose auf Smart,<br>0 Lose auf Phone</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="uk-text-center">1</td>
-                <td class="uk-text-center">
-                  <div
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
-                </td>
-                <td class="uk-text-center">
-                  <div
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
-                </td>
-                <td class="uk-text-center">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                </td>
-                <td class="uk-text-center">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                </td>
-              </tr>
-              <tr>
-                <td class="uk-text-center">2</td>
-                <td class="uk-text-center">
-                  <div
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
-                </td>
-                <td class="uk-text-center">
-                  <div
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
-                </td>
-                <td class="uk-text-center">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                </td>
-                <td class="uk-text-center">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                </td>
-              </tr>
-              <tr>
-                <td class="uk-text-center">3</td>
-                <td class="uk-text-center">
-                  <div
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
-                </td>
-                <td class="uk-text-center">
-                  <div
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
-                </td>
-                <td class="uk-text-center">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                </td>
-                <td class="uk-text-center">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                </td>
-              </tr>
-              <tr>
-                <td class="uk-text-center">4</td>
-                <td class="uk-text-center">
-                  <div
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
-                </td>
-                <td class="uk-text-center">
-                  <div
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
-                </td>
-                <td class="uk-text-center">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                </td>
-                <td class="uk-text-center">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="uk-overflow-auto">
+        <table class="uk-table uk-table-middle uk-table-divider uk-table-striped uk-width-1-2@m">
+          <thead>
+            <tr>
+              <th class="uk-text-center">Ausgang</th>
+              <th class="uk-text-center">Firma Smart</th>
+              <th class="uk-text-center">Firma Phone</th>
+              <th class="uk-text-center">1 Los auf Smart,<br>1 Los auf Phone</th>
+              <th class="uk-text-center">2 Lose auf Smart,<br>0 Lose auf Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="uk-text-center">1</td>
+              <td class="uk-text-center">
+                <div
+                  class="uk-inline"
+                  data-diversification-task-coin=""
+                  data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
+              </td>
+              <td class="uk-text-center">
+                <div
+                  class="uk-inline"
+                  data-diversification-task-coin=""
+                  data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
+              </td>
+              <td class="uk-text-center">
+                <img width="50" src="img/voucher.svg">
+                <img width="50" src="img/voucher.svg">
+              </td>
+              <td class="uk-text-center">
+                <img width="50" src="img/voucher.svg">
+                <img width="50" src="img/voucher.svg">
+              </td>
+            </tr>
+            <tr>
+              <td class="uk-text-center">2</td>
+              <td class="uk-text-center">
+                <div
+                  class="uk-inline"
+                  data-diversification-task-coin=""
+                  data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
+              </td>
+              <td class="uk-text-center">
+                <div
+                  class="uk-inline"
+                  data-diversification-task-coin=""
+                  data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
+              </td>
+              <td class="uk-text-center">
+                <img width="50" src="img/voucher.svg">
+              </td>
+              <td class="uk-text-center">
+                <img width="50" src="img/voucher.svg">
+                <img width="50" src="img/voucher.svg">
+              </td>
+            </tr>
+            <tr>
+              <td class="uk-text-center">3</td>
+              <td class="uk-text-center">
+                <div
+                  class="uk-inline"
+                  data-diversification-task-coin=""
+                  data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
+              </td>
+              <td class="uk-text-center">
+                <div
+                  class="uk-inline"
+                  data-diversification-task-coin=""
+                  data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
+              </td>
+              <td class="uk-text-center">
+                <img width="50" src="img/voucher.svg">
+              </td>
+              <td class="uk-text-center">
+                &mdash;
+              </td>
+            </tr>
+            <tr>
+              <td class="uk-text-center">4</td>
+              <td class="uk-text-center">
+                <div
+                  class="uk-inline"
+                  data-diversification-task-coin=""
+                  data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
+              </td>
+              <td class="uk-text-center">
+                <div
+                  class="uk-inline"
+                  data-diversification-task-coin=""
+                  data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
+              </td>
+              <td class="uk-text-center">
+                &mdash;
+              </td>
+              <td class="uk-text-center">
+                &mdash;
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+
     </evaluation-text>
   </div>
 
