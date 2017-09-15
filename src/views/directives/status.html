@@ -1,6 +1,6 @@
 <div data-ng-if="!statusController.isCompact">
   <h1>Mein Status</h1>
-  <p>Hier siehst du, wie viele Aufgaben du bereits bearbeitet hast. Je öfter du übst, umso besser kennst du dich mit Finanzangelegenheiten aus und umso höher wird dein Status und desto mehr Lose erhälst du für die Ziehung!</p>
+  <p>Hier siehst du, wie viele Aufgaben du bereits bearbeitet hast. Je öfter du übst, umso besser kennst du dich mit Finanzangelegenheiten aus und umso höher wird dein Status und desto mehr Lose erhältst du für die Ziehung!</p>
   <div
     data-status-icons=""
     data-status-icons-ratio="statusController.iconRatio"
@@ -26,11 +26,11 @@
 
     <div class="uk-margin-small-top" data-ng-if="statusController.tasksVisible">
       <p>Die Tabelle zeigt dir, welche Aufgaben du bereits erledigt hast:</p>
-      <table class="uk-table uk-table-divider uk-table-small uk-width-1-2@s uk-margin-auto">
+      <table class="uk-table uk-table-divider uk-table-small uk-table-justify uk-width-1-2@s uk-width-1-1@m uk-margin-auto">
         <thead>
             <tr>
-              <th class="uk-text-left uk-table-expand">Aufgabe</th>
-              <th class="uk-text-center uk-table-shrink">Erledigt</th>
+              <th class="uk-text-left">Aufgabe</th>
+              <th class="uk-text-center">Erledigt</th>
             </tr>
         </thead>
         <tbody>
@@ -45,7 +45,6 @@
                   data-uk-icon="icon: close"
                   data-ng-if="!task.$$results">
                 </span>
-
               </td>
             </tr>
         </tbody>
@@ -67,6 +66,9 @@
         data-ng-bind="'#' + ticket.id"
         data-ng-repeat="ticket in statusController.tickets"
         class="uk-badge uk-margin-xsmall-bottom uk-margin-xsmall-top uk-margin-xsmall-right uk-margin-xsmall-left">
+      </div>
+      <div data-ng-if="statusController.tickets.length === 0">
+        <p class="uk-text-small">Du hast noch keine Lose erhalten - löse Aufgaben, um Lose zu gewinnen.</p>
       </div>
     </div>
   </div>
