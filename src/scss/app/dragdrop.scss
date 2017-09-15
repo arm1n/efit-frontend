@@ -1,0 +1,10 @@
+/* ==================================================
+ * DRAG AND DROP
+ * @author Armin Pfurtscheller
+ * ================================================== */
+
+.draggable{
+  // http://interactjs.io/docs/faq/#touch-input-on-internet-explorer
+  -ms-touch-action: none;
+  touch-action: none;
+}
