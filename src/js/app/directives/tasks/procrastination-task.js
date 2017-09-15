@@ -182,12 +182,12 @@
       return false;
     }
 
-    if (this.resolved) {
+    if (!this.hasWarmup) {
       return false;
     }
 
-    if (!this.hasWarmup) {
-
+    if (this.resolved) {
+      return false;
     }
 
     return true;
@@ -210,6 +210,7 @@
       this.count = json.rounds.length;
 
       // 2) call setters only now
+      this.setWarmup(true);
       this.setMode(json.mode);
       this.setState(json.state);
     }
@@ -429,7 +430,7 @@
       return false;
     }
 
-    return this._now().isAfter(this.invalidAt);
+    return +this._now() > +this.invalidAt;
   };
 
   /**
@@ -673,10 +674,7 @@
    * @return {void}
    */
   ProcrastinationTaskGame.prototype.$onInit = function() {
-    var $timeout = this.$injector.get('$timeout');
-
     this._window.on('resize', this._resize);
-    $timeout(this._resize, 1); // render
 
     var me = this;
     this._unwatch = this.$scope.$watch(
@@ -712,8 +710,12 @@
    * @return {void}
    */
   ProcrastinationTaskGame.prototype.start = function() {
-    this._loop();
+    // calculate viewport now that we can
+    // be sure that elements are rendered
+    this.viewport = this._getViewport();
+
     this.state = 'RUNNING';
+    this._loop();
   };
 
   /**
@@ -1138,7 +1140,7 @@
     this.theme = random.pick(this.themes);
 
     this.radius = random.between(0, 15) + 20;
-    this.speed = random.between(0, 1)  + 2;
+    this.speed = random.between(0, 1.25)  + 2.25;
     this.wave = 1.5 + this.radius;
 
     var xOffset = this.radius * 2;
