@@ -15,20 +15,34 @@
    */
   var SelfCommitmentTask = function($scope, $elemnt, $attrs, $injector) {
     var type = $injector.get('TYPE_SELF_COMMITMENT');
-    var user = $injector.get('user');
 
     this.$injector = $injector;
-    this.task = user.getTaskByType(type);
+
+    this.user = this.$injector.get('user');
+    this.task = this.user.getTaskByType(type);
+    this.result = this.user.getPendingByType(type);
   };
 
   SelfCommitmentTask.$inject = ['$scope','$element','$attrs', '$injector'];
 
   // SERVER
 
+  /** @var {object} user Alias to user service. */
+  SelfCommitmentTask.prototype.user = null;
+
   /** @var {object} task Task's resource from server. */
   SelfCommitmentTask.prototype.task = null;
 
+  /** @var {object} result Task's pending result from server. */
+  SelfCommitmentTask.prototype.result = null;
+
   // GAMEPLAY
+
+  /** @var {object} watched Hash storing watched video ids. */
+  SelfCommitmentTask.prototype.videos = {
+    'ImPxD_FDpKM': false,
+    'gUYjYEGbxEY': false
+  };
 
   /** @var {boolean} resolved If player has resolved the game. */
   SelfCommitmentTask.prototype.resolved = false;
@@ -56,10 +70,22 @@
    * @return {void}
    */
   SelfCommitmentTask.prototype.getPayload = function() {
-    return {
+    var payload = {
       task: this.task,
-      json: {}
+      json: {
+        videos: this.videos
+      },
+      isPending: this._isPending()
     };
+
+    if (this.result !== null) {
+      payload = angular.extend(
+        this.result,
+        payload
+      );
+    }
+
+    return payload;
   };
 
   /**
@@ -109,6 +135,11 @@
    * @return {void}
    */
   SelfCommitmentTask.prototype.init = function() {
+    if (this.result !== null) {
+      var json = this.result.json;
+      this.videos = json.videos;
+    }
+
     this.resolved = false;
   };
 
@@ -130,8 +161,26 @@
    * @method update
    * @return {void}
    */
-  SelfCommitmentTask.prototype.update = function(){
-    this.resolve();
+  SelfCommitmentTask.prototype.update = function(id){
+    if (this.videos[id]) {
+      return;
+    }
+
+    this.videos[id] = true;
+    if (!this.canResolve()) {
+      return;
+    }
+
+    var me = this;
+    var successCallback = function(){};
+    var failureCallback = function(){
+      me.videos[id] = false;
+    };
+
+    this.resolve().then(
+      successCallback,
+      failureCallback
+    );
   };
 
   /**
@@ -145,12 +194,22 @@
   SelfCommitmentTask.prototype.resolve = function(){
     var $q = this.$injector.get('$q');
 
-    var result = this.onResolve({
-      payload: this.getPayload()
+    var callback = this.result === null ?
+      this.onResolve :
+      this.onUpdate;
+
+    var payload = this.getPayload();
+    var result = callback({
+      payload: payload
     });
 
     var me = this;
-    var successCallback = function() {
+    var successCallback = function(result) {
+      if (result.isPending) {
+        me.result = result;
+        return;
+      }
+
       me.resolved = true;
     };
     var failureCallback = function() {
@@ -166,12 +225,30 @@
     return promise;
   };
 
+  /**
+   * Checks if all videos has been watched.
+   *
+   * @private
+   * @method _isPending
+   * @return {boolean}
+   */
+  SelfCommitmentTask.prototype._isPending = function(){
+    for (var id in this.videos) {
+      if (!this.videos[id]) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
   //
   // REGISTRY
   //
   angular.module(module).directive('selfCommitmentTask', function(){
     return {
       scope: {
+        onUpdate: '&selfCommitmentTaskOnUpdate',
         onResolve: '&selfCommitmentTaskOnResolve'
       },
       restrict: 'A',
