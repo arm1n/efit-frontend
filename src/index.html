@@ -69,6 +69,13 @@
     </script>
 
     <!-- apis -->
+    <script>
+      (function(global){
+        global.onYouTubeIframeAPIReady = function(){
+          global.YOUTUBE_API_LOADED = true
+        }
+      })(this);
+    </script>
     <script src="//www.youtube.com/iframe_api"></script>
 
     <!-- vendors -->

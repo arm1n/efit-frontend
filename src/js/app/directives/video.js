@@ -2,13 +2,6 @@
 (function(module, angular, global) {
   'use strict';
 
-  // register global event listener like described in the docs:
-  // https://developers.google.com/youtube/iframe_api_reference
-  var YOUTUBE_API_LOADED = false;
-  global.onYouTubeIframeAPIReady = function(){
-    YOUTUBE_API_LOADED = true;
-  };
-
   // --------------------------------------------------
   // Video
   // --------------------------------------------------
@@ -28,6 +21,8 @@
 
     this._player = null;
     this._element = this.$element.find('.player');
+
+    this._onReady = this._onReady.bind(this);
     this._onStateChange = this._onStateChange.bind(this);
   };
 
@@ -61,22 +56,25 @@
   Video.prototype.$onInit = function()
     {
       var $timeout = this.$injector.get('$timeout');
-      var init = this._init.bind(this);
+      var $window = this.$injector.get('$window');
 
       var me = this;
       var _watchAPIExpression = function() {
         // frame should be visible to make events
         // work with frame's postMessage() message
+        // YOUTUBE_API_LOADED is a global constant
+        // set in index.html right before api load
         var isVisible = me._element.is(':visible');
-        var isLoaded = YOUTUBE_API_LOADED;
+        var isLoaded = $window.YOUTUBE_API_LOADED;
 
         return (isVisible && isLoaded);
       };
 
       var _watchAPICallback = function(isReady) {
         if (isReady) {
+
           me._unwatchAPI();
-          $timeout(init, 100);
+          $timeout(me._onReady, 100);
         }
       };
 
@@ -124,7 +122,7 @@
    * @method _onReady
    * @return {Void}
    */
-  Video.prototype._init = function()
+  Video.prototype._onReady = function()
     {
       var element = this._element.get(0);
 
