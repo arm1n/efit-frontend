@@ -13,7 +13,7 @@
   /**
    * @constructor
    */
-  var Status = function($scope, $attrs, $element, $injector) {
+  var Status = function($scope, $element, $attrs, $injector) {
     this.$scope = $scope;
     this.$attrs = $attrs;
     this.$element = $element;
