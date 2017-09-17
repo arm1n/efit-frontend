@@ -1,0 +1,16 @@
+/* ==================================================
+ * YOUTUBE
+ * @author Armin Pfurtscheller
+ * ================================================== */
+.youtube{
+  height: 0;
+  position: relative;
+}
+
+.youtube .player{
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
