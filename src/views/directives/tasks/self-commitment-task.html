@@ -12,6 +12,7 @@
       data-ng-class="{
         'uk-margin-bottom': !$last
       }"
+      data-ng-if="selfCommitmentTaskController.canWatch()"
       data-video-on-ended="selfCommitmentTaskController.update(id)"
       data-ng-repeat="(id, state) in selfCommitmentTaskController.videos">
     </div>

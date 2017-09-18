@@ -55,25 +55,17 @@
    */
   Video.prototype.$onInit = function()
     {
-      var $timeout = this.$injector.get('$timeout');
       var $window = this.$injector.get('$window');
 
       var me = this;
       var _watchAPIExpression = function() {
-        // frame should be visible to make events
-        // work with frame's postMessage() message
-        // YOUTUBE_API_LOADED is a global constant
-        // set in index.html right before api load
-        var isVisible = me._element.is(':visible');
-        var isLoaded = $window.YOUTUBE_API_LOADED;
-
-        return (isVisible && isLoaded);
+        return $window.YOUTUBE_API_LOADED;
       };
 
       var _watchAPICallback = function(isReady) {
         if (isReady) {
           me._unwatchAPI();
-          $timeout(me._onReady, 100);
+          me._onReady();
         }
       };
 

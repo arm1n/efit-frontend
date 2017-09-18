@@ -1,16 +1,20 @@
 <div
   data-tabber=""
-  data-tabber-icon="'self-commitment-task.svg'">
+  data-tabber-icon="'self-commitment-task.svg'"
+  data-tabber-active-tab="selfCommitmentActiveTab">
 
   <tabber-description>
     Du möchtest einen Trick kennenlernen, mit dem du deine Ziele leichter erreichen kannst? Dann sieh dir die nächsten beiden Videos an!
   </tabber-description>
 
   <tabber-exercise>
-    <div
-      data-self-commitment-task=""
-      data-self-commitment-task-on-update="frontendController.updateResult(payload)"
-      data-self-commitment-task-on-resolve="frontendController.createResult(payload)">
+    <!-- force lazy rendering for youtube iframe events! -->
+    <div data-ng-if="selfCommitmentActiveTab === 'EXERCISE'">
+      <div
+        data-self-commitment-task=""
+        data-self-commitment-task-on-update="frontendController.updateResult(payload)"
+        data-self-commitment-task-on-resolve="frontendController.createResult(payload)">
+      </div>
     </div>
   </tabber-exercise>
 

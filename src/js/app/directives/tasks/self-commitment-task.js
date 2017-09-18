@@ -96,8 +96,10 @@
    * @return {boolean}
    */
   SelfCommitmentTask.prototype.isLocked = function() {
-    if (this.task === null) {
-      return true;
+    // admins always can watch
+    // videos for explanation!
+    if (!this.user.isUser()) {
+      return false;
     }
 
     return !this.task.isActive;
@@ -223,6 +225,23 @@
     );
 
     return promise;
+  };
+
+  /**
+   * Checks if user is allowed to watch videos:
+   * - (Super-)Admins are always allowed
+   * - Users only if not in workshop
+   *
+   * @public
+   * @method canWatch
+   * @return {boolean}
+   */
+  SelfCommitmentTask.prototype.canWatch = function(){
+    if (!this.user.isUser()) {
+      return true;
+    }
+
+    return !this.user.isInWorkshop();
   };
 
   /**

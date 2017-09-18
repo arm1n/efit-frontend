@@ -33,13 +33,38 @@
   /** @var {array} hasExercise If slot `exercise` has contents. */
   Tabber.prototype.hasExercise = false;
 
+  /** @var {string} activeTab Currently activated tab by name. */
+  Tabber.prototype.activeTab = 'DESCRIPTION';
+
+  //
+  // METHODS
+  //
+
+  /**
+   * Sets `activeTab` property by name.
+   *
+   * @public
+   * @method setActive
+   * @param {string} tab
+   * @return {Void}
+   */
+  Tabber.prototype.setActive = function(tab) {
+    switch (tab) {
+      case 'DESCRIPTION':
+      case 'EXERCISE':
+        this.activeTab = tab;
+      default:
+    }
+  };
+
   //
   // REGISTRY
   //
   angular.module(module).directive('tabber', function(){
     return {
       scope: {
-        icon: '=?tabberIcon'
+        icon: '=?tabberIcon',
+        activeTab: '=?tabberActiveTab'
       },
       restrict: 'A',
       transclude: {
