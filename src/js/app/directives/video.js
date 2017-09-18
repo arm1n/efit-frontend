@@ -72,7 +72,6 @@
 
       var _watchAPICallback = function(isReady) {
         if (isReady) {
-
           me._unwatchAPI();
           $timeout(me._onReady, 100);
         }
