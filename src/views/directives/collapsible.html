@@ -5,7 +5,8 @@
     class="uk-accordion-title"
     data-ng-transclude="title"
     data-scroll-to="collapsibleController.domId"
-    data-ng-click="collapsibleController.onClick()">
+    data-ng-click="collapsibleController.onClick()"
+    data-scroll-to-disabled="!collapsibleController.open">
   </h4>
   <div
     class="uk-accordion-content"

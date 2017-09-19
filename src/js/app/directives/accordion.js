@@ -114,11 +114,19 @@
    * @return {Void}
    */
   Accordion.prototype._onCollapsibleClicked = function(evt, sender) {
+    sender.open = !sender.open;
+
     var iterate = function(item, index) {
-      var itemId = item.$scope.$id;
       var senderId = sender.$scope.$id;
+      var itemId = item.$scope.$id;
+
+      // ignore sender was closed
+      if (!sender.open) {
+        return;
+      }
+
+      // ignore when is sender
       if (senderId === itemId) {
-        item.open = true;
         return;
       }
 

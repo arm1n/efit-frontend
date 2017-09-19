@@ -44,6 +44,9 @@
   /** @var {function} callback Callback for scroll finished. */
   ScrollTo.prototype.callback = null;
 
+  /** @var {boolean} disabled Flag indicating disabled state. */
+  ScrollTo.prototype.disabled = null;
+
   //
   // METHODS
   //
@@ -136,6 +139,10 @@
     var $timeout = this.$injector.get('$timeout');
 
     var onDelay = function() {
+      if (this.disabled) {
+        return;
+      }
+
       this._scroller.scrollTo(this._target);
     };
 
@@ -166,7 +173,8 @@
         element: '=scrollTo',
         delay: '=?scrollToDelay',
         options: '=?scrollToOptions',
-        callback: '=?scrollToCallback'
+        callback: '=?scrollToCallback',
+        disabled: '=?scrollToDisabled'
       },
       restrict: 'A',
       controller: ScrollTo,
