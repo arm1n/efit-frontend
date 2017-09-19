@@ -35,6 +35,9 @@
   // PROPERTIES
   //
 
+  /** @var {number} delay Delayed invokation in ms. */
+  ScrollTo.prototype.delay = null;
+
   /** @var {object} options Options for `scroll` service. */
   ScrollTo.prototype.options = null;
 
@@ -106,9 +109,15 @@
     this._source = jQuery('<a href="'+href+'"></a>');
 
     this.options = this.options || {};
-    this.options.offset = this.options.offset || 80;
-    this.options.duration = this.options.duration || 500;
-    this.options.easing = this.options.easing || 'easeOutExpo';
+    this.options.easing = angular.isString(this.options.easing)
+      ? this.options.easing
+      : 'easeOutExpo';
+    this.options.offset = angular.isNumber(this.options.offset)
+      ? this.options.offset
+      : 100;
+    this.options.duration = angular.isNumber(this.options.duration)
+      ? this.options.duration
+      : 500;
 
     this.$element.on('click', this._onClick);
     this._source.on('scrolled', this._onScrolled);
@@ -124,7 +133,13 @@
    * @return {void}
    */
   ScrollTo.prototype._onClick = function() {
-    this._scroller.scrollTo(this._target);
+    var $timeout = this.$injector.get('$timeout');
+
+    var onDelay = function() {
+      this._scroller.scrollTo(this._target);
+    };
+
+    $timeout(onDelay.bind(this), this.delay);
   };
 
   /**
@@ -149,6 +164,7 @@
     return {
       scope: {
         element: '=scrollTo',
+        delay: '=?scrollToDelay',
         options: '=?scrollToOptions',
         callback: '=?scrollToCallback'
       },

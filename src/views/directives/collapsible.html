@@ -1,0 +1,14 @@
+<div
+  class="collapsible uk-margin"
+  data-ng-attr-id="{{collapsibleController.domId}}">
+  <h4
+    class="uk-accordion-title"
+    data-ng-transclude="title"
+    data-scroll-to="collapsibleController.domId"
+    data-ng-click="collapsibleController.onClick()">
+  </h4>
+  <div
+    class="uk-accordion-content"
+    data-ng-transclude="content">
+  </div>
+</div>
