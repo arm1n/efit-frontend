@@ -74,18 +74,19 @@
   Workshop.prototype.uiOnParamsChanged = function(params)
     {
       var workshop = this._workshops[params.expand];
-
-      if (workshop) {
-        workshop.$$expanded = true;
-        this._expanded = workshop;
+      if (!workshop) {
         return;
       }
 
+      // close opened workshop before toggling
       if (this._expanded) {
         this._expanded.$$expanded = false;
         this._expanded = null;
-        return;
       }
+
+      // expand the new workshop now
+      workshop.$$expanded = true;
+      this._expanded = workshop;
     };
 
   /**
