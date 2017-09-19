@@ -177,8 +177,6 @@
     this.$attrs = $attrs;
     this.$element = $element;
     this.$injector = $injector;
-
-    this.domId = this.id || 'accordion-item-' + $scope.$id;
   };
 
   Collapsible.$inject = ['$scope','$element','$attrs', '$injector'];
@@ -206,7 +204,10 @@
    * @return {Void}
    */
   Collapsible.prototype.$onInit = function() {
+    var defaultId = 'collapsible-' + this.$scope.$id;
+
     this.accordion.addCollapsible(this);
+    this.domId = this.id || domId;
   };
 
   /**
@@ -230,7 +231,7 @@
   angular.module(module).directive('collapsible', function(){
     return {
       scope: {
-        id: '=?collapsibleId',
+        id: '=?collapsible',
         open: '=?collapsibleOpen'
       },
       restrict: 'A',

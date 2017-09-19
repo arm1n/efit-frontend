@@ -34,7 +34,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr data-ng-repeat="(type, task) in statusController.tasks">
+            <tr
+              class="cursor-pointer"
+              data-scroll-to="task.type"
+              data-ng-if="task.isInteractive"
+              data-ng-repeat="(type, task) in statusController.tasks">
               <td class="uk-text-left" data-ng-bind="type|i18n"></td>
               <td class="uk-text-center">
                 <span
