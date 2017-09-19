@@ -1,7 +1,7 @@
 <ul
-  data-uk-switcher=""
+  data-uk-switcher="swiping: false"
   data-ng-attr-id="{{tabberController.domId}}"
-  data-uk-tab="animation: uk-animation-slide-top-small">
+  data-uk-tab="animation: uk-animation-slide-top-small; swiping: false">
   <li>
     <a href="#" data-ng-click="tabberController.setActive('DESCRIPTION')">Beschreibung</a>
   </li>
@@ -27,8 +27,7 @@
             href="javascript:void(0)"
             data-uk-switcher-item="next"
             class="uk-button uk-button-primary"
-            data-ng-if="tabberController.hasExercise"
-            data-ng-l>
+            data-ng-if="tabberController.hasExercise">
             Zur Aufgabe
           </a>
         </div>
