@@ -114,28 +114,27 @@
    * @return {Void}
    */
   Accordion.prototype._onCollapsibleClicked = function(evt, sender) {
-    sender.open = !sender.open;
-
     var iterate = function(item, index) {
       var senderId = sender.$scope.$id;
       var itemId = item.$scope.$id;
 
-      // ignore sender was closed
-      if (!sender.open) {
-        return;
-      }
-
-      // ignore when is sender
+      // ignore sender collapsible
       if (senderId === itemId) {
         return;
       }
 
-      // close all open items by `toggle()`,
-      // which accepts the index position
-      if (item.open) {
-        this._accordion.toggle(index);
+      // ignore closing sender
+      if (!sender.open) {
+        return;
       }
 
+      // ignore closed items
+      if (!item.open) {
+        return
+      }
+
+      // toggle open items
+      this._accordion.toggle(index);
       item.open = false;
     };
 
@@ -219,6 +218,8 @@
    * @return {Void}
    */
   Collapsible.prototype.onClick = function() {
+    this.open = !this.open;
+
     var $rootScope = this.$injector.get('$rootScope');
     $rootScope.$broadcast('collapsible_clicked', this);
   };
