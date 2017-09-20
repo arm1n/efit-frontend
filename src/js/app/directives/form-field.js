@@ -306,14 +306,14 @@
   /**
    * @constructor
    */
-  var FormFieldModel = function($scope, $attrs, $element, $log) {
-    this.$log = $log;
+  var FormFieldModel = function($scope, $attrs, $element, $injector) {
     this.$scope = $scope;
     this.$attrs = $attrs;
     this.$element = $element;
+    this.$injector = $injector;
   };
 
-  FormFieldModel.$inject = ['$scope', '$attrs', '$element', '$log'];
+  FormFieldModel.$inject = ['$scope', '$attrs', '$element', '$injector'];
 
   //
   // PROPERTIES
@@ -335,13 +335,21 @@
    */
   FormFieldModel.prototype.$onInit = function()
     {
+      var $timeout = this.$injector.get('$timeout');
+      var $log = this.$injector.get('$log');
+
       if (!this.formField) {
-        this.$log.warn('formFieldModel: No form field controller found!');
+        $log.warn('formFieldModel: No form field controller found!');
         return;
       }
 
       if (this.autoFocus) {
-        this.$element.focus();
+        var element = this.$element.get(0);
+        var focus = function() {
+          element.focus();
+        };
+
+        $timeout(focus, 1);
       }
 
       this.formField.setModel(this.ngModel);
