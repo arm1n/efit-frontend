@@ -107,7 +107,7 @@
         amount: this.amount,
         amountRepeated: this.amountRepeated
       },
-      isPending: this.amountRepeated === null
+      isPending: this._isPending()
     };
 
     if (this.result !== null) {
@@ -195,7 +195,7 @@
         this._flag = updatedAt >= this.task.updatedAt;
       }
 
-      // amount repeated cannot be desisted cause it's the
+      // `amountRepeated` cannot be desisted cause it's the
       // condition in last step before setting `isPending`
       this.amount = json.amount;
       this.total = json.total;
@@ -291,7 +291,7 @@
     };
 
     var failureCallback = function() {
-      this._flag = false;
+      me._flag = false;
     };
 
     var promise = $q.when(result);
@@ -312,6 +312,17 @@
    */
   SavingsTargetTask.prototype.getDifference = function(){
     return this.amountRepeated - this.amount;
+  };
+
+  /**
+   * Checks if `amountRepeated` is already set.
+   *
+   * @private
+   * @method _isPending
+   * @return {boolean}
+   */
+  SavingsTargetTask.prototype._isPending = function(){
+    return this.amountRepeated === null;
   };
 
   //
