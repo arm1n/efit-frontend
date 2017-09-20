@@ -229,10 +229,6 @@
       this.step++;
     }
 
-    if (!this.canResolve()) {
-      return;
-    }
-
     var me = this;
     var successCallback = function(){};
     var failureCallback = function(){
@@ -257,6 +253,13 @@
     var notification = this.$injector.get('notification');
     var i18n = this.$injector.get('i18n');
     var $q = this.$injector.get('$q');
+
+    if (!this.canResolve()) {
+      var defer = $q.defer();
+      defer.reject();
+
+      return defer.promise;
+    }
 
     var callback = this.result === null ?
       this.onResolve :

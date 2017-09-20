@@ -169,9 +169,6 @@
     }
 
     this.videos[id] = true;
-    if (!this.canResolve()) {
-      return;
-    }
 
     var me = this;
     var successCallback = function(){};
@@ -195,6 +192,13 @@
    */
   SelfCommitmentTask.prototype.resolve = function(){
     var $q = this.$injector.get('$q');
+
+    if (!this.canResolve()) {
+      var defer = $q.defer();
+      defer.reject();
+
+      return defer.promise;
+    }
 
     var callback = this.result === null ?
       this.onResolve :

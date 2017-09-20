@@ -237,6 +237,9 @@
    * @return {void}
    */
   ProcrastinationTask.prototype.update = function(result){
+    var state = this.state;
+    var count = this.count;
+
     switch (this.state) {
       case 'IDLE':
         this.setState('DECISION');
@@ -252,11 +255,17 @@
       default:
     }
 
-    if (!this.canResolve()) {
-      return;
-    }
+    var me = this;
+    var successCallback = function(){};
+    var failureCallback = function(){
+      me.setState(state);
+      me.count = count;
+    };
 
-    this.resolve();
+    this.resolve().then(
+      successCallback,
+      failureCallback
+    );
   };
 
   /**
@@ -271,6 +280,15 @@
     var notification = this.$injector.get('notification');
     var i18n = this.$injector.get('i18n');
     var $q = this.$injector.get('$q');
+
+    console.log('>>>RESOLVE!');
+
+    if (!this.canResolve()) {
+      var defer = $q.defer();
+      defer.reject();
+
+      return defer.promise;
+    }
 
     var callback = this.result === null ?
       this.onResolve :

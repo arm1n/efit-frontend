@@ -239,10 +239,6 @@
    * @return {Void}
    */
   InterestTask.prototype.update = function(){
-    if (!this.canResolve()) {
-      return;
-    }
-
     this.currentExercise++;
 
     var me = this;
@@ -267,6 +263,13 @@
    */
   InterestTask.prototype.resolve = function(){
     var $q = this.$injector.get('$q');
+
+    if (!this.canResolve()) {
+      var defer = $q.defer();
+      defer.reject();
+
+      return defer.promise;
+    }
 
     var callback = this.result === null ?
       this.onResolve :

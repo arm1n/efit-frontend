@@ -19,7 +19,7 @@
 
     <p>Wenn du dich entscheidest, die <strong>Aufgabe nicht aufzuteilen</strong>, hast du bis zum nächsten Treffen Zeit, musst die Aufgabe aber am Stück lösen, also 150 Seifenblasen auf einmal fangen.</p>
 
-    <p>Zur Übung kannst du nun die Aufgabe kurz kennenlernen und 20 Seifenblasen platzen lassen:</p>
+    <p>Zur Übung kannst du nun die Aufgabe kurz kennenlernen und musst 20 Seifenblasen platzen lassen, bevor es losgeht:</p>
 
     <div class="uk-text-center">
       <div
@@ -39,7 +39,8 @@
           class="uk-button uk-button-success"
           data-scroll-to="procrastinationTaskController.domId"
           data-ng-click="procrastinationTaskController.update()"
-          data-ng-disabled="!procrastinationTaskController.canResolve()">
+          data-ng-disabled="!procrastinationTaskController.canResolve()"
+          data-scroll-to-disabled="!procrastinationTaskController.canResolve()">
           Weiter
         </button>
       </div>
@@ -76,7 +77,8 @@
           class="uk-button uk-button-success"
           data-scroll-to="procrastinationTaskController.domId"
           data-ng-click="procrastinationTaskController.update()"
-          data-ng-disabled="!procrastinationTaskController.canResolve()">
+          data-ng-disabled="!procrastinationTaskController.canResolve()"
+          data-scroll-to-disabled="!procrastinationTaskController.canResolve()">
           Weiter
         </button>
       </div>

@@ -166,6 +166,13 @@
   FramingTask.prototype.resolve = function(){
     var $q = this.$injector.get('$q');
 
+    if (!this.canResolve()) {
+      var defer = $q.defer();
+      defer.reject();
+
+      return defer.promise;
+    }
+
     var result = this.onResolve({
       payload: this.getPayload()
     });

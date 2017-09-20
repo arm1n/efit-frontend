@@ -215,11 +215,6 @@
     }
     */
 
-    // check if resolve is possible
-    if (!this.canResolve()) {
-      return;
-    }
-
     // now publish the change
     var me = this;
     var successCallback = function(){};
@@ -247,6 +242,13 @@
     var notification = this.$injector.get('notification');
     var i18n = this.$injector.get('i18n');
     var $q = this.$injector.get('$q');
+
+    if (!this.canResolve()) {
+      var defer = $q.defer();
+      defer.reject();
+
+      return defer.promise;
+    }
 
     var callback = this.result === null ?
       this.onResolve :
