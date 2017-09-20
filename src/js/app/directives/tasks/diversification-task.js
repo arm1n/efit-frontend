@@ -351,6 +351,9 @@
   /** @var {string} startSide Initially displayed side of coin. */
   DiversificationTaskCoin.prototype.startSide = 'K';
 
+  /** @var {string} startValue Initially displayed side of coin. */
+  DiversificationTaskCoin.prototype.startValue = null;
+
   //
   // METHODS
   //
@@ -371,17 +374,24 @@
     this.sides = [
       {
         value: this.heads,
-        class: this.front
+        class: this.front,
+        text: this.heads,
       },
       {
         value: this.tails,
-        class: this.back
+        class: this.back,
+        text: this.tails
       }
     ];
 
     if (this.startSide !== this.heads) {
       this.sides[0].class = this.back;
       this.sides[1].class = this.front;
+    }
+
+    if (this.startValue !== null) {
+      this.sides[0].text = this.startValue;
+      this.sides[1].text = this.startValue;
     }
 
     me._toss = me._getToss();
@@ -403,6 +413,8 @@
       if (newFlip) {
         me.onStart({toss: me._toss.value});
         $timeout(_timeoutCallback, 100);
+        me.sides[0].text = me.heads;
+        me.sides[1].text = me.tails;
         me.animate = true;
       }
     };
@@ -501,7 +513,8 @@
         onInit: '&diversificationTaskCoinOnInit',
         onStart: '&diversificationTaskCoinOnStart',
         onFinish: '&diversificationTaskCoinOnFinish',
-        startSide: '=?diversificationTaskCoinStartSide'
+        startSide: '=?diversificationTaskCoinStartSide',
+        startValue: '=?diversificationTaskCoinStartValue'
       },
       restrict: 'A',
       transclude: true,

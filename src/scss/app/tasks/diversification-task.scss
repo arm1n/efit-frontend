@@ -52,8 +52,8 @@
 }
 
 .coin{
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
+  -webkit-perspective: 1000;
+  perspective: 1000;
 
   &.bounce{
     @include animation(bounce);
@@ -80,6 +80,10 @@
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     position: relative;
+
+    // This should avoid rendering glitch in FF:
+    // https://stackoverflow.com/questions/27897413
+    outline: 1px solid transparent;
 
     &.flip{
       @include animation(flip);
