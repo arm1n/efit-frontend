@@ -34,7 +34,6 @@ all:
 dev:
   # change to your real webserver to test whole
   # functionality of backend (server sent events)
-  # API_URL: "http://localhost:8000/api"
-  API_URL: "http://localhost/felix/e-fit/backend/web/app_dev.php/api"
+  API_URL: "http://localhost:8000/api"
 prod:
   API_URL: "https://efit-production.scalingo.io/api"
