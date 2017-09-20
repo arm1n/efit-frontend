@@ -452,8 +452,6 @@
       $transitions.onError({}, onError);
       $transitions.onStart({}, onStart);
       $transitions.onSuccess({}, onSuccess);
-
-      FastClick.attach(document.body);
     }
   ]);
 
