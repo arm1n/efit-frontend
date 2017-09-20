@@ -191,10 +191,14 @@
 
     switch(this.task.type) {
       case this.$injector.get('TYPE_ANCHORING'):
+        return [
+          i18n.get('WITH_ANCHOR'),
+          i18n.get('WITHOUT_ANCHOR')
+        ];
       case this.$injector.get('TYPE_MENTAL_BOOKKEEPING'):
         return [
-          i18n.get('GROUP_A'),
-          i18n.get('GROUP_B')
+          i18n.get('MONEY_LOST'),
+          i18n.get('TICKET_LOST')
         ];
       case this.$injector.get('TYPE_PROCRASTINATION'):
         return [
@@ -239,8 +243,8 @@
           plugins: [
             Chartist.plugins.legend({
               legendNames: [
-                i18n.get('Choice 1'),
-                i18n.get('Choice 2')
+                i18n.get('BUYING'),
+                i18n.get('NOT_BUYING')
               ]
             })
           ]

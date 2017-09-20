@@ -19,6 +19,15 @@
   "Only one result permitted during workshop!": "Du kannst eine Aufgabe nur einmal w\u00e4hrend des Workshops machen!",
   "Only users can post results!": "Nur Sch\u00fcler d\u00fcrfen Aufgaben absenden!",
 
+  "WITH_ANCHOR": "MIT Anker von 99 Euro",
+  "WITHOUT_ANCHOR": "Ohne Anker",
+
+  "MONEY_LOST": "Geld verloren",
+  "TICKET_LOST": "Ticket verloren",
+
+  "BUYING": "Kaufen",
+  "NOT_BUYING": "Nicht kaufen",
+
   "Thank you for your input!": "Vielen Dank f\u00fcr deine Eingabe!",
 
   "day": "Tag",
