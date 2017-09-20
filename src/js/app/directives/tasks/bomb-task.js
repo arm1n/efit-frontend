@@ -297,7 +297,7 @@
       return 1;
     }
 
-    return this.collectedBoxes + 1;
+    return this.collectedBoxes;
   };
 
   /**
