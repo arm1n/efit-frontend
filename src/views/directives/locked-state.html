@@ -1,20 +1,22 @@
-<div
-  data-uk-alert=""
-  class="uk-alert-warning"
-  data-ng-if="lockedStateController.isLocked">
-  <p
-    data-ng-transclude="userText"
-    data-ng-if="lockedStateController.user.isUser()">
-    <span>Diese Aufgabe kann derzeit nicht gespielt werden!</span>
-  </p>
-  <p
-    data-ng-transclude="adminText"
-    data-ng-if="lockedStateController.user.isAdmin()">
-    <span>Trainer dürfen keine Aufgaben machen!</span>
-  </p>
-  <p
-    data-ng-transclude="adminText"
-    data-ng-if="lockedStateController.user.isSuperAdmin()">
-    <span>Administratoren dürfen keine Aufgaben machen!</span>
-  </p>
+<div class="uk-text-center">
+  <div
+    data-uk-alert=""
+    class="uk-alert-warning uk-inline"
+    data-ng-if="lockedStateController.isLocked">
+    <p
+      data-ng-transclude="userText"
+      data-ng-if="lockedStateController.user.isUser()">
+      <span>Diese Aufgabe kann derzeit nicht gespielt werden!</span>
+    </p>
+    <p
+      data-ng-transclude="adminText"
+      data-ng-if="lockedStateController.user.isAdmin()">
+      <span>Trainer dürfen keine Aufgaben machen!</span>
+    </p>
+    <p
+      data-ng-transclude="adminText"
+      data-ng-if="lockedStateController.user.isSuperAdmin()">
+      <span>Administratoren dürfen keine Aufgaben machen!</span>
+    </p>
+  </div>
 </div>
