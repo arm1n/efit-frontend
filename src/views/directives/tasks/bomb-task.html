@@ -1,6 +1,6 @@
 <div class="bomb-task">
 
-  <p>Bei der folgenden Aufgabe kannst du Boxen sammeln um Lose zu verdienen. Für jede gesammelte Box erhältst du 1 Los - aber Vorsicht: hinter einer der Boxen ist eine Bombe versteckt, die alles zerstört, was du gesammelt hast! Nachdem du die Aufgabe mit "Auflösen" beendet hast, werden die Boxen umgedreht und du siehst, ob sich hinter den gesammelten Boxen Lose (Smiley) oder die Bombe (Blitz) verborgen haben. Ist die Bombe nicht dabei, erhältst für jede gesammelte Box 1 Los. Hast du jedoch auch die Box mit der Bombe eingesammelt, erhältst du nichts.</p>
+  <p>Bei der folgenden Aufgabe kannst du Boxen sammeln. Für jede gesammelte Box erhältst du 1 Los - aber Vorsicht: hinter einer der Boxen ist ein Blitz versteckt, der alle gesammelten Lose zerstört! Wenn Du dann auf "Auflösen" drückst, werden die ausgewählten Boxen umgedreht. Ist der Blitz nicht dabei, erhältst für jede gesammelte Box 1 Los. Hast du jedoch auch die Box mit dem Blitz eingesammelt, erhältst du nichts.</p>
 
   <p><strong>Du kannst nun beginnen, Boxen zu sammeln:</strong></p>
 
@@ -45,22 +45,16 @@
             'uk-text-success': !bombTaskController.hasBomb
           }">
           <strong>
-            <span>Du hast {{bombTaskController.collectedBoxes}} Boxen gesammelt. Da die Bombe</span>
+            <span>Du hast {{bombTaskController.collectedBoxes}} Boxen gesammelt. Da der Blitz</span>
             <span data-ng-if="!bombTaskController.hasBomb"> nicht </span>
             <span data-ng-if="bombTaskController.hasBomb"> </span>
-            <span>unter den gesammelten Boxen war, beträgt deine Auszahlung</span>
-            <span data-ng-if="!bombTaskController.hasBomb"> {{bombTaskController.collectedBoxes}} </span>
-            <span data-ng-if="bombTaskController.hasBomb"> 0 </span>
-            <span data-ng-if="bombTaskController.hasBomb">Lose.</span>
+            <span>unter den gesammelten Boxen war, erhältst du</span>
+            <span data-ng-if="bombTaskController.hasBomb"> leider kein zusätzliches Los.</span>
             <span data-ng-if="!bombTaskController.hasBomb">
+              <span> {{bombTaskController.collectedBoxes}} </span>
               <span data-ng-if="bombTaskController.collectedBoxes === 1">Los.</span>
               <span data-ng-if="bombTaskController.collectedBoxes !== 1">Lose.</span>
-            </span>
           </strong>
-        </p>
-
-        <p>
-          In dieser Übung liegt die Unsicherheit darin, dass du im Vorhinein nicht weißt, hinter welcher Box sich die Bombe befindet. Je mehr Boxen du umdrehst, desto mehr kannst du gewinnen – gleichzeitig steigt damit aber auch die Wahrscheinlichkeit, dass du die Bombe erwischst und dann gar nichts erhältst. Risikoscheue Menschen werden daher weniger Boxen umdrehen, während risikofreudige Menschen mehr Boxen umdrehen.
         </p>
 
         <p>
@@ -72,9 +66,15 @@
           <span data-ng-if="bombTaskController.collectedBoxes < bombTaskController.avg"> bist du eher risikoscheuer als </span>
           <span data-ng-if="bombTaskController.collectedBoxes == bombTaskController.avg"> hast du in etwa die gleiche Risikobereitschaft wie </span>
           <span data-ng-if="bombTaskController.collectedBoxes > bombTaskController.avg"> bist du eher risikofreudiger als </span>
-          <span>als der Durchschnitt. Wie schon gesagt, gibt es hier <strong>keine richtigen oder falschen Entscheidungen</strong>. Dieses Experiment soll dich motivieren, in Situationen mit unsicherem Ausgang zu überlegen, wie es dir dabei geht, wenn du mehr oder weniger Risiko eingehst. <strong>Ein gutes Bewusstsein für unsere Risikoeinstellung hilft jedem von uns, unsere persönlichen Entscheidungen so zu treffen, dass wir uns damit wohl fühlen.</strong>
+          <span>als der Durchschnitt. Wie schon gesagt, gibt es hier keine richtigen oder falschen Entscheidungen. Dieses Experiment soll dich motivieren zu überlegen, wie es dir dabei geht, wenn du mehr oder weniger Risiko eingehst. Ein gutes Bewusstsein für unsere Risikoeinstellung hilft jedem von uns, bessere Entscheidungen zu treffen.
           </span>
         </p>
+
+        <div class="uk-placeholder">Video</div>
+
+        <p>Bei dieser Übung musst du eine Entscheidung treffen, bei der du im Vorfeld nicht genau weißt, was passieren wird. Die Höhe deiner Auszahlung ist unsicher, da du nicht weißt, hinter welcher Box sich der Blitz befindet. Je mehr Boxen du umdrehst, desto mehr kannst du gewinnen – gleichzeitig steigt damit aber auch die Wahrscheinlichkeit, dass du den Blitz erwischst und dann gar nichts erhältst. Risikoscheue Menschen werden daher weniger Boxen umdrehen, während risikofreudige Menschen mehr Boxen umdrehen.</p>
+
+        <p>Es gibt hier keine "richtigen" oder "falschen" Entscheidungen. Diese Übung soll dich motivieren, in Situationen mit unsicherem Ausgang zu überlegen, wie es dir dabei geht, wenn du mehr oder weniger Risiko eingehst. Ein gutes Bewusstsein für unsere persönliche Risikoeinstellung hilft uns dabei, bessere Entscheidungen zu treffen.</p>
 
       </evaluation-text>
     </div>

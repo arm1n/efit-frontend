@@ -5,21 +5,17 @@
 
   <!-- IDLE -->
   <div data-ng-switch-when="IDLE">
-    <p>Die folgende Situation kommt dir sicher bekannt vor: Du solltest für eine Schularbeit lernen und nimmst dir vor, diesmal rechtzeitig damit zu beginnen. Leider kommen jedoch viele Dinge dazwischen und du startest erst im letzten Moment mit der Vorbereitung. Danach ärgerst du dich über dich selbst, da du dich nun zusätzlich gestresst fühlst und nicht mehr ausreichend Zeit für die Vorbereitung hast.</p>
+    <p>Bei dieser Übung kannst du 5 Lose verdienen, musst dafür aber bis zum nächsten Treffen eine große Aufgabe lösen. Klicke auf das Video, um mehr über diese Übung zu erfahren.</p>
 
-    <p>Die folgende Übung zeigt dir eine Strategie auf, wie sich dieses <strong>Problem der Aufschieberitis</strong> überwinden lässt. Bei dieser Übung kannst du 5 Lose verdienen, musst dafür aber bis zum nächsten Treffen eine große Aufgabe lösen.</p>
+    <div class="uk-placeholder">Video</div>
 
-    <p>Deine Aufgabe besteht darin, <strong>150 Seifenblasen platzen zu lassen</strong>, bevor sie die Wolken am oberen Bildschirmrand erreichen. Dabei dürfen dir <strong>jedoch maximal 15 Seifenblasen entkommen</strong>, sonst musst du neu starten.</p>
+    <p>Bei dieser Aufgabe musst du insgesamt 150 Seifenblasen zerplatzen, bevor sie die Wolken erreichen. Wenn dir mehr als 15 Seifenblasen entwischen, musst wieder von vorne beginnen. Du kannst selbst nun selbst entscheiden, wie du die Aufgabe lösen willst:</p>
 
-    <p>Der beste Weg, Aufschieberitis zu bekämpfen, ist, die anstehende <strong>Aufgabe zunächst in kleinere Portionen</strong> aufzuteilen. Diese kleineren Arbeitsschritte wirken nicht mehr so abschreckend wodurch es uns leichter, mit der Aufgabe zu beginnen. In einem zweiten Schritt sollten wir uns <strong>für diese kleineren Arbeitsschritte Fristen setzen</strong>, bis zu denen wir sie fertigstellen wollen.</p>
+    <p>Variante 1 – Aufgabe in drei kleinere Schritte aufteilen: Hier musst du in jeweils 50 Seifenblasen zerplatzen, wobei dir maximal 5 entkommen dürfen. Für jede Teilaufgabe hast du 2 Wochen Zeit.</p>
 
-    <p>Entsprechend kannst du auch die <strong>Übung auf zwei Arten erledigen</strong>:</p>
+    <p>Variante 2 – Aufgabe in einem Schritt machen: Hier musst du alles in einem erledigen. Du hast dafür bis zum nächsten Treffen Zeit.</p>
 
-    <p>Du kannst nun selbst entscheiden, ob du die Aufgabe mit den Seifenblasen <strong>in 3 kleinere Schritte aufteilen</strong> möchtest. Wenn du dich für die Aufteilung entscheidest, hast du für jede Teilaufgabe 2 Wochen Zeit. In jeder Teilaufgabe musst du nur jeweils 50 Seifenblasen platzen lassen, wobei dir jeweils maximal 5 entkommen dürfen. Du kannst aber auch schon früher mit der nächsten Teilaufgabe beginnen.</p>
-
-    <p>Wenn du dich entscheidest, die <strong>Aufgabe nicht aufzuteilen</strong>, hast du bis zum nächsten Treffen Zeit, musst die Aufgabe aber am Stück lösen, also 150 Seifenblasen auf einmal fangen.</p>
-
-    <p>Zur Übung kannst du nun die Aufgabe kurz kennenlernen und musst 20 Seifenblasen platzen lassen, bevor es losgeht:</p>
+    <p>Zur Übung kannst du nun die Aufgabe kurz kennenlernen und 20 Seifenblasen platzen lassen. Danach kannst du auswählen, wie du die Übung absolvieren willst. Klicke oder Tippe in den Himmel, um das Spiel zu starten.</p>
 
     <div class="uk-text-center">
       <div
@@ -109,19 +105,12 @@
         <strong
           class="uk-text-danger"
           data-ng-if="!procrastinationTaskController.hasSuccess()">
-          <span>Du hast das Ziel leider nicht erreicht und erhältst daher nur </span>
-          <span data-ng-bind="procrastinationTaskController.getTicketCount()"> </span>
-          <span data-ng-if="procrastinationTaskController.getTicketCount() === 1">Los </span>
-          <span data-ng-if="procrastinationTaskController.getTicketCount() !== 1">Lose </span>
-          <span>für die Bearbeitung!</span>
+          <span>Leider hast du Aufgaben nicht gelöst.</span>
         </strong>
         <strong
           class="uk-text-success"
           data-ng-if="procrastinationTaskController.hasSuccess()">
-          <span>Gratuliere! Du hast die Aufgabe erfolgreich bearbeitet und erhältst dafür </span>
-          <span data-ng-bind="procrastinationTaskController.getTicketCount()"> </span>
-          <span data-ng-if="procrastinationTaskController.getTicketCount() === 1">Los!</span>
-          <span data-ng-if="procrastinationTaskController.getTicketCount() !== 1">Lose!</span>
+          <span>Herzlichen Glückwunsch, du hast die Aufgabe gelöst.</span>
         </strong>
       </p>
 

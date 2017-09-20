@@ -1,6 +1,6 @@
 <div class="framing-task">
 
-  <p>In dieser Übung gibt es zwei Gewinnspiele. Du kannst nun entscheiden, an welchen Gewinnspielen du teilnehmen würdest (du kannst also an keinem, einem oder an beiden Gewinnspielen teilnehmen).</p>
+  <p>Wie erwähnt sind die folgenden Gewinnspiele nur gedacht, es gibt also keine echten Zahlungen. Du kannst nun entscheiden, an welchen Gewinnspielen du teilnehmen würdest (dabei ist jede Auswahl möglich, du kannst also an keinem, einem oder an beiden Gewinnspielen teilnehmen).</p>
 
   <div
     data-uk-grid=""
@@ -82,45 +82,13 @@
 
   <div data-evaluation="framingTaskController">
     <evaluation-text>
-      <p>
-        <strong>
-          <span class="uk-text-primary" data-ng-if="framingTaskController.lotteryA === true && framingTaskController.lotteryB === true">
-            Du hast dich entschieden, an beiden Gewinnspielen teilzunehmen. Lies weiter, um mehr über diese Übung zu erfahren.
-          </span>
-          <span class="uk-text-primary" data-ng-if="framingTaskController.lotteryA === false && framingTaskController.lotteryB === false">
-            Du hast dich entschieden, an keinem der beiden Gewinnspiele teilzunehmen. Lies weiter, um mehr über diese Übung zu erfahren.
-          </span>
-          <span class="uk-text-danger" data-ng-if="(
-            (framingTaskController.lotteryA === true && framingTaskController.lotteryB === false) ||
-            (framingTaskController.lotteryA === false && framingTaskController.lotteryB === true)
-          )">
-            <span>Du hast dich entschieden, an Gewinnspiel </span>
-            <span data-ng-if="framingTaskController.lotteryA">A</span>
-            <span data-ng-if="framingTaskController.lotteryB">B</span>
-            <span> teilzunehmen, nicht aber an Gewinnspiel </span>
-            <span data-ng-if="!framingTaskController.lotteryA">A</span>
-            <span data-ng-if="!framingTaskController.lotteryB">B</span>
-            <span>. Du bist daher in die sogenannte "Framing"-Falle getappt. Lies weiter, um mehr darüber zu erfahren.</span>
-          </span>
-        </strong>
-      </p>
+      <div class="uk-placeholder">Video</div>
 
-      <p>Studien haben gezeigt, dass die <strong>meisten Menschen Gewinnspiel A ablehnen</strong>, bei <strong>Gewinnspiel B jedoch mitmachen</strong>. Bei genauem Hinsehen sind die beiden Gewinnspiele aber völlig identisch: Mit 10%-iger Wahrscheinlichkeit bekommst du 95 Euro, während du mit 90%-iger Wahrscheinlichkeit 5 Euro verlierst.</p>
+      <p>Ist dir bei den Gewinnspielen etwas aufgefallen? Wenn du bei den beiden Gewinnspielen unterschiedliche Entscheidungen getroffen hast, bist du in die sogenannte "Framing"-Falle getappt! Aber du bist damit nicht allein: Die meisten Menschen lehnen Gewinnspiel A ab, würden bei Gewinnspiel B jedoch mitmachen. Bei genauem Hinsehen sind die beiden Gewinnspiele aber identisch: Mit 10%-iger Wahrscheinlichkeit bekommst du 95 Euro, während du mit 90%-iger Wahrscheinlichkeit 5 Euro verlierst. Um das zu sehen, darf man bei Gewinnspiel B nicht vergessen, dass die Teilnahme 5 Euro kostet. Wenn du gewinnst, bleiben dir daher insgesamt nur 95 Euro, und wenn du nicht gewinnst, hast du 5 Euro verloren – genau wie bei Gewinnspiel A. Die beiden Gewinnspiele laufen also auf dasselbe hinaus – sie sind nur unterschiedlich beschrieben.</p>
 
-      <p>Bei <strong>Gewinnspiel A</strong> geht dies offensichtlich aus der Beschreibung hervor.</p>
-      <p>Bei <strong>Gewinnspiel B</strong> ist davor eine kleine Rechnung nötig: Dadurch, dass du 5 Euro bezahlen musst, bevor du an dem Gewinnspiel teilnehmen kannst, verringert sich deine Auszahlung in jedem Fall um 5 Euro. Falls du gewinnst, bleiben dir also 100 – 5 = 95 Euro. Wenn du nicht gewinnst, hast du am Ende 5 Euro verloren (den Einsatz für die Lotterie). Wie bei Gewinnspiel A kannst du also mit 10-%iger Wahrscheinlichkeit 95 Euro gewinnen, verlierst aber mit 90%-iger Wahrscheinlichkeit 5 Euro.</p>
+      <p>Die Art und Weise, wie eine bestimmte Situation beschrieben wird, kann unsere Entscheidung beeinflussen. Dieser Effekt wird "Framing" – vom englischen "frame" für den Rahmen, also die Beschreibung der Situation – genannt. Er wirkt besonders stark, wenn bestimmte Ergebnisse als positiv und andere als negativ dargestellt werden. Framing wird auch oft bei Gewinnspielen eingesetzt: Dabei werden einzelne Gewinne überbetont, sodass die Teilnahme vielversprechend erscheint. Für die meisten Spieler bedeutet die Teilnahme am Gewinnspiel jedoch den Verlust ihres Einsatzes.</p>
 
-      <p>Die beiden Gewinnspiele wurden also <strong>zwar unterschiedlich beschrieben</strong>, sind im Endeffekt <strong>aber identisch</strong>. Wie du vielleicht selbst bei dir festgestellt hast, kann die Art und Weise, wie eine Situation beschrieben wird, zu unterschiedlichen Entscheidungen führen. Dieser Effekt wird <strong>"Framing"</strong> genannt: Durch die unterschiedliche Beschreibung verschiebt sich der Rahmen (Englisch "frame"), in dem wir die Entscheidungsalternativen interpretieren.</p>
-
-      <p>Besonders stark wirkt dieser Effekt, wenn <strong>bestimmte Resultate als positiv</strong> (Gewinn, Nutzen) und <strong>andere Resultate als negativ</strong> (Verlust, Schaden) dargestellt werden. Da die meisten Menschen vor Verlusten zurückschrecken, wählen sie lieber jene Entscheidungen, die gefühlt weniger Verluste bringen und mehr Gewinne bringen (so wie Gewinnspiel B beim obigen Beispiel). Oft wird Framing auch bei Lotterien oder Gewinnspielen eingesetzt: Hier werden einzelne Gewinne überbetont, sodass Menschen zur Teilnahme angeregt werden, obwohl Lotterien und Gewinnspiele in der Regel ein Verlustgeschäft für die Spieler darstellen.</p>
-
-      <p><strong>Beispiel:</strong> Stell dir vor, du sollst eine Sportveranstaltung organisieren. Für die Planung der Veranstaltung ist es sehr wichtig, ausreichend früh zu wissen, wie viele Teilnehmer kommen werden. Deshalb setzt du eine Frist für die Anmeldung. Was aber, wenn sich die Leute nicht daran halten und sich zu spät anmelden? Eine harte Möglichkeit ist natürlich, alle verspäteten Abmeldungen abzuweisen. Es gibt aber noch einen anderen Weg, die Teilnehmer zu motivieren, sich frühzeitig anzumelden: Du kannst für rechtzeitige und verspätete Anmeldungen unterschiedliche Gebühren verlangen.</p>
-
-      <p>Diese unterschiedlichen Gebühren kannst du auf zwei Arten "framen": Einerseits als Rabatt für rechtzeitige Anmeldung (positive Formulierung), oder andererseits als Zusatzgebühr für verspätete Anmeldungen (negative Formulierung). Beides läuft letztlich auf das Gleiche hinaus: Diejenigen, die sich rechtzeitig anmelden, zahlen einen geringeren Betrag als diejenigen, die sich zu spät anmelden. Die Situation wird nur jeweils anders benannt und dargestellt. So wie bei der Übung mit den Gewinnspielen zeigt sich in vielen Studien, dass das <strong>negative Framing</strong> "Zusatzgebühren für verspätete Anmeldung" <strong>stärker wirkt als das positive Framing</strong> "Rabatt für rechtzeitige Anmeldung".</p>
-
-      <p>Auch <strong>im alltäglichen Konsum</strong> begegnet uns dieses Phänomen: So wird beispielsweise bei "Light"-Produkten oft angegeben, um wieviel weniger Fett sich in diesen Produkten im Vergleich zu anderen befindet: "50% weniger Fett als bei herkömmlicher Mayonnaise" hört sich gut an. Würde hingegen der Fettanteil selbst angegeben ("Der Fettanteil bei dieser Mayonnaise beträgt 25%""), so klingt das eher negativ und würde möglicherweise vom Kauf abschrecken.</p>
-
-      <p>Framing kann sowohl bewusst als auch unbewusst stattfinden, sodass viele unserer Entscheidungen diesem Phänomen unterliegen. Umso wichtiger ist es daher, <strong>sich dieser Tatsache bewusst zu sein</strong> und immer wieder zu überlegen, ob wir bei einer Finanz- oder Konsumentscheidung nicht möglicherweise durch einen Framing-Effekt getrieben werden.</p>
+      <p>Um gute Entscheidungen zu treffen, kann es daher durchaus hilfreich sein, sich gelegentlich zu fragen, ob wir vielleicht gerade durch Framing beeinflusst werden.</p>
 
     </evaluation-text>
   </div>

@@ -3,7 +3,7 @@
   data-ng-attr-id="{{interestTaskController.domId}}">
 
   <div class="description">
-    <p>Wir haben für dich {{interestTaskController.amount|currency:' Euro':0}} auf dein Spielgeld-Sparbuch einbezahlt. Die Bank bezahlt dir {{interestTaskController.rate|percent}} pro Jahr.</p>
+    <p>Stell Dir vor, wir haben für dich {{interestTaskController.amount|currency:' Euro':0}} auf dein Spielgeld-Sparbuch einbezahlt. Die Bank bezahlt dir {{interestTaskController.rate|percent}} pro Jahr.</p>
   </div>
 
   <!-- Exercise 1 -->
@@ -88,19 +88,20 @@
           </strong>
         </p>
 
-        <p>Zinsen werden meistens in Prozent angegeben und hängen somit von der Höhe des überlassenen Geldbetrages ab. Je mehr Geld du also auf dem Sparbuch hast, umso höher sind auch die Zinsen, die du dafür bekommst.</p>
+        <div class="uk-placeholder">Video</div>
 
-        <p>Angenommen, du hast zu Beginn 1.000 Euro auf deinem Sparbuch und erhältst im ersten Jahr 1% Zinsen auf 1.000 Euro, also</p>
-        <p><code>0,01 x 1.000 = 10 Euro</code></p>
-        <p>Dein Guthaben beträgt in einem Jahr daher</p>
-        <p><code>1.000 + 10 = 1.010 Euro</code><br>(Startguthaben + Zinsen aus dem ersten Jahr)</p>
-        <p>Wenn du das Geld nun ein weiteres Jahr auf dem Sparbuch lässt, erhältst du im zweiten Jahr 1% Zinsen auf dein neues Guthaben von 1.010 Euro, die Zinsen im zweiten Jahr betragen demnach</p>
-        <p><code>0,01 x 1.010 = 10,10 Euro</code></p>
-        <p>Weshalb sind die Zinsen im zweiten Jahr höher als im ersten Jahr?</p>
+        <p>Zinsen sind gewissermaßen eine Belohnung dafür, dass du der Bank dein Geld für eine bestimmte Zeit überlässt. Die Zinsen werden meistens in Prozent angegeben. Das bedeutet, du bekommst für jeden Euro auf deinem Konto oder Sparbuch einen Anteil davon als Zinsen gutgeschrieben. Im umgekehrten Fall, wenn du dir Geld leihst, musst du der Bank dafür Zinsen bezahlen.</p>
 
-        <p>Das liegt daran, dass dein Guthaben im ersten Jahr durch die Zinsen des ersten Jahres um 10 Euro gewachsen ist. Im zweiten Jahr erhältst du nun nicht nur Zinsen auf die ursprünglichen 1.000 Euro, sondern auf das neue Guthaben von 1.010 Euro. Deshalb erhältst du im zweiten Jahr 10,10 Euro an Zinsen, sodass sich nach zwei Jahren</p>
-        <p><code>1.010 + 10,10 = 1.020,10 Euro</code><br>(Guthaben nach einem Jahr + Zinsen aus dem zweiten Jahr)</p>
-        <p>auf deinem Sparbuch befinden. Du bekommst also im zweiten Jahr auch Zinsen auf die bereits erhaltenen Zinsen aus dem ersten Jahr, was als <strong>"Zinseszinsen"</strong> bezeichnet wird. Durch die Zinseszinsen wächst dein Guthaben daher immer schneller, je länger du es auf dem Sparbuch lässt. Dieser Effekt wirkt anfangs eher klein, kann über die Jahre aber große Auswirkungen haben.</p>
+        <p>In diesem Beispiel betragen die Zinsen 1% pro Jahr und dein Anfangsguthaben auf dem Sparbuch liegt bei 1.000 Euro. Das bedeutet, dass du nach einem Jahr 1% von 1.000 Euro, also 10 Euro an Zinsen erhältst. Dein Guthaben nach einem Jahr beträgt daher 1.010 Euro.</p>
+
+        <p>Wenn du das Geld nun ein weiteres Jahr auf dem Sparbuch lässt, erhältst du im zweiten Jahr 1% Zinsen auf dein neues Guthaben von 1.010 Euro. Die Zinsen im zweiten Jahr betragen demnach 10,10 Euro, dein Guthaben wächst somit auf 1.020,10 Euro.</p>
+
+        <p>Weshalb sind die Zinsen im zweiten Jahr höher als im ersten?</p>
+
+        <p>Dein Guthaben ist im ersten Jahr durch die Zinsen um 10 Euro gewachsen. Im zweiten Jahr erhältst du nun die Zinsen auf dieses neue Guthaben von 1.010 Euro, also auch auf die Zinsen des ersten Jahres.</p>
+
+        <p>Dies wird als "Zinseszins-Effekt" bezeichnet. Durch ihn wächst dein Guthaben immer schneller, je länger du es auf dem Sparbuch lässt. Der Zinseszins-Effekt scheint anfangs eher klein, kann über die Jahre aber große Auswirkungen haben.</p>
+
       </evaluation-text>
 
     </div>
