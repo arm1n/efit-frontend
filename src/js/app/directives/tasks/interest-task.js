@@ -22,7 +22,11 @@
     this.$element = $element;
     this.$injector = $injector;
 
-    this.task = user.getTaskByType(type);
+    this.domId = 'interest-task-' + $scope.$id;
+
+    this.user = this.$injector.get('user');
+    this.task = this.user.getTaskByType(type);
+    this.result = this.user.getPendingByType(type);
   };
 
   InterestTask.$inject = ['$scope', '$element', '$attrs', '$injector'];
@@ -33,22 +37,31 @@
 
   // SERVER
 
+  /** @var {object} user Alias to user service. */
+  InterestTask.prototype.user = null;
+
   /** @var {object} task Task's resource from server. */
   InterestTask.prototype.task = null;
+
+  /** @var {object} result Task's pending result from server. */
+  InterestTask.prototype.result = null;
 
   // GAMEPLAY
 
   /** @var {boolean} resolved If player has resolved the game. */
   InterestTask.prototype.resolved = false;
 
-   /** @var {number} correctAnswers Count of correct answers. */
-  InterestTask.prototype.correctAnswers = 0;
+  /** @var {number} currentExercise Count of correct answers. */
+  InterestTask.prototype.currentExercise = 1;
+
+  /** @var {number} correctAnswers Count of correct answers. */
+  InterestTask.prototype.correctAnswers = null;
 
   /** @var {number} exercise1Answer Answer for first exercise. */
-  InterestTask.prototype.exercise1Answer = 0;
+  InterestTask.prototype.exercise1Answer = null;
 
   /** @var {number} exercise2Answer Answer for second exercise. */
-  InterestTask.prototype.exercise2Answer = 0;
+  InterestTask.prototype.exercise2Answer = null;
 
   /** @var {boolean} exercise1Correct Resolution state of first exercise. */
   InterestTask.prototype.exercise1Correct = false;
@@ -57,10 +70,10 @@
   InterestTask.prototype.exercise2Correct = false;
 
   /** @var {number} exercise1Result Correct result for first exercise. */
-  InterestTask.prototype.exercise1Result = 0;
+  InterestTask.prototype.exercise1Result = null;
 
   /** @var {number} exercise2Result Correct result for second exercise. */
-  InterestTask.prototype.exercise2Result = 0;
+  InterestTask.prototype.exercise2Result = null;
 
   // SETTINGS
 
@@ -68,10 +81,15 @@
   InterestTask.prototype.amount = 1000;
 
   /** @var {number} rate Interest rate. */
-  InterestTask.prototype.rate = 0.02;
+  InterestTask.prototype.rate = 0.01;
 
   /** @var {number} years Number of years. */
   InterestTask.prototype.years = 1;
+
+  // MISC
+
+  /** @var {string} domId Unique dom id for this task for scrolling purposes. */
+  InterestTask.prototype.domId = null;
 
   //
   // METHODS
@@ -96,23 +114,32 @@
    * @return {Void}
    */
   InterestTask.prototype.getPayload = function() {
-    /* jshint camelcase: false */
-    return {
+    var payload = {
       task: this.task,
       json: {
         exercise1: {
-          current_result: this.exercise1Result,
-          actual_result: this.exercise1Answer,
-          is_valid: this.exercise1Correct
+          currentResult: this.exercise1Result,
+          actualResult: this.exercise1Answer,
+          isValid: this.exercise1Correct
         },
         exercise2: {
-          current_result: this.exercise2Result,
-          actual_result: this.exercise2Answer,
-          is_valid: this.exercise2Correct
-        }
-      }
+          currentResult: this.exercise2Result,
+          actualResult: this.exercise2Answer,
+          isValid: this.exercise2Correct
+        },
+        currentExercise: this.currentExercise
+      },
+      isPending: this._isPending()
     };
-    /* jshint camelcase: true */
+
+    if (this.result !== null) {
+      payload = angular.extend(
+        this.result,
+        payload
+      );
+    }
+
+    return payload;
   };
 
   /**
@@ -151,12 +178,16 @@
       return false;
     }
 
-    if (!this.exercise1Answer) {
-      return false;
+    if (this.currentExercise === 1) {
+      if (!this.exercise1Answer) {
+        return false;
+      }
     }
 
-    if (!this.exercise2Answer) {
-      return false;
+    if (this.currentExercise === 2) {
+      if (!this.exercise2Answer) {
+        return false;
+      }
     }
 
     return true;
@@ -170,14 +201,20 @@
    * @return {Void}
    */
   InterestTask.prototype.init = function() {
+    if (this.result !== null) {
+      var json = this.result.json;
+
+      // `exercise2Answer` cannot be desisted cause it's the
+      // condition in last step before setting `isPending`
+      this.exercise1Answer = json.exercise1.actualResult;
+      this.currentExercise = json.currentExercise;
+    }
+
     this.resolved = false;
-    this.correctAnswers = 0;
-    this.exercise1Answer = 0;
-    this.exercise2Answer = 0;
-    this.exercise1Correct = false;
-    this.exercise2Correct = false;
     this.exercise1Result = this._calculateResult(1);
     this.exercise2Result = this._calculateResult(1 + this.years);
+
+    this._setCorrectAnswers();
   };
 
   /**
@@ -201,29 +238,23 @@
    * @param {string} exercise
    * @return {Void}
    */
-  InterestTask.prototype.update = function(value, exercise){
-    switch(exercise) {
-      case 'exercise1':
-        this.exercise1Answer = value;
-        break;
-      case 'exercise2':
-        this.exercise2Answer = value;
-        break;
-      default:
+  InterestTask.prototype.update = function(){
+    if (!this.canResolve()) {
+      return;
     }
 
-    this.exercise1Correct = this.exercise1Answer === this.exercise1Result;
-    this.exercise2Correct = this.exercise2Answer === this.exercise2Result;
+    this.currentExercise++;
 
-    if (this.exercise1Correct && this.exercise2Correct) {
-      this.correctAnswers = 2;
-    } else if (this.exercise1Correct) {
-      this.correctAnswers = 1;
-    } else if (this.exercise2Correct) {
-      this.correctAnswers = 1;
-    } else {
-      this.correctAnswers = 0;
-    }
+    var me = this;
+    var successCallback = function(){};
+    var failureCallback = function(){
+      me.currentExercise--;
+    };
+
+    this.resolve().then(
+      successCallback,
+      failureCallback
+    );
   };
 
   /**
@@ -236,12 +267,24 @@
    */
   InterestTask.prototype.resolve = function(){
     var $q = this.$injector.get('$q');
-    var result = this.onResolve({
-      payload: this.getPayload()
+
+    var callback = this.result === null ?
+      this.onResolve :
+      this.onUpdate;
+
+    var payload = this.getPayload();
+    var result = callback({
+      payload: payload
     });
 
     var me = this;
-    var successCallback = function() {
+    var successCallback = function(result) {
+      if (result.isPending) {
+
+        me.result = result;
+        return;
+      }
+
       me.resolved = true;
     };
     var failureCallback = function() {
@@ -255,6 +298,62 @@
     );
 
     return promise;
+  };
+
+  /**
+   * Updates answers for given exercise with sum.
+   *
+   * @public
+   * @method setResult
+   * @param {number} value
+   * @param {string} exercise
+   * @return {boolean}
+   */
+  InterestTask.prototype.setResult = function(value, exercise){
+    switch(exercise) {
+      case 'exercise1':
+        this.exercise1Answer = value || null;
+        break;
+      case 'exercise2':
+        this.exercise2Answer = value || null;
+        break;
+      default:
+    }
+
+    this._setCorrectAnswers();
+  };
+
+  /**
+   * Checks if `exercise2Answer` is already set.
+   *
+   * @private
+   * @method _isPending
+   * @return {boolean}
+   */
+  InterestTask.prototype._isPending = function(){
+    return this.exercise2Answer === null;
+  };
+
+  /**
+   * Updates the poroperty belonging to correctness.
+   *
+   * @private
+   * @method _setCorrectAnswers
+   * @return {void}
+   */
+  InterestTask.prototype._setCorrectAnswers = function() {
+    this.exercise1Correct = this.exercise1Answer === this.exercise1Result;
+    this.exercise2Correct = this.exercise2Answer === this.exercise2Result;
+
+    if (this.exercise1Correct && this.exercise2Correct) {
+      this.correctAnswers = 2;
+    } else if (this.exercise1Correct) {
+      this.correctAnswers = 1;
+    } else if (this.exercise2Correct) {
+      this.correctAnswers = 1;
+    } else {
+      this.correctAnswers = 0;
+    }
   };
 
   /**
@@ -278,6 +377,7 @@
         rate: '=?interestTaskRate',
         years: '=?interestTaskYears',
         amount: '=?interestTaskAmount',
+        onUpdate: '&interestTaskOnUpdate',
         onResolve: '&interestTaskOnResolve'
       },
       restrict: 'A',

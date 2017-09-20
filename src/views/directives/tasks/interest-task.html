@@ -1,84 +1,108 @@
-<div class="interest-task">
+<div
+  class="interest-task"
+  data-ng-attr-id="{{interestTaskController.domId}}">
 
   <div class="description">
     <p>Wir haben für dich {{interestTaskController.amount|currency:' Euro':0}} auf dein Spielgeld-Sparbuch einbezahlt. Die Bank bezahlt dir {{interestTaskController.rate|percent}} pro Jahr.</p>
   </div>
 
-  <div class="question-1 question">
-      <p><strong>Frage 1:</strong> Wie viel Geld befindet sich in einem Jahr auf dem Sparbuch? Ziehe die entsprechenden Scheine und Münzen in den Geldbeutel!</p>
+  <!-- Exercise 1 -->
+  <div data-ng-if="interestTaskController.currentExercise === 1">
+
+    <div class="question-1 question">
+        <p><strong>Frage 1:</strong> Wie viel Geld befindet sich in einem Jahr auf dem Sparbuch? Ziehe die entsprechenden Scheine und Münzen in den Geldbeutel!</p>
+    </div>
+
+    <div class="uk-text-center">
+      <div
+        class="exercise-1 exercise uk-inline"
+        data-ng-class="{
+          'disabled': interestTaskController.resolved
+        }"
+        data-interest-task-exercise=""
+        data-interest-task-exercise-disabled="interestTaskController.resolved"
+        data-interest-task-exercise-sum="interestTaskController.exercise1Answer"
+        data-interest-task-exercise-on-update="interestTaskController.setResult(sum, 'exercise1')">
+      </div>
+
+      <div class="uk-margin">
+        <button
+          type="button"
+          class="uk-button uk-button-success"
+          data-scroll-to="interestTaskController.domId"
+          data-ng-click="interestTaskController.update()"
+          data-ng-disabled="!interestTaskController.canResolve()">
+          Weiter
+        </button>
+      </div>
+    </div>
+
   </div>
 
-  <div
-    class="exercise-1 exercise uk-inline"
-    data-ng-class="{
-      'disabled': interestTaskController.resolved
-    }"
-    data-interest-task-exercise=""
-    data-interest-task-exercise-disabled="interestTaskController.resolved"
-    data-interest-task-exercise-sum="interestTaskController.exercise1Answer"
-    data-interest-task-exercise-on-update="interestTaskController.update(sum, 'exercise1')">
-  </div>
+  <!-- Exercise 2 -->
+  <div data-ng-if="interestTaskController.currentExercise === 2">
 
-  <hr class="uk-margin-medium">
-
-  <div class="question-2 question">
-    <p>
-      <strong>Frage 2:</strong>
-      <span>Wenn du das Geld</span>
-      <span data-ng-if="interestTaskController.years === 1"> ein weiteres Jahr </span>
-      <span data-ng-if="interestTaskController.years !== 1"> {{interestTaskController.years}} weitere Jahre </span>
-      <span>auf dem Sparbuch liegen lässt, wieviel Geld befindet sich dann auf dem Sparbuch (also nach insgesamt {{interestTaskController.years + 1}} Jahren)? Ziehe wieder die entsprechenden Scheine und Münzen in den Geldbeutel!</span>
-    </p>
-  </div>
-
-  <div
-    class="exercise-2 exercise uk-inline"
-    data-ng-class="{
-      'disabled': interestTaskController.resolved
-    }"
-    data-interest-task-exercise=""
-    data-interest-task-exercise-disabled="interestTaskController.resolved"
-    data-interest-task-exercise-sum="interestTaskController.exercise2Answer"
-    data-interest-task-exercise-on-update="interestTaskController.update(sum, 'exercise2')">
-  </div>
-
-  <div data-evaluation="interestTaskController">
-    <evaluation-text>
-      <p data-ng-class="{
-          'uk-text-success': interestTaskController.correctAnswers === 2,
-          'uk-text-warning': interestTaskController.correctAnswers === 1,
-          'uk-text-danger': interestTaskController.correctAnswers === 0
-        }">
-        <strong>
-          <span data-ng-if="interestTaskController.correctAnswers === 2">
-            Herzlichen Glückwunsch, du hast beide Aufgaben richtig gelöst.
-          </span>
-          <span data-ng-if="interestTaskController.correctAnswers === 1">
-            <span data-ng-if="interestTaskController.exercise1Correct">Super, du hast Aufgabe 1 richtig gelöst. Aufgabe 2 hast du leider falsch gelöst. </span>
-            <span data-ng-if="interestTaskController.exercise2Correct">Super, du hast Aufgabe 2 richtig gelöst. Aufgabe 1 hast du leider falsch gelöst. </span>
-            <span>Die folgende Erklärung hilft dir dabei, den Zinseffekt besser zu verstehen.</span>
-          </span>
-          <span data-ng-if="interestTaskController.correctAnswers === 0">
-            Leider hast du beide Aufgaben falsch gelöst. Die folgende Erklärung hilft dir dabei, den Zinseffekt besser zu verstehen.
-          </span>
-        </strong>
+    <div class="question-2 question">
+      <p>
+        <strong>Frage 2:</strong>
+        <span>Wenn du das Geld</span>
+        <span data-ng-if="interestTaskController.years === 1"> ein weiteres Jahr </span>
+        <span data-ng-if="interestTaskController.years !== 1"> {{interestTaskController.years}} weitere Jahre </span>
+        <span>auf dem Sparbuch liegen lässt, wieviel Geld befindet sich dann auf dem Sparbuch (also nach insgesamt {{interestTaskController.years + 1}} Jahren)? Ziehe wieder die entsprechenden Scheine und Münzen in den Geldbeutel!</span>
       </p>
+    </div>
 
-      <p>Zinsen werden meistens in Prozent angegeben und hängen somit von der Höhe des überlassenen Geldbetrages ab. Je mehr Geld du also auf dem Sparbuch hast, umso höher sind auch die Zinsen, die du dafür bekommst.</p>
+    <div class="uk-text-center">
+      <div
+        class="exercise-2 exercise uk-inline"
+        data-ng-class="{
+          'disabled': interestTaskController.resolved
+        }"
+        data-interest-task-exercise=""
+        data-interest-task-exercise-disabled="interestTaskController.resolved"
+        data-interest-task-exercise-sum="interestTaskController.exercise2Answer"
+        data-interest-task-exercise-on-update="interestTaskController.setResult(sum, 'exercise2')">
+      </div>
+    </div>
 
-      <p>Angenommen, du hast zu Beginn 1.000 Euro auf deinem Sparbuch und erhältst im ersten Jahr 2% Zinsen auf 1.000 Euro, also</p>
-      <p><code>0,02 x 1.000 = 20 Euro</code></p>
-      <p>Dein Guthaben beträgt in einem Jahr daher</p>
-      <p><code>1.000 + 20 = 1.020 Euro</code><br>(Startguthaben + Zinsen aus dem ersten Jahr)</p>
-      <p>Wenn du das Geld nun ein weiteres Jahr auf dem Sparbuch lässt, erhältst du im zweiten Jahr 2% Zinsen auf dein neues Guthaben von 1.020 Euro, die Zinsen im zweiten Jahr betragen demnach</p>
-      <p><code>0,02 x 1.020 = 20,40 Euro</code></p>
-      <p>Weshalb sind die Zinsen im zweiten Jahr höher als im ersten Jahr?</p>
+    <div data-evaluation="interestTaskController">
+      <evaluation-text>
+        <p data-ng-class="{
+            'uk-text-success': interestTaskController.correctAnswers === 2,
+            'uk-text-warning': interestTaskController.correctAnswers === 1,
+            'uk-text-danger': interestTaskController.correctAnswers === 0
+          }">
+          <strong>
+            <span data-ng-if="interestTaskController.correctAnswers === 2">
+              Herzlichen Glückwunsch, du hast beide Aufgaben richtig gelöst.
+            </span>
+            <span data-ng-if="interestTaskController.correctAnswers === 1">
+              <span data-ng-if="interestTaskController.exercise1Correct">Super, du hast Aufgabe 1 richtig gelöst. Aufgabe 2 hast du leider falsch gelöst. </span>
+              <span data-ng-if="interestTaskController.exercise2Correct">Super, du hast Aufgabe 2 richtig gelöst. Aufgabe 1 hast du leider falsch gelöst. </span>
+              <span>Die folgende Erklärung hilft dir dabei, den Zinseffekt besser zu verstehen.</span>
+            </span>
+            <span data-ng-if="interestTaskController.correctAnswers === 0">
+              Leider hast du beide Aufgaben falsch gelöst. Die folgende Erklärung hilft dir dabei, den Zinseffekt besser zu verstehen.
+            </span>
+          </strong>
+        </p>
 
-      <p>Das liegt daran, dass dein Guthaben im ersten Jahr durch die Zinsen des ersten Jahres um 20 Euro gewachsen ist. Im zweiten Jahr erhältst du nun nicht nur Zinsen auf die ursprünglichen 1.000 Euro, sondern auf das neue Guthaben von 1.020 Euro. Deshalb erhältst du im zweiten Jahr 20,40 Euro an Zinsen, sodass sich nach zwei Jahren</p>
-      <p><code>1.020 + 20,40 = 1.040,40 Euro</code><br>(Guthaben nach einem Jahr + Zinsen aus dem zweiten Jahr)</p>
-      <p>auf deinem Sparbuch befinden. Du bekommst also im zweiten Jahr auch Zinsen auf die bereits erhaltenen Zinsen aus dem ersten Jahr, was als <strong>"Zinseszinsen"</strong> bezeichnet wird. Durch die Zinseszinsen wächst dein Guthaben daher immer schneller, je länger du es auf dem Sparbuch lässt. Dieser Effekt wirkt anfangs eher klein, kann über die Jahre aber große Auswirkungen haben.</p>
-    </evaluation-text>
+        <p>Zinsen werden meistens in Prozent angegeben und hängen somit von der Höhe des überlassenen Geldbetrages ab. Je mehr Geld du also auf dem Sparbuch hast, umso höher sind auch die Zinsen, die du dafür bekommst.</p>
 
+        <p>Angenommen, du hast zu Beginn 1.000 Euro auf deinem Sparbuch und erhältst im ersten Jahr 1% Zinsen auf 1.000 Euro, also</p>
+        <p><code>0,01 x 1.000 = 10 Euro</code></p>
+        <p>Dein Guthaben beträgt in einem Jahr daher</p>
+        <p><code>1.000 + 10 = 1.010 Euro</code><br>(Startguthaben + Zinsen aus dem ersten Jahr)</p>
+        <p>Wenn du das Geld nun ein weiteres Jahr auf dem Sparbuch lässt, erhältst du im zweiten Jahr 1% Zinsen auf dein neues Guthaben von 1.010 Euro, die Zinsen im zweiten Jahr betragen demnach</p>
+        <p><code>0,01 x 1.010 = 10,10 Euro</code></p>
+        <p>Weshalb sind die Zinsen im zweiten Jahr höher als im ersten Jahr?</p>
+
+        <p>Das liegt daran, dass dein Guthaben im ersten Jahr durch die Zinsen des ersten Jahres um 10 Euro gewachsen ist. Im zweiten Jahr erhältst du nun nicht nur Zinsen auf die ursprünglichen 1.000 Euro, sondern auf das neue Guthaben von 1.010 Euro. Deshalb erhältst du im zweiten Jahr 10,10 Euro an Zinsen, sodass sich nach zwei Jahren</p>
+        <p><code>1.010 + 10,10 = 1.020,10 Euro</code><br>(Guthaben nach einem Jahr + Zinsen aus dem zweiten Jahr)</p>
+        <p>auf deinem Sparbuch befinden. Du bekommst also im zweiten Jahr auch Zinsen auf die bereits erhaltenen Zinsen aus dem ersten Jahr, was als <strong>"Zinseszinsen"</strong> bezeichnet wird. Durch die Zinseszinsen wächst dein Guthaben daher immer schneller, je länger du es auf dem Sparbuch lässt. Dieser Effekt wirkt anfangs eher klein, kann über die Jahre aber große Auswirkungen haben.</p>
+      </evaluation-text>
+
+    </div>
   </div>
 
 </div>
