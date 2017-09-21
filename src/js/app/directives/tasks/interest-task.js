@@ -127,7 +127,7 @@
           actualResult: this.exercise2Answer,
           isValid: this.exercise2Correct
         },
-        currentExercise: this.currentExercise
+        currentExercise: this.currentExercise+1
       },
       isPending: this._isPending()
     };
@@ -239,13 +239,14 @@
    * @return {Void}
    */
   InterestTask.prototype.update = function(){
-    this.currentExercise++;
-
     var me = this;
-    var successCallback = function(){};
-    var failureCallback = function(){
-      me.currentExercise--;
+    var successCallback = function(){
+      // updated after resolve cause
+      // we need current exercise in
+      // `canResolve()` for checking
+      me.currentExercise++;
     };
+    var failureCallback = function(){};
 
     this.resolve().then(
       successCallback,
