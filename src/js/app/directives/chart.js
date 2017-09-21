@@ -224,7 +224,7 @@
       case this.$injector.get('TYPE_ANCHORING'):
       case this.$injector.get('TYPE_MENTAL_BOOKKEEPING'):
         return {
-          seriesBarDistance: 15,
+          seriesBarDistance: 40,
           chartPadding: {
             top: 50,
             left: 0,
@@ -251,7 +251,7 @@
         };
       case this.$injector.get('TYPE_PROCRASTINATION'):
         return {
-          seriesBarDistance: 15,
+          seriesBarDistance: 40,
           chartPadding: {
             top: 50,
             left: 0,
