@@ -367,6 +367,7 @@
       var appState = $injector.get('appState');
       var $state = $injector.get('$state');
       var auth = $injector.get('auth');
+      var user = auth.getUser();
 
       var onStart = function(transition) {
         appState.routerBusy = true;
@@ -382,7 +383,6 @@
 
           // try to redirect authenticated users
           // with auth roles to configured route
-          var user = auth.getUser();
           if (user === null) {
             return true;
           }
@@ -431,6 +431,31 @@
 
       var onError = function(/*transition*/) {
         appState.routerBusy = false;
+
+        // no initial user before transition
+        if (user === null) {
+          return;
+        }
+
+        // get initial user's role and see if
+        // there was an invalidation ($http)!
+        var role = user.roles[0];
+        user = auth.getUser();
+        if (user !== null) {
+          return;
+        }
+
+        // user's jwt was destroyed, redirect
+        // user according to its initial role
+        switch(role)
+        {
+          case 'ROLE_ADMIN':
+          case 'ROLE_SUPER_ADMIN':
+            $state.go('login.backend');
+            break;
+          default:
+            $state.go('login.frontend');
+        }
       };
 
       var onSuccess = function(transition) {
