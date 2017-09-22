@@ -2,6 +2,11 @@
  * YOUTUBE
  * @author Armin Pfurtscheller
  * ================================================== */
+[data-video] {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
 .youtube{
   height: 0;
   position: relative;
