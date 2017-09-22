@@ -131,6 +131,7 @@
       this._showGlobalErrorMessage(rejection);
       this._setLastErrorResponse(rejection);
       this._setLastResponse(rejection);
+      this._checkJWT(rejection);
 
       appState.httpBusy = false;
 
@@ -198,6 +199,23 @@
     }
 
     notification.error(i18n.get(data.message));
+  };
+
+  /**
+   * @ignore
+   */
+  HttpInterceptor.prototype._checkJWT = function(rejection)
+  {
+    var jwt = this.$injector.get('jwt');
+
+    switch (rejection.status) {
+      case 403:
+        // invalidate user on 403 message
+        // to redirect to the login pages
+        jwt.invalidate();
+        break;
+      default:
+    }
   };
 
   /**

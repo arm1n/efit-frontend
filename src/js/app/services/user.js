@@ -85,10 +85,7 @@
     };
 
     var failureCallback = function(/*rejection*/) {
-      // invalidate possibly stored jwt
-      // token to avoid further lookups
-      // especially from router resolve
-      jwt.invalidate();
+
     };
 
     var current = User.current();
@@ -133,8 +130,6 @@
     this.tickets = null;
     this.state = null;
     this.group = null;
-
-    jwt.invalidate();
   };
 
   /**

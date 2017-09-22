@@ -133,10 +133,12 @@
     {
       var $http = this.$injector.get('$http');
       var user = this.$injector.get('user');
+      var jwt = this.$injector.get('jwt');
 
       var successCallback = function()
         {
           user.unload();
+          jwt.invalidate();
         };
 
       var failureCallback = function()
@@ -175,10 +177,6 @@
 
       var failureCallback = function(/*rejection*/)
         {
-          // invalidate possibly stored jwt
-          // token to avoid further lookups
-          // especially from router resolve
-          jwt.invalidate();
         };
 
       var promise = $http.post(
