@@ -147,6 +147,44 @@
 
         <div data-evaluation="savingsTargetTaskController">
           <evaluation-text>
+            <p>Deine Sparbereitschaft hat sich folgendermaßen geändert:</p>
+            <table class="uk-table uk-table-middle uk-table-divider uk-table-striped uk-width-1-2@s uk-width-1-3@m uk-margin-auto">
+              <thead>
+                <tr>
+                  <th class="uk-text-left">Beschreibung</th>
+                  <th class="uk-text-center">Wert</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="uk-text-left">Eingabe 1</td>
+                  <td class="uk-text-center">
+                    <span data-ng-bind="savingsTargetTaskController.amount"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="uk-text-left">Eingabe 2</td>
+                  <td class="uk-text-center">
+                    <span data-ng-bind="savingsTargetTaskController.amountRepeated"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="uk-text-left"><strong>Differenz</strong></td>
+                  <td class="uk-text-center">
+                    <span
+                      class="uk-label"
+                      data-ng-class="{
+                        'uk-label-danger': savingsTargetTaskController.getDifference() < 0,
+                        'uk-label-success': savingsTargetTaskController.getDifference() > 0,
+                        'uk-label-warning': savingsTargetTaskController.getDifference() === 0
+                      }"
+                      data-ng-bind="savingsTargetTaskController.getDifference()">
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
             <div class="uk-placeholder">Video</div>
 
             <p>Das ist Chris. Chris spart schon sehr lange auf ein Moped, aber leider ist sein Sparschwein immer noch fast leer. Denn jedes Mal, wenn Chris etwas haben möchte, denkt er nicht lange nach, sondern kauft es einfach. Was könnte Chris dabei helfen, sein Sparziel doch zu erreichen?</p>
