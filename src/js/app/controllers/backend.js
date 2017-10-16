@@ -20,6 +20,9 @@
   /** @var {boolean} isSuperAdmin If user is super admin. */
   Backend.prototype.isSuperAdmin = false;
 
+  /** @var {boolean} confirmLogout Flag for logout confirmation. */
+  Backend.prototype.confirmLogout = false;
+
   //
   // METHODS
   //
@@ -65,6 +68,18 @@
       var $state = this.$injector.get('$state');
 
       $state.go(state);
+    };
+
+  /**
+   * Sets `confirmLogout` flag to true.
+   *
+   * @public
+   * @method markConfirmLogout
+   * @return {Void}
+   */
+  Backend.prototype.markConfirmLogout = function()
+    {
+      this.confirmLogout = true;
     };
 
   angular.module(module).controller('BackendController', Backend);

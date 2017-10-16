@@ -29,3 +29,30 @@
   data-ui-view="footer">
 </footer>
 <!-- End: Footer -->
+
+<!-- Start: Logout -->
+<div data-modal="frontendController.confirmLogout">
+  <div class="uk-modal-dialog uk-modal-body">
+      <h2 class="uk-modal-title">Bestätigen</h2>
+      <p data-ng-if="frontendController.user.isUser()">
+        Möchtest du dich wirklich abmelden?
+      </p>
+      <p data-ng-if="!frontendController.user.isUser()">
+        Möchten Sie sich wirklich abmelden?
+      </p>
+      <p class="uk-text-right">
+        <button
+          type="button"
+          class="uk-button uk-button-default uk-modal-close">
+          Abbrechen
+        </button>
+        <button
+          type="button"
+          class="uk-button uk-button-primary uk-modal-close"
+          data-ng-click="frontendController.logout()">
+          Abmelden
+        </button>
+      </p>
+  </div>
+</div>
+<!-- End: Logout -->

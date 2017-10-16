@@ -20,6 +20,9 @@
   /** @var {object} user User service object. */
   Frontend.prototype.user = null;
 
+  /** @var {boolean} confirmLogout Flag for logout confirmation. */
+  Frontend.prototype.confirmLogout = false;
+
   //
   // METHODS
   //
@@ -106,10 +109,15 @@
     {
       var $state = this.$injector.get('$state');
       var auth = this.$injector.get('auth');
+      var isUser = this.user.isUser();
 
       var successCallback = function()
         {
-          $state.go('login.frontend');
+          if (isUser) {
+            $state.go('login.frontend');
+          } else {
+            $state.go('login.backend');
+          }
         };
 
       var failureCallback = function()
@@ -136,6 +144,18 @@
       var $state = this.$injector.get('$state');
 
       $state.go(state);
+    };
+
+  /**
+   * Sets `confirmLogout` flag to true.
+   *
+   * @public
+   * @method markConfirmLogout
+   * @return {Void}
+   */
+  Frontend.prototype.markConfirmLogout = function()
+    {
+      this.confirmLogout = true;
     };
 
   angular.module(module).controller('FrontendController', Frontend);

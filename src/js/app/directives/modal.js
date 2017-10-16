@@ -67,8 +67,8 @@
 
       this._onHidden = function() {
         me.$scope.$evalAsync(function(){
-          me.isVisible = false;
           me.onHidden();
+          me.isVisible = false;
         });
       };
 
