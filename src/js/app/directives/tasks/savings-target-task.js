@@ -21,14 +21,11 @@
     this.$element = $element;
     this.$injector = $injector;
 
-    this._flag = false;
-
     this.user = this.$injector.get('user');
     this.task = this.user.getTaskByType(type);
     this.result = this.user.getPendingByType(type);
 
-    this.storage = this.$injector.get('storage').getProxy();
-    this._storageKey = '__savings__target__task__updated__at__';
+    this._isLocked = null;
   };
 
   SavingsTargetTask.$inject = ['$scope','$element','$attrs', '$injector'];
@@ -135,18 +132,16 @@
     // if result was created and
     // we are waiting for paused
     // state, we skip unlocking
-    // by using internal `_flag`
+    // with internal `_isLocked`
     if (this.task.isActive) {
-      return this._flag;
+      return this._isLocked;
     }
 
-    // reset `_flag` as soon as
+    // reset `_isLocked` flag if
     // `isActive` changed again
-    this.storage.removeItem(
-      this._storageKey
-    );
+    this._isLocked = null;
 
-    this._flag = false;
+    // inactive
     return true;
   };
 
@@ -189,18 +184,18 @@
     if (this.result !== null) {
       var json = this.result.json;
 
-      // set flag only if still waiting for `isActive` change
-      var updatedAt = this.storage.getItem(this._storageKey);
-      if (angular.isNumber(updatedAt)) {
-        this._flag = updatedAt >= this.task.updatedAt;
-      }
-
       // `amountRepeated` cannot be desisted cause it's the
       // condition in last step before setting `isPending`
       this.amount = json.amount;
       this.total = json.total;
       this.wish = json.wish;
       this.step = json.step;
+
+      // set `_isLocked` only until last step cause the step
+      // before last one gets manually updated AFTER unlock!
+      var timestampTask = this.task.updatedAt;
+      var timestampResult = this.result.updatedAt;
+      this._isLocked = timestampResult > timestampTask;
     }
 
     this.resolved = false;
@@ -270,8 +265,9 @@
       payload: payload
     });
 
+    // switch UI immediately
     if (payload.isPending) {
-      this._flag = true;
+      this._isLocked = true;
     }
 
     var me = this;
@@ -283,10 +279,6 @@
         }
 
         me.result = result;
-        me.storage.setItem(
-          me._storageKey,
-          me.task.updatedAt
-        );
         return;
       }
 
@@ -294,7 +286,7 @@
     };
 
     var failureCallback = function() {
-      me._flag = false;
+      me._isLocked = null;
     };
 
     var promise = $q.when(result);
