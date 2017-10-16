@@ -142,7 +142,7 @@
    * Destructs current modal transclusion from DOM.
    *
    * @public
-   * @method $onDestroy
+   * @method destroy
    * @return {Void}
    */
   Modal.prototype.destroy = function() {

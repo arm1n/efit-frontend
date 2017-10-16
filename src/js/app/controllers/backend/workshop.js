@@ -49,6 +49,12 @@
   /** @var {array} drawingTickets Randomly picked tickets of drawing. */
   Workshop.prototype.drawingTickets = null;
 
+  /** @var {array} drawingTicketsOne Randomized tickets for first run. */
+  Workshop.prototype.drawingTicketsOne = null;
+
+  /** @var {array} drawingTicketsTwo Randomized tickets for second run. */
+  Workshop.prototype.drawingTicketsTwo = null;
+
   /** @var {array} drawingAmount Amount of chosen tickets for drawing. */
   Workshop.prototype.drawingAmount = 2;
 
@@ -170,7 +176,7 @@
     };
 
   /**
-   * Loads task's results and invokes modal dialog.
+   * Loads and randomizes workshop tickets and invokes modal dialog.
    *
    * @public
    * @method markWorkshopForDrawing
@@ -183,9 +189,20 @@
       var random = this.$injector.get('random');
 
       var me = this;
+
       var successCallback = function(tickets)
         {
           me.drawingTickets = random.shuffle(tickets);
+
+          var rightSide = me.drawingTickets.map(
+            function(ticket) { return ticket.id; }
+          );
+          var halfSize = Math.ceil(tickets.length/2);
+          var leftSide = rightSide.splice(0, halfSize);
+
+          me.drawingTicketsOne = leftSide.concat(rightSide);
+          me.drawingTicketsTwo = rightSide.concat(leftSide);
+
           me.drawingWorkshop = workshop;
         };
 
@@ -199,6 +216,17 @@
         failureCallback
       );
     };
+
+  /**
+   * Sets `$$shuffle` flag for drawing workshop to kick off drawing directive.
+   *
+   * @public
+   * @method makeWorkshopDrawing
+   * @return {void}
+   */
+  Workshop.prototype.makeWorkshopDrawing = function() {
+    this.drawingWorkshop.$$shuffle = true;
+  };
 
   /**
    * Invokes confirmation modal for deleting a workshop.
