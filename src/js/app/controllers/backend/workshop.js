@@ -245,7 +245,7 @@
    * Toggles `isActive` of a workshop.
    *
    * @public
-   * @method toggleActive
+   * @method toggleWorkshop
    * @param {object} workshop
    * @return {void}
    */
@@ -280,6 +280,19 @@
         successCallback,
         failureCallback
       );
+    };
+
+  /**
+   * Toggles `$$showCode` of a workshop.
+   *
+   * @public
+   * @method toggleCode
+   * @param {object} workshop
+   * @return {void}
+   */
+  Workshop.prototype.toggleCode = function(workshop)
+    {
+      workshop.$$code = !workshop.$$code;
     };
 
   /**
@@ -518,6 +531,9 @@
 
         me._tasks[task.id] = task;
       });
+
+      // initialize `$$code` flag for this workshop
+      workshop.$$code = false;
 
       // check `$$expanded` flag for this workshop
       var id = this._expanded && this._expanded.id;

@@ -32,12 +32,20 @@
                     </a>
                   </td>
                   <td class="uk-width-1-5 uk-text-center">
-                    <span
-                      data-uk-tooltip=""
-                      class="cursor-pointer"
-                      data-ng-bind="workshop.code"
-                      title="Diesen Code benötigen die Schüler für die Anmeldung">
-                    </span>
+                    <div class="uk-inline">
+                        <a
+                          href="javascript:void(0)"
+                          class="uk-form-icon uk-form-icon-flip"
+                          data-ng-click="workshopController.toggleCode(workshop)"
+                          data-ng-attr-data-uk-icon="{{workshop.$$code ? 'icon: minus; ratio: 0.75' : 'icon: plus; ratio: 0.75'}}">
+                        </a>
+                        <input
+                          data-ng-readonly="true"
+                          data-ng-disabled="true"
+                          data-ng-model="workshop.code"
+                          class="uk-input uk-form-small"
+                          data-ng-attr-type="{{workshop.$$code ? 'text' : 'password'}}">
+                    </div>
                   </td>
                   <td class="uk-width-1-5 uk-text-center">
                     <span
