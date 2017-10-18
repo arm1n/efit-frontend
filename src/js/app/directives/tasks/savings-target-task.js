@@ -126,7 +126,7 @@
    */
   SavingsTargetTask.prototype.isLocked = function() {
     if (this.task === null) {
-      return true;
+      return false;
     }
 
     // if result was created and

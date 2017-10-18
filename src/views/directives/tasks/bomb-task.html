@@ -1,83 +1,91 @@
 <div class="bomb-task">
 
-  <p>Bei der folgenden Aufgabe kannst du Boxen sammeln. Für jede gesammelte Box erhältst du 1 Los - aber Vorsicht: hinter einer der Boxen ist ein Blitz versteckt, der alle gesammelten Lose zerstört! Wenn Du dann auf "Auflösen" drückst, werden die ausgewählten Boxen umgedreht. Ist der Blitz nicht dabei, erhältst für jede gesammelte Box 1 Los. Hast du jedoch auch die Box mit dem Blitz eingesammelt, erhältst du nichts.</p>
+  <div data-locked-state="bombTaskController.isLocked()">
+    <!-- default texts -->
+  </div>
 
-  <p><strong>Du kannst nun beginnen, Boxen zu sammeln:</strong></p>
+  <div data-ng-if="!bombTaskController.isLocked()">
 
-  <div class="uk-text-center">
-    <div class="matrix">
+    <p>Bei der folgenden Aufgabe kannst du Boxen sammeln. Für jede gesammelte Box erhältst du 1 Los - aber Vorsicht: hinter einer der Boxen ist ein Blitz versteckt, der alle gesammelten Lose zerstört! Wenn Du dann auf "Auflösen" drückst, werden die ausgewählten Boxen umgedreht. Ist der Blitz nicht dabei, erhältst für jede gesammelte Box 1 Los. Hast du jedoch auch die Box mit dem Blitz eingesammelt, erhältst du nichts.</p>
 
-      <div
-        class="row"
-        data-ng-repeat="(row,columns) in bombTaskController.matrix">
+    <p><strong>Du kannst nun beginnen, Boxen zu sammeln:</strong></p>
+
+    <div class="uk-text-center">
+      <div class="matrix">
+
         <div
-          class="col"
-          data-ng-repeat="(col,column) in columns track by bombTaskController.trackId(column)">
+          class="row"
+          data-ng-repeat="(row,columns) in bombTaskController.matrix">
           <div
-            class="holder"
-            data-bomb-task-card="column"
-            data-bomb-task-card-is-active="column.$$active"
-            data-bomb-task-card-is-disabled="bombTaskController.resolved"
-            data-bomb-task-card-is-clickable="!bombTaskController.dynamic"
-            data-bomb-task-card-on-toggle="bombTaskController.toggle(column,state)"
-            data-ng-class="{
-              'resolved':bombTaskController.resolved && column.$$resolved,
-              'bomb':bombTaskController.resolved && bombTaskController.isBomb(column)
-            }">
-              <span class="front">
-                <span class="icon" data-uk-icon="icon: check; ratio: 1.5"></span>
-              </span>
-              <span class="back">
-                <span class="icon icon-success" data-uk-icon="icon: happy; ratio: 1.5"></span>
-                <span class="icon icon-failure" data-uk-icon="icon: bolt; ratio: 1.5"></span>
-              </span>
+            class="col"
+            data-ng-repeat="(col,column) in columns track by bombTaskController.trackId(column)">
+            <div
+              class="holder"
+              data-bomb-task-card="column"
+              data-bomb-task-card-is-active="column.$$active"
+              data-bomb-task-card-is-disabled="bombTaskController.resolved"
+              data-bomb-task-card-is-clickable="!bombTaskController.dynamic"
+              data-bomb-task-card-on-toggle="bombTaskController.toggle(column,state)"
+              data-ng-class="{
+                'resolved':bombTaskController.resolved && column.$$resolved,
+                'bomb':bombTaskController.resolved && bombTaskController.isBomb(column)
+              }">
+                <span class="front">
+                  <span class="icon" data-uk-icon="icon: check; ratio: 1.5"></span>
+                </span>
+                <span class="back">
+                  <span class="icon icon-success" data-uk-icon="icon: happy; ratio: 1.5"></span>
+                  <span class="icon icon-failure" data-uk-icon="icon: bolt; ratio: 1.5"></span>
+                </span>
+            </div>
           </div>
         </div>
+
       </div>
 
+      <div data-evaluation="bombTaskController">
+        <evaluation-text>
+
+          <p data-ng-class="{
+              'uk-text-warning': bombTaskController.hasBomb,
+              'uk-text-success': !bombTaskController.hasBomb
+            }">
+            <strong>
+              <span>Du hast {{bombTaskController.collectedBoxes}} Boxen gesammelt. Da der Blitz</span>
+              <span data-ng-if="!bombTaskController.hasBomb"> nicht </span>
+              <span data-ng-if="bombTaskController.hasBomb"> </span>
+              <span>unter den gesammelten Boxen war, erhältst du</span>
+              <span data-ng-if="bombTaskController.hasBomb"> leider kein zusätzliches Los.</span>
+              <span data-ng-if="!bombTaskController.hasBomb">
+                <span> {{bombTaskController.collectedBoxes}} </span>
+                <span data-ng-if="bombTaskController.collectedBoxes === 1">Los.</span>
+                <span data-ng-if="bombTaskController.collectedBoxes !== 1">Lose.</span>
+            </strong>
+          </p>
+
+          <p>
+            <span>Im Schnitt drehen die Menschen bei dieser Übung {{bombTaskController.avg}} Boxen um. Du hast </span>
+            <span data-ng-if="bombTaskController.collectedBoxes < bombTaskController.avg">{{bombTaskController.collectedBoxes }}, also weniger </span>
+            <span data-ng-if="bombTaskController.collectedBoxes == bombTaskController.avg">gleich viele Boxen</span>
+            <span data-ng-if="bombTaskController.collectedBoxes > bombTaskController.avg">{{bombTaskController.collectedBoxes }}, also mehr </span>
+            <span>Boxen gesammelt. Demnach</span>
+            <span data-ng-if="bombTaskController.collectedBoxes < bombTaskController.avg"> bist du eher risikoscheuer als </span>
+            <span data-ng-if="bombTaskController.collectedBoxes == bombTaskController.avg"> hast du in etwa die gleiche Risikobereitschaft wie </span>
+            <span data-ng-if="bombTaskController.collectedBoxes > bombTaskController.avg"> bist du eher risikofreudiger als </span>
+            <span>als der Durchschnitt. Wie schon gesagt, gibt es hier keine richtigen oder falschen Entscheidungen. Dieses Experiment soll dich motivieren zu überlegen, wie es dir dabei geht, wenn du mehr oder weniger Risiko eingehst. Ein gutes Bewusstsein für unsere Risikoeinstellung hilft jedem von uns, bessere Entscheidungen zu treffen.
+            </span>
+          </p>
+
+          <div class="uk-placeholder">Video</div>
+
+          <p>Bei dieser Übung musst du eine Entscheidung treffen, bei der du im Vorfeld nicht genau weißt, was passieren wird. Die Höhe deiner Auszahlung ist unsicher, da du nicht weißt, hinter welcher Box sich der Blitz befindet. Je mehr Boxen du umdrehst, desto mehr kannst du gewinnen – gleichzeitig steigt damit aber auch die Wahrscheinlichkeit, dass du den Blitz erwischst und dann gar nichts erhältst. Risikoscheue Menschen werden daher weniger Boxen umdrehen, während risikofreudige Menschen mehr Boxen umdrehen.</p>
+
+          <p>Es gibt hier keine "richtigen" oder "falschen" Entscheidungen. Diese Übung soll dich motivieren, in Situationen mit unsicherem Ausgang zu überlegen, wie es dir dabei geht, wenn du mehr oder weniger Risiko eingehst. Ein gutes Bewusstsein für unsere persönliche Risikoeinstellung hilft uns dabei, bessere Entscheidungen zu treffen.</p>
+
+        </evaluation-text>
+      </div>
     </div>
 
-    <div data-evaluation="bombTaskController">
-      <evaluation-text>
-
-        <p data-ng-class="{
-            'uk-text-warning': bombTaskController.hasBomb,
-            'uk-text-success': !bombTaskController.hasBomb
-          }">
-          <strong>
-            <span>Du hast {{bombTaskController.collectedBoxes}} Boxen gesammelt. Da der Blitz</span>
-            <span data-ng-if="!bombTaskController.hasBomb"> nicht </span>
-            <span data-ng-if="bombTaskController.hasBomb"> </span>
-            <span>unter den gesammelten Boxen war, erhältst du</span>
-            <span data-ng-if="bombTaskController.hasBomb"> leider kein zusätzliches Los.</span>
-            <span data-ng-if="!bombTaskController.hasBomb">
-              <span> {{bombTaskController.collectedBoxes}} </span>
-              <span data-ng-if="bombTaskController.collectedBoxes === 1">Los.</span>
-              <span data-ng-if="bombTaskController.collectedBoxes !== 1">Lose.</span>
-          </strong>
-        </p>
-
-        <p>
-          <span>Im Schnitt drehen die Menschen bei dieser Übung {{bombTaskController.avg}} Boxen um. Du hast </span>
-          <span data-ng-if="bombTaskController.collectedBoxes < bombTaskController.avg">{{bombTaskController.collectedBoxes }}, also weniger </span>
-          <span data-ng-if="bombTaskController.collectedBoxes == bombTaskController.avg">gleich viele Boxen</span>
-          <span data-ng-if="bombTaskController.collectedBoxes > bombTaskController.avg">{{bombTaskController.collectedBoxes }}, also mehr </span>
-          <span>Boxen gesammelt. Demnach</span>
-          <span data-ng-if="bombTaskController.collectedBoxes < bombTaskController.avg"> bist du eher risikoscheuer als </span>
-          <span data-ng-if="bombTaskController.collectedBoxes == bombTaskController.avg"> hast du in etwa die gleiche Risikobereitschaft wie </span>
-          <span data-ng-if="bombTaskController.collectedBoxes > bombTaskController.avg"> bist du eher risikofreudiger als </span>
-          <span>als der Durchschnitt. Wie schon gesagt, gibt es hier keine richtigen oder falschen Entscheidungen. Dieses Experiment soll dich motivieren zu überlegen, wie es dir dabei geht, wenn du mehr oder weniger Risiko eingehst. Ein gutes Bewusstsein für unsere Risikoeinstellung hilft jedem von uns, bessere Entscheidungen zu treffen.
-          </span>
-        </p>
-
-        <div class="uk-placeholder">Video</div>
-
-        <p>Bei dieser Übung musst du eine Entscheidung treffen, bei der du im Vorfeld nicht genau weißt, was passieren wird. Die Höhe deiner Auszahlung ist unsicher, da du nicht weißt, hinter welcher Box sich der Blitz befindet. Je mehr Boxen du umdrehst, desto mehr kannst du gewinnen – gleichzeitig steigt damit aber auch die Wahrscheinlichkeit, dass du den Blitz erwischst und dann gar nichts erhältst. Risikoscheue Menschen werden daher weniger Boxen umdrehen, während risikofreudige Menschen mehr Boxen umdrehen.</p>
-
-        <p>Es gibt hier keine "richtigen" oder "falschen" Entscheidungen. Diese Übung soll dich motivieren, in Situationen mit unsicherem Ausgang zu überlegen, wie es dir dabei geht, wenn du mehr oder weniger Risiko eingehst. Ein gutes Bewusstsein für unsere persönliche Risikoeinstellung hilft uns dabei, bessere Entscheidungen zu treffen.</p>
-
-      </evaluation-text>
-    </div>
   </div>
 
 </div>

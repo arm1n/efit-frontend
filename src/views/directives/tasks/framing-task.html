@@ -1,98 +1,105 @@
 <div class="framing-task">
 
-  <p>Wie erwähnt sind die folgenden Gewinnspiele nur gedacht, es gibt also keine echten Zahlungen. Du kannst nun entscheiden, an welchen Gewinnspielen du teilnehmen würdest (dabei ist jede Auswahl möglich, du kannst also an keinem, einem oder an beiden Gewinnspielen teilnehmen).</p>
-
-  <div
-    data-uk-grid=""
-    class="uk-grid-match uk-child-width-1-2">
-
-    <div
-      data-card=""
-      data-card-disabled="framingTaskController.resolved"
-      data-card-on-click="framingTaskController.update(data, selected)">
-      <card-title>
-        Gewinnspiel A
-      </card-title>
-      <card-text>
-        Bei diesem Gewinnspiel kannst du mit 10%-iger Wahrscheinlichkeit 95 Euro gewinnen und mit 90%-iger Wahrscheinlichkeit 5 Euro verlieren.
-      </card-text>
-
-      <card-buttons>
-        <div class="uk-margin-top">
-          <button
-            class="uk-button uk-button-small"
-            data-ng-class="{
-              'uk-button-primary': framingTaskController.lotteryA === true,
-              'uk-button-default': framingTaskController.lotteryA !== true
-            }"
-            data-ng-disabled="framingTaskController.resolved"
-            data-ng-click="framingTaskController.update('lotteryA', true)">
-            Ja
-          </button>
-          <button
-            class="uk-button uk-button-small"
-            data-ng-class="{
-              'uk-button-primary': framingTaskController.lotteryA === false,
-              'uk-button-default': framingTaskController.lotteryA !== false
-            }"
-            data-ng-disabled="framingTaskController.resolved"
-            data-ng-click="framingTaskController.update('lotteryA', false)">
-            Nein
-          </button>
-        </div>
-      </card-buttons>
-    </div>
-
-    <div
-      data-card=""
-      data-card-disabled="framingTaskController.resolved"
-      data-card-on-click="framingTaskController.update(data, selected)">
-      <card-title>
-        Gewinnspiel B
-      </card-title>
-      <card-text>
-        Die Teilnahme diesem Gewinnspiel kostet 5 Euro, wobei du anschließend mit 10%-iger Wahrscheinlichkeit 100 Euro gewinnen kannst.
-      </card-text>
-      <card-buttons>
-        <div class="uk-margin-top">
-          <button
-            class="uk-button uk-button-small"
-            data-ng-class="{
-              'uk-button-primary': framingTaskController.lotteryB === true,
-              'uk-button-default': framingTaskController.lotteryB !== true
-            }"
-            data-ng-disabled="framingTaskController.resolved"
-            data-ng-click="framingTaskController.update('lotteryB', true)">
-            Ja
-          </button>
-          <button
-            class="uk-button uk-button-small"
-            data-ng-class="{
-              'uk-button-primary': framingTaskController.lotteryB === false,
-              'uk-button-default': framingTaskController.lotteryB !== false
-            }"
-            data-ng-disabled="framingTaskController.resolved"
-            data-ng-click="framingTaskController.update('lotteryB', false)">
-            Nein
-          </button>
-        </div>
-      </card-buttons>
-    </div>
+  <div data-locked-state="framingTaskController.isLocked()">
+    <!-- default texts -->
   </div>
 
-  <div data-evaluation="framingTaskController">
-    <evaluation-text>
-      <p>Bei dieser Übung ging es um zwei gedankliche Gewinnspiele, daher gibt es hier natürlich auch keine Auszahlung. Im Video kannst du mehr darüber erfahren, was es mit dieser Übung auf sich hat!</p>
+  <div data-ng-if="!framingTaskController.isLocked()">
 
-      <div class="uk-placeholder">Video</div>
+    <p>Wie erwähnt sind die folgenden Gewinnspiele nur gedacht, es gibt also keine echten Zahlungen. Du kannst nun entscheiden, an welchen Gewinnspielen du teilnehmen würdest (dabei ist jede Auswahl möglich, du kannst also an keinem, einem oder an beiden Gewinnspielen teilnehmen).</p>
 
-      <p>Ist dir bei den Gewinnspielen etwas aufgefallen? Wenn du bei den beiden Gewinnspielen unterschiedliche Entscheidungen getroffen hast, bist du in die sogenannte "Framing"-Falle getappt! Aber du bist damit nicht allein: Die meisten Menschen lehnen Gewinnspiel A ab, würden bei Gewinnspiel B jedoch mitmachen. Bei genauem Hinsehen sind die beiden Gewinnspiele aber identisch: Mit 10%-iger Wahrscheinlichkeit bekommst du 95 Euro, während du mit 90%-iger Wahrscheinlichkeit 5 Euro verlierst. Um das zu sehen, darf man bei Gewinnspiel B nicht vergessen, dass die Teilnahme 5 Euro kostet. Wenn du gewinnst, bleiben dir daher insgesamt nur 95 Euro, und wenn du nicht gewinnst, hast du 5 Euro verloren – genau wie bei Gewinnspiel A. Die beiden Gewinnspiele laufen also auf dasselbe hinaus – sie sind nur unterschiedlich beschrieben.</p>
+    <div
+      data-uk-grid=""
+      class="uk-grid-match uk-child-width-1-2">
 
-      <p>Die Art und Weise, wie eine bestimmte Situation beschrieben wird, kann unsere Entscheidung beeinflussen. Dieser Effekt wird "Framing" – vom englischen "frame" für den Rahmen, also die Beschreibung der Situation – genannt. Er wirkt besonders stark, wenn bestimmte Ergebnisse als positiv und andere als negativ dargestellt werden. Framing wird auch oft bei Gewinnspielen eingesetzt: Dabei werden einzelne Gewinne überbetont, sodass die Teilnahme vielversprechend erscheint. Für die meisten Spieler bedeutet die Teilnahme am Gewinnspiel jedoch den Verlust ihres Einsatzes.</p>
+      <div
+        data-card=""
+        data-card-disabled="framingTaskController.resolved"
+        data-card-on-click="framingTaskController.update(data, selected)">
+        <card-title>
+          Gewinnspiel A
+        </card-title>
+        <card-text>
+          Bei diesem Gewinnspiel kannst du mit 10%-iger Wahrscheinlichkeit 95 Euro gewinnen und mit 90%-iger Wahrscheinlichkeit 5 Euro verlieren.
+        </card-text>
 
-      <p>Um gute Entscheidungen zu treffen, kann es daher durchaus hilfreich sein, sich gelegentlich zu fragen, ob wir vielleicht gerade durch Framing beeinflusst werden.</p>
+        <card-buttons>
+          <div class="uk-margin-top">
+            <button
+              class="uk-button uk-button-small"
+              data-ng-class="{
+                'uk-button-primary': framingTaskController.lotteryA === true,
+                'uk-button-default': framingTaskController.lotteryA !== true
+              }"
+              data-ng-disabled="framingTaskController.resolved"
+              data-ng-click="framingTaskController.update('lotteryA', true)">
+              Ja
+            </button>
+            <button
+              class="uk-button uk-button-small"
+              data-ng-class="{
+                'uk-button-primary': framingTaskController.lotteryA === false,
+                'uk-button-default': framingTaskController.lotteryA !== false
+              }"
+              data-ng-disabled="framingTaskController.resolved"
+              data-ng-click="framingTaskController.update('lotteryA', false)">
+              Nein
+            </button>
+          </div>
+        </card-buttons>
+      </div>
 
-    </evaluation-text>
+      <div
+        data-card=""
+        data-card-disabled="framingTaskController.resolved"
+        data-card-on-click="framingTaskController.update(data, selected)">
+        <card-title>
+          Gewinnspiel B
+        </card-title>
+        <card-text>
+          Die Teilnahme diesem Gewinnspiel kostet 5 Euro, wobei du anschließend mit 10%-iger Wahrscheinlichkeit 100 Euro gewinnen kannst.
+        </card-text>
+        <card-buttons>
+          <div class="uk-margin-top">
+            <button
+              class="uk-button uk-button-small"
+              data-ng-class="{
+                'uk-button-primary': framingTaskController.lotteryB === true,
+                'uk-button-default': framingTaskController.lotteryB !== true
+              }"
+              data-ng-disabled="framingTaskController.resolved"
+              data-ng-click="framingTaskController.update('lotteryB', true)">
+              Ja
+            </button>
+            <button
+              class="uk-button uk-button-small"
+              data-ng-class="{
+                'uk-button-primary': framingTaskController.lotteryB === false,
+                'uk-button-default': framingTaskController.lotteryB !== false
+              }"
+              data-ng-disabled="framingTaskController.resolved"
+              data-ng-click="framingTaskController.update('lotteryB', false)">
+              Nein
+            </button>
+          </div>
+        </card-buttons>
+      </div>
+    </div>
+
+    <div data-evaluation="framingTaskController">
+      <evaluation-text>
+        <p>Bei dieser Übung ging es um zwei gedankliche Gewinnspiele, daher gibt es hier natürlich auch keine Auszahlung. Im Video kannst du mehr darüber erfahren, was es mit dieser Übung auf sich hat!</p>
+
+        <div class="uk-placeholder">Video</div>
+
+        <p>Ist dir bei den Gewinnspielen etwas aufgefallen? Wenn du bei den beiden Gewinnspielen unterschiedliche Entscheidungen getroffen hast, bist du in die sogenannte "Framing"-Falle getappt! Aber du bist damit nicht allein: Die meisten Menschen lehnen Gewinnspiel A ab, würden bei Gewinnspiel B jedoch mitmachen. Bei genauem Hinsehen sind die beiden Gewinnspiele aber identisch: Mit 10%-iger Wahrscheinlichkeit bekommst du 95 Euro, während du mit 90%-iger Wahrscheinlichkeit 5 Euro verlierst. Um das zu sehen, darf man bei Gewinnspiel B nicht vergessen, dass die Teilnahme 5 Euro kostet. Wenn du gewinnst, bleiben dir daher insgesamt nur 95 Euro, und wenn du nicht gewinnst, hast du 5 Euro verloren – genau wie bei Gewinnspiel A. Die beiden Gewinnspiele laufen also auf dasselbe hinaus – sie sind nur unterschiedlich beschrieben.</p>
+
+        <p>Die Art und Weise, wie eine bestimmte Situation beschrieben wird, kann unsere Entscheidung beeinflussen. Dieser Effekt wird "Framing" – vom englischen "frame" für den Rahmen, also die Beschreibung der Situation – genannt. Er wirkt besonders stark, wenn bestimmte Ergebnisse als positiv und andere als negativ dargestellt werden. Framing wird auch oft bei Gewinnspielen eingesetzt: Dabei werden einzelne Gewinne überbetont, sodass die Teilnahme vielversprechend erscheint. Für die meisten Spieler bedeutet die Teilnahme am Gewinnspiel jedoch den Verlust ihres Einsatzes.</p>
+
+        <p>Um gute Entscheidungen zu treffen, kann es daher durchaus hilfreich sein, sich gelegentlich zu fragen, ob wir vielleicht gerade durch Framing beeinflusst werden.</p>
+
+      </evaluation-text>
+    </div>
   </div>
 
 </div>

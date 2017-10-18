@@ -1,124 +1,132 @@
 <div class="anchoring-task">
 
-  <div data-ng-switch="anchoringTaskController.group">
-
-    <div data-ng-switch-when="GROUP_A">
-      <div class="description" data-uk-grid="">
-        <div class="uk-width-auto@m">
-          <img src="img/headphones.svg" width="100"/>
-        </div>
-        <div class="uk-width-expand@m">
-          <p>Du überlegst, dir neue Kopfhörer zu kaufen und hast noch nicht entschieden, welches Modell du kaufen möchtest. Du kommst an einem Geschäft vorbei, bei dem ein beliebtes Kopfhörer-Modell um 49 Euro statt 99 Euro angeboten wird. Was würdest du tun?</p>
-        </div>
-      </div>
-
-      <div
-        data-uk-grid=""
-        data-card-container=""
-        class="uk-grid-match uk-child-width-1-2">
-
-        <div
-          data-card=""
-          data-card-data="1"
-          data-card-is-checkbox="true"
-          data-card-disabled="anchoringTaskController.resolved"
-          data-card-on-click="anchoringTaskController.update(data, selected)">
-          <card-title>
-            Option 1
-          </card-title>
-          <card-text>
-            Die Kopfhörer kaufen.
-          </card-text>
-          <card-buttons>
-          </card-buttons>
-        </div>
-
-        <div
-          data-card=""
-          data-card-data="2"
-          data-card-is-checkbox="true"
-          data-card-disabled="anchoringTaskController.resolved"
-          data-card-on-click="anchoringTaskController.update(data, selected)">
-          <card-title>
-            Option 2
-          </card-title>
-          <card-text>
-            Noch zuwarten, bis du mehr über die verschiedenen Modelle weißt.
-          </card-text>
-          <card-buttons>
-          </card-buttons>
-        </div>
-
-      </div>
-    </div>
-
-    <div data-ng-switch-when="GROUP_B">
-
-      <div class="description" data-uk-grid="">
-        <div class="uk-width-auto@m">
-          <img src="img/headphones.svg" width="100"/>
-        </div>
-        <div class="uk-width-expand@m">
-          <p>Du überlegst, dir neue Kopfhörer zu kaufen und hast noch nicht entschieden, welches Modell du kaufen möchtest. Du kommst an einem Geschäft vorbei, bei dem ein beliebtes Kopfhörer-Modell um 49 Euro angeboten wird. Was würdest du tun?</p>
-        </div>
-      </div>
-
-      <div
-        data-uk-grid=""
-        data-card-container=""
-        class="uk-grid-match uk-child-width-1-2">
-
-        <div
-          data-card=""
-          data-card-data="1"
-          data-card-is-checkbox="true"
-          data-card-disabled="anchoringTaskController.resolved"
-          data-card-on-click="anchoringTaskController.update(data, selected)">
-          <card-title>
-            Option 1
-          </card-title>
-          <card-text>
-            Die Kopfhörer kaufen.
-          </card-text>
-          <card-buttons>
-          </card-buttons>
-        </div>
-
-        <div
-          data-card=""
-          data-card-data="2"
-          data-card-is-checkbox="true"
-          data-card-disabled="anchoringTaskController.resolved"
-          data-card-on-click="anchoringTaskController.update(data, selected)">
-          <card-title>
-            Option 2
-          </card-title>
-          <card-text>
-            Noch zuwarten, bis du mehr über die verschiedenen Modelle weißt.
-          </card-text>
-          <card-buttons>
-          </card-buttons>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div data-ng-switch-default="">
-    </div>
-
+  <div data-locked-state="anchoringTaskController.isLocked()">
+    <!-- default texts -->
   </div>
 
-  <div data-evaluation="anchoringTaskController">
-    <evaluation-text>
-      <div class="uk-placeholder">Video</div>
+  <div data-ng-if="!anchoringTaskController.isLocked()">
 
-      <p>Diese Übung zeigt dir, wie unsere Entscheidungen durch von außen vorgegebene Zahlen beeinflusst werden können. In der Übung kosteten die Kopfhörer in beiden Gruppen 49 Euro. In einer Gruppe wurde jedoch zusätzlich auch der frühere Preis von 99 Euro erwähnt. Dadurch wirken die 49 Euro gleich um einiges günstiger. In der Werbung werden oft Stattpreise angegeben, die unsere Einschätzung, wie viel uns eine bestimmte Sache wert ist, beeinflussen können.</p>
+    <div data-ng-switch="anchoringTaskController.group">
 
-      <p>Einen ähnlichen Effekt hat es, wenn beispielsweise in Elektronik-Geschäften im Eingangsbereich die teuersten Produkte platziert werden. Das lässt die Preise der anderen Geräte verhältnismäßig billig erscheinen und die Kunden geben vielleicht mehr Geld aus, als ursprünglich geplant.</p>
+      <div data-ng-switch-when="GROUP_A">
+        <div class="description" data-uk-grid="">
+          <div class="uk-width-auto@m">
+            <img src="img/headphones.svg" width="100"/>
+          </div>
+          <div class="uk-width-expand@m">
+            <p>Du überlegst, dir neue Kopfhörer zu kaufen und hast noch nicht entschieden, welches Modell du kaufen möchtest. Du kommst an einem Geschäft vorbei, bei dem ein beliebtes Kopfhörer-Modell um 49 Euro statt 99 Euro angeboten wird. Was würdest du tun?</p>
+          </div>
+        </div>
 
-      <p>Je mehr wir aber für ein bestimmtes Produkt ausgeben, umso weniger bleibt uns für andere Wünsche – daher ist es wichtig, ein gutes Gefühl zu entwickeln, wie viel wir beim Kauf wirklich ausgeben möchten.</p>
-    </evaluation-text>
+        <div
+          data-uk-grid=""
+          data-card-container=""
+          class="uk-grid-match uk-child-width-1-2">
+
+          <div
+            data-card=""
+            data-card-data="1"
+            data-card-is-checkbox="true"
+            data-card-disabled="anchoringTaskController.resolved"
+            data-card-on-click="anchoringTaskController.update(data, selected)">
+            <card-title>
+              Option 1
+            </card-title>
+            <card-text>
+              Die Kopfhörer kaufen.
+            </card-text>
+            <card-buttons>
+            </card-buttons>
+          </div>
+
+          <div
+            data-card=""
+            data-card-data="2"
+            data-card-is-checkbox="true"
+            data-card-disabled="anchoringTaskController.resolved"
+            data-card-on-click="anchoringTaskController.update(data, selected)">
+            <card-title>
+              Option 2
+            </card-title>
+            <card-text>
+              Noch zuwarten, bis du mehr über die verschiedenen Modelle weißt.
+            </card-text>
+            <card-buttons>
+            </card-buttons>
+          </div>
+
+        </div>
+      </div>
+
+      <div data-ng-switch-when="GROUP_B">
+
+        <div class="description" data-uk-grid="">
+          <div class="uk-width-auto@m">
+            <img src="img/headphones.svg" width="100"/>
+          </div>
+          <div class="uk-width-expand@m">
+            <p>Du überlegst, dir neue Kopfhörer zu kaufen und hast noch nicht entschieden, welches Modell du kaufen möchtest. Du kommst an einem Geschäft vorbei, bei dem ein beliebtes Kopfhörer-Modell um 49 Euro angeboten wird. Was würdest du tun?</p>
+          </div>
+        </div>
+
+        <div
+          data-uk-grid=""
+          data-card-container=""
+          class="uk-grid-match uk-child-width-1-2">
+
+          <div
+            data-card=""
+            data-card-data="1"
+            data-card-is-checkbox="true"
+            data-card-disabled="anchoringTaskController.resolved"
+            data-card-on-click="anchoringTaskController.update(data, selected)">
+            <card-title>
+              Option 1
+            </card-title>
+            <card-text>
+              Die Kopfhörer kaufen.
+            </card-text>
+            <card-buttons>
+            </card-buttons>
+          </div>
+
+          <div
+            data-card=""
+            data-card-data="2"
+            data-card-is-checkbox="true"
+            data-card-disabled="anchoringTaskController.resolved"
+            data-card-on-click="anchoringTaskController.update(data, selected)">
+            <card-title>
+              Option 2
+            </card-title>
+            <card-text>
+              Noch zuwarten, bis du mehr über die verschiedenen Modelle weißt.
+            </card-text>
+            <card-buttons>
+            </card-buttons>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div data-ng-switch-default="">
+      </div>
+
+    </div>
+
+    <div data-evaluation="anchoringTaskController">
+      <evaluation-text>
+        <div class="uk-placeholder">Video</div>
+
+        <p>Diese Übung zeigt dir, wie unsere Entscheidungen durch von außen vorgegebene Zahlen beeinflusst werden können. In der Übung kosteten die Kopfhörer in beiden Gruppen 49 Euro. In einer Gruppe wurde jedoch zusätzlich auch der frühere Preis von 99 Euro erwähnt. Dadurch wirken die 49 Euro gleich um einiges günstiger. In der Werbung werden oft Stattpreise angegeben, die unsere Einschätzung, wie viel uns eine bestimmte Sache wert ist, beeinflussen können.</p>
+
+        <p>Einen ähnlichen Effekt hat es, wenn beispielsweise in Elektronik-Geschäften im Eingangsbereich die teuersten Produkte platziert werden. Das lässt die Preise der anderen Geräte verhältnismäßig billig erscheinen und die Kunden geben vielleicht mehr Geld aus, als ursprünglich geplant.</p>
+
+        <p>Je mehr wir aber für ein bestimmtes Produkt ausgeben, umso weniger bleibt uns für andere Wünsche – daher ist es wichtig, ein gutes Gefühl zu entwickeln, wie viel wir beim Kauf wirklich ausgeben möchten.</p>
+      </evaluation-text>
+    </div>
+
   </div>
 
 </div>

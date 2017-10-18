@@ -1,132 +1,140 @@
 <div class="mental-bookkeping-task">
 
-  <div data-ng-switch="mentalBookkeepingTaskController.group">
-
-    <div data-ng-switch-when="GROUP_A">
-      <div class="description" data-uk-grid="">
-        <div class="uk-width-auto@m">
-          <img src="img/ticket.svg" width="150"/>
-        </div>
-        <div class="uk-width-expand@m">
-          <p>Du willst dir ein Konzertticket um 20 Euro kaufen. Am Eingang angekommen siehst du, dass du auf dem Weg 20 Euro verloren hast. Kaufst du dir ein Ticket (du hast noch genug Geld dabei)?</p>
-        </div>
-      </div>
-
-      <div
-        data-uk-grid=""
-        data-card-container=""
-        class="uk-grid-match uk-child-width-1-2">
-
-        <div
-          data-card=""
-          data-card-data="1"
-          data-card-is-checkbox="true"
-          data-card-disabled="mentalBookkeepingTaskController.resolved"
-          data-card-on-click="mentalBookkeepingTaskController.update(data, selected)">
-          <card-title>
-            Option 1
-          </card-title>
-          <card-text>
-            Ja, du kaufst das Ticket.
-          </card-text>
-          <card-buttons>
-          </card-buttons>
-        </div>
-
-        <div
-          data-card=""
-          data-card-data="2"
-          data-card-is-checkbox="true"
-          data-card-disabled="mentalBookkeepingTaskController.resolved"
-          data-card-on-click="mentalBookkeepingTaskController.update(data, selected)">
-          <card-title>
-            Option 2
-          </card-title>
-          <card-text>
-            Nein, du kaufst das Ticket nicht.
-          </card-text>
-          <card-buttons>
-          </card-buttons>
-        </div>
-
-      </div>
-    </div>
-
-    <div data-ng-switch-when="GROUP_B">
-
-      <div class="description" data-uk-grid="">
-        <div class="uk-width-auto@m">
-          <img src="img/ticket.svg" width="150"/>
-        </div>
-        <div class="uk-width-expand@m">
-          <p>Du hast dir ein Konzertticket um 20 Euro gekauft. Am Eingang angekommen siehst du, dass du das Ticket verloren hast. Kaufst du dir dort erneut ein Ticket (du hast noch genug Geld dabei)?</p>
-        </div>
-      </div>
-
-      <div
-        data-uk-grid=""
-        data-card-container=""
-        class="uk-grid-match uk-child-width-1-2">
-
-        <div
-          data-card=""
-          data-card-data="1"
-          data-card-is-checkbox="true"
-          data-card-disabled="mentalBookkeepingTaskController.resolved"
-          data-card-on-click="mentalBookkeepingTaskController.update(data, selected)">
-          <card-title>
-            Option 1
-          </card-title>
-          <card-text>
-            Ja, du kaufst das Ticket.
-          </card-text>
-          <card-buttons>
-          </card-buttons>
-        </div>
-
-        <div
-          data-card=""
-          data-card-data="2"
-          data-card-is-checkbox="true"
-          data-card-disabled="mentalBookkeepingTaskController.resolved"
-          data-card-on-click="mentalBookkeepingTaskController.update(data, selected)">
-          <card-title>
-            Option 2
-          </card-title>
-          <card-text>
-            Nein, du kaufst das Ticket nicht.
-          </card-text>
-          <card-buttons>
-          </card-buttons>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div data-ng-switch-default="">
-    </div>
-
+  <div data-locked-state="mentalBookkeepingTaskController.isLocked()">
+    <!-- default texts -->
   </div>
 
-  <div data-evaluation="mentalBookkeepingTaskController">
-    <evaluation-text>
-      <p>Wie so oft bei persönlichen Entscheidungen gibt es auch hier kein "Richtig" oder "Falsch". Dass sich viele Menschen in den beiden oben beschriebenen Situationen anders verhalten würden, ist auf die sogenannte "mentale Buchführung" zurückzuführen.</p>
+  <div data-ng-if="!mentalBookkeepingTaskController.isLocked()">
 
-      <p>Was passiert in unserem Beispiel? Hier wurden euch im Workshop in den beiden Gruppen zwei unterschiedliche Situationen präsentiert. Die meisten Menschen würden in beiden Situationen ein mentales Konto "Ticketkauf" anlegen und diesem Konto 20 Euro zuweisen.</p>
+    <div data-ng-switch="mentalBookkeepingTaskController.group">
 
-      </p>In Situation 1 verlieren wir 20 Euro, das Konto "Ticketkauf" ist davon aber nicht betroffen – hier befinden sich immer noch 20 Euro. Deshalb entscheiden sich viele dafür, das Ticket trotzdem zu kaufen. </p>
+      <div data-ng-switch-when="GROUP_A">
+        <div class="description" data-uk-grid="">
+          <div class="uk-width-auto@m">
+            <img src="img/ticket.svg" width="150"/>
+          </div>
+          <div class="uk-width-expand@m">
+            <p>Du willst dir ein Konzertticket um 20 Euro kaufen. Am Eingang angekommen siehst du, dass du auf dem Weg 20 Euro verloren hast. Kaufst du dir ein Ticket (du hast noch genug Geld dabei)?</p>
+          </div>
+        </div>
 
-      <p>In Situation 2 hingegen haben wir die 20 Euro auf dem Konto "Ticketkauf" bereits verbraucht – das Konto ist daher leer. Bei strikter mentaler Buchführung können wir uns daher kein neues Ticket kaufen.</p>
+        <div
+          data-uk-grid=""
+          data-card-container=""
+          class="uk-grid-match uk-child-width-1-2">
 
-      <p>Aus finanzieller Sicht sind beide Situationen jedoch gleich: 20 Euro sind verloren, egal ob als Geldschein oder als Ticket. Das Beispiel zeigt, dass die Einteilung in mentale Konten eine direkte Auswirkung auf unser Verhalten haben kann.</p>
+          <div
+            data-card=""
+            data-card-data="1"
+            data-card-is-checkbox="true"
+            data-card-disabled="mentalBookkeepingTaskController.resolved"
+            data-card-on-click="mentalBookkeepingTaskController.update(data, selected)">
+            <card-title>
+              Option 1
+            </card-title>
+            <card-text>
+              Ja, du kaufst das Ticket.
+            </card-text>
+            <card-buttons>
+            </card-buttons>
+          </div>
 
-      <div class="uk-placeholder">Video</div>
+          <div
+            data-card=""
+            data-card-data="2"
+            data-card-is-checkbox="true"
+            data-card-disabled="mentalBookkeepingTaskController.resolved"
+            data-card-on-click="mentalBookkeepingTaskController.update(data, selected)">
+            <card-title>
+              Option 2
+            </card-title>
+            <card-text>
+              Nein, du kaufst das Ticket nicht.
+            </card-text>
+            <card-buttons>
+            </card-buttons>
+          </div>
 
-      <p>In dieser Übung hast du gelernt, was es mit mentaler – also gedanklicher –  Buchführung auf sich hat. Mentale Buchführung bedeutet, dass wir unser Geld gedanklich auf bestimmte Konten verteilen – unabhängig davon, ob es diese Konten auch in Wirklichkeit gibt. Das hilft uns dabei, den Überblick über unsere Einnahmen und Ausgaben zu behalten. Manchmal kann diese Einteilung aber auch die Sicht auf kluge Entscheidungen verstellen.</p>
+        </div>
+      </div>
 
-      <p>So geht es auch Laura. Sie fährt einmal pro Woche zum Einkaufszentrum in ihrem Nachbarort, weil die Lebensmittel im Supermarkt dort etwas günstiger sind. Dadurch spart sie auf ihrem gedanklichen Konto für Lebensmittel bei jedem Einkauf ein paar Euro. Laura übersieht jedoch die Kosten für die Autofahrten (Benzin und Abnutzung des Autos) sowie die Gebühren für die Tiefgarage, weil sie für die Ausgaben für ihr Auto ein anderes gedankliches Konto führt. Nachdem sie im Financial Training Workshop mehr über gedankliche Buchführung gelernt hat, rechnet sie die beiden mentalen Konten auf und sieht, dass der Ersparnis von rund 5 Euro bei den Lebensmitteln Kosten von rund 8 Euro für die Autofahrt gegenüberstehen. In Zukunft fährt sie daher nur mehr ins Einkaufszentrum, wenn sie sich wirklich etwas spart.</p>
-    </evaluation-text>
+      <div data-ng-switch-when="GROUP_B">
+
+        <div class="description" data-uk-grid="">
+          <div class="uk-width-auto@m">
+            <img src="img/ticket.svg" width="150"/>
+          </div>
+          <div class="uk-width-expand@m">
+            <p>Du hast dir ein Konzertticket um 20 Euro gekauft. Am Eingang angekommen siehst du, dass du das Ticket verloren hast. Kaufst du dir dort erneut ein Ticket (du hast noch genug Geld dabei)?</p>
+          </div>
+        </div>
+
+        <div
+          data-uk-grid=""
+          data-card-container=""
+          class="uk-grid-match uk-child-width-1-2">
+
+          <div
+            data-card=""
+            data-card-data="1"
+            data-card-is-checkbox="true"
+            data-card-disabled="mentalBookkeepingTaskController.resolved"
+            data-card-on-click="mentalBookkeepingTaskController.update(data, selected)">
+            <card-title>
+              Option 1
+            </card-title>
+            <card-text>
+              Ja, du kaufst das Ticket.
+            </card-text>
+            <card-buttons>
+            </card-buttons>
+          </div>
+
+          <div
+            data-card=""
+            data-card-data="2"
+            data-card-is-checkbox="true"
+            data-card-disabled="mentalBookkeepingTaskController.resolved"
+            data-card-on-click="mentalBookkeepingTaskController.update(data, selected)">
+            <card-title>
+              Option 2
+            </card-title>
+            <card-text>
+              Nein, du kaufst das Ticket nicht.
+            </card-text>
+            <card-buttons>
+            </card-buttons>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div data-ng-switch-default="">
+      </div>
+
+    </div>
+
+    <div data-evaluation="mentalBookkeepingTaskController">
+      <evaluation-text>
+        <p>Wie so oft bei persönlichen Entscheidungen gibt es auch hier kein "Richtig" oder "Falsch". Dass sich viele Menschen in den beiden oben beschriebenen Situationen anders verhalten würden, ist auf die sogenannte "mentale Buchführung" zurückzuführen.</p>
+
+        <p>Was passiert in unserem Beispiel? Hier wurden euch im Workshop in den beiden Gruppen zwei unterschiedliche Situationen präsentiert. Die meisten Menschen würden in beiden Situationen ein mentales Konto "Ticketkauf" anlegen und diesem Konto 20 Euro zuweisen.</p>
+
+        </p>In Situation 1 verlieren wir 20 Euro, das Konto "Ticketkauf" ist davon aber nicht betroffen – hier befinden sich immer noch 20 Euro. Deshalb entscheiden sich viele dafür, das Ticket trotzdem zu kaufen. </p>
+
+        <p>In Situation 2 hingegen haben wir die 20 Euro auf dem Konto "Ticketkauf" bereits verbraucht – das Konto ist daher leer. Bei strikter mentaler Buchführung können wir uns daher kein neues Ticket kaufen.</p>
+
+        <p>Aus finanzieller Sicht sind beide Situationen jedoch gleich: 20 Euro sind verloren, egal ob als Geldschein oder als Ticket. Das Beispiel zeigt, dass die Einteilung in mentale Konten eine direkte Auswirkung auf unser Verhalten haben kann.</p>
+
+        <div class="uk-placeholder">Video</div>
+
+        <p>In dieser Übung hast du gelernt, was es mit mentaler – also gedanklicher –  Buchführung auf sich hat. Mentale Buchführung bedeutet, dass wir unser Geld gedanklich auf bestimmte Konten verteilen – unabhängig davon, ob es diese Konten auch in Wirklichkeit gibt. Das hilft uns dabei, den Überblick über unsere Einnahmen und Ausgaben zu behalten. Manchmal kann diese Einteilung aber auch die Sicht auf kluge Entscheidungen verstellen.</p>
+
+        <p>So geht es auch Laura. Sie fährt einmal pro Woche zum Einkaufszentrum in ihrem Nachbarort, weil die Lebensmittel im Supermarkt dort etwas günstiger sind. Dadurch spart sie auf ihrem gedanklichen Konto für Lebensmittel bei jedem Einkauf ein paar Euro. Laura übersieht jedoch die Kosten für die Autofahrten (Benzin und Abnutzung des Autos) sowie die Gebühren für die Tiefgarage, weil sie für die Ausgaben für ihr Auto ein anderes gedankliches Konto führt. Nachdem sie im Financial Training Workshop mehr über gedankliche Buchführung gelernt hat, rechnet sie die beiden mentalen Konten auf und sieht, dass der Ersparnis von rund 5 Euro bei den Lebensmitteln Kosten von rund 8 Euro für die Autofahrt gegenüberstehen. In Zukunft fährt sie daher nur mehr ins Einkaufszentrum, wenn sie sich wirklich etwas spart.</p>
+      </evaluation-text>
+    </div>
+
   </div>
 
 </div>

@@ -34,7 +34,8 @@
       restrict: 'A',
       transclude: {
         userText: '?userText',
-        adminText: '?adminTExt'
+        adminText: '?adminText',
+        superAdminText: '?superAdminText'
       },
       controller: LockedState,
       bindToController: true,

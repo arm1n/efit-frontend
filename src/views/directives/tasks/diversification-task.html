@@ -1,257 +1,264 @@
 <div class="diversification-task">
 
-  <p>In dieser Aufgabe erhältst du zu Beginn zwei Lose, die du durch Investieren vermehren kannst. Mit den Losen kannst du in zwei Firmen investieren: "Smart" und "Phone". Du kannst die beiden Lose beliebig auf die Firmen Smart und Phone aufteilen (beide Lose auf Smart, beide auf Phone, oder jeweils 1 Los auf Smart und 1 Los auf Phone).</p>
+  <div data-locked-state="diversificationTaskController.isLocked()">
+    <!-- default texts -->
+  </div>
 
-  <p>Die Entwicklung der Firmen wird anschließend durch zwei Münzwürfe nachgespielt. Für jede Firma wird eine Münze geworfen, wobei Zahl bedeutet, dass der Wert der Firma gleich bleibt und Kopf, dass der Wert der Firma steigt:</p>
+  <div data-ng-if="!diversificationTaskController.isLocked()">
 
-  <p>Zeigt der erste Wurf Kopf, erhältst du für jedes Los, dass du in die Firma Smart investiert hast, zwei Lose zurück. Bei Zahl erhältst du genau die investierten Lose wieder zurück.</p>
+    <p>In dieser Aufgabe erhältst du zu Beginn zwei Lose, die du durch Investieren vermehren kannst. Mit den Losen kannst du in zwei Firmen investieren: "Smart" und "Phone". Du kannst die beiden Lose beliebig auf die Firmen Smart und Phone aufteilen (beide Lose auf Smart, beide auf Phone, oder jeweils 1 Los auf Smart und 1 Los auf Phone).</p>
 
-  <p>Zeigt der zweite Wurf Kopf, erhältst du für jedes Los, dass du in die Firma Phone investiert hast, zwei Lose zurück. Bei Zahl erhältst du genau die investierten Lose wieder zurück.</p>
+    <p>Die Entwicklung der Firmen wird anschließend durch zwei Münzwürfe nachgespielt. Für jede Firma wird eine Münze geworfen, wobei Zahl bedeutet, dass der Wert der Firma gleich bleibt und Kopf, dass der Wert der Firma steigt:</p>
 
-  <p><strong>Bitte verteile nun deine zwei Lose auf die zwei Firmen:</strong></p>
+    <p>Zeigt der erste Wurf Kopf, erhältst du für jedes Los, dass du in die Firma Smart investiert hast, zwei Lose zurück. Bei Zahl erhältst du genau die investierten Lose wieder zurück.</p>
 
-  <div class="uk-text-center">
-    <div class="uk-margin-medium-top">
+    <p>Zeigt der zweite Wurf Kopf, erhältst du für jedes Los, dass du in die Firma Phone investiert hast, zwei Lose zurück. Bei Zahl erhältst du genau die investierten Lose wieder zurück.</p>
 
-      <!-- TICKETS -->
-      <div class="uk-margin">
-        <div
-          data-draggable=""
-          data-draggable-data="ticket"
-          data-draggable-disabled="diversificationTaskController.resolved"
-          class="voucher uk-inline uk-margin-small-left uk-margin-small-right"
-          data-ng-repeat="(id, ticket) in diversificationTaskController.tickets track by ticket.id">
+    <p><strong>Bitte verteile nun deine zwei Lose auf die zwei Firmen:</strong></p>
 
-          <img width="125" src="img/voucher.svg">
-          <div class="uk-position-small uk-position-left uk-flex uk-flex-middle">
-              <span class="uk-text-bold uk-margin-small-left">
-               <span>Los #</span><span data-ng-bind="ticket.id"></span>
-              </span>
-          </div>
+    <div class="uk-text-center">
+      <div class="uk-margin-medium-top">
 
-        </div>
-      </div>
-
-      <!-- COMPANIES -->
-      <div class="uk-margin">
-        <div
-          data-ng-class="{
-            'uk-margin-small-left': $last,
-            'uk-margin-small-right': $first
-          }"
-          class="company uk-inline uk-text-top"
-          data-ng-repeat="(id, company) in diversificationTaskController.companies track by company.id">
-
+        <!-- TICKETS -->
+        <div class="uk-margin">
           <div
-            class="dropzone"
-            data-dropable=""
-            data-dropable-on-drop="diversificationTaskController.update($data, company, 'add')"
-            data-dropable-on-drag-leave="diversificationTaskController.update($data, company, 'remove')">
-            <img width="250" data-ng-src="{{'img/' + company.image}}">
-          </div>
+            data-draggable=""
+            data-draggable-data="ticket"
+            data-draggable-disabled="diversificationTaskController.resolved"
+            class="voucher uk-inline uk-margin-small-left uk-margin-small-right"
+            data-ng-repeat="(id, ticket) in diversificationTaskController.tickets track by ticket.id">
 
-          <div class="uk-heading-line uk-text-center">
-            <span
-              class="uk-text-lead"
-              data-ng-bind="company.name">
-            </span>
-          </div>
-
-          <div class="uk-text-center uk-margin-top">
-            <div
-              data-diversification-task-coin=""
-              data-diversification-task-coin-start-value="'?'"
-              class="uk-inline uk-margin uk-margin-small-left uk-margin-small-right"
-              data-diversification-task-coin-flip="diversificationTaskController.resolved"
-              data-diversification-task-coin-toss="diversificationTaskController.throws[id].toss">
+            <img width="125" src="img/voucher.svg">
+            <div class="uk-position-small uk-position-left uk-flex uk-flex-middle">
+                <span class="uk-text-bold uk-margin-small-left">
+                 <span>Los #</span><span data-ng-bind="ticket.id"></span>
+                </span>
             </div>
-          </div>
 
-          <div class="uk-text-center">
-            <div data-ng-repeat="(id, ticket) in company.tickets track by ticket.id">
-              <span>Los #</span><span data-ng-bind="ticket.id"></span>
-            </div>
-            <div data-ng-if="company.count === 0">Kein Los zugewiesen</div>
           </div>
-
         </div>
+
+        <!-- COMPANIES -->
+        <div class="uk-margin">
+          <div
+            data-ng-class="{
+              'uk-margin-small-left': $last,
+              'uk-margin-small-right': $first
+            }"
+            class="company uk-inline uk-text-top"
+            data-ng-repeat="(id, company) in diversificationTaskController.companies track by company.id">
+
+            <div
+              class="dropzone"
+              data-dropable=""
+              data-dropable-on-drop="diversificationTaskController.update($data, company, 'add')"
+              data-dropable-on-drag-leave="diversificationTaskController.update($data, company, 'remove')">
+              <img width="250" data-ng-src="{{'img/' + company.image}}">
+            </div>
+
+            <div class="uk-heading-line uk-text-center">
+              <span
+                class="uk-text-lead"
+                data-ng-bind="company.name">
+              </span>
+            </div>
+
+            <div class="uk-text-center uk-margin-top">
+              <div
+                data-diversification-task-coin=""
+                data-diversification-task-coin-start-value="'?'"
+                class="uk-inline uk-margin uk-margin-small-left uk-margin-small-right"
+                data-diversification-task-coin-flip="diversificationTaskController.resolved"
+                data-diversification-task-coin-toss="diversificationTaskController.throws[id].toss">
+              </div>
+            </div>
+
+            <div class="uk-text-center">
+              <div data-ng-repeat="(id, ticket) in company.tickets track by ticket.id">
+                <span>Los #</span><span data-ng-bind="ticket.id"></span>
+              </div>
+              <div data-ng-if="company.count === 0">Kein Los zugewiesen</div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
-    </div>
+      <div data-evaluation="diversificationTaskController">
+        <evaluation-text>
+          <p>
+            <strong>
+              <span
+                data-ng-class="{
+                  'uk-text-success': diversificationTaskController.throws.one.toss === diversificationTaskController.heads,
+                  'uk-text-danger': diversificationTaskController.throws.one.toss === diversificationTaskController.tails
+                }">
+                <span>Der erste Wurf war</span>
+                <span data-ng-if="diversificationTaskController.throws.one.toss === diversificationTaskController.heads"> Kopf.</span>
+                <span data-ng-if="diversificationTaskController.throws.one.toss === diversificationTaskController.tails"> Zahl.</span>
+              </span>
+            </strong>
+            <br>
+            <span data-ng-if="diversificationTaskController.throws.one.toss === diversificationTaskController.heads">Demnach werden die Lose, die du in die <strong>Firma Smart</strong> investiert hast, <strong>verdoppelt</strong>.</span>
+            <span data-ng-if="diversificationTaskController.throws.one.toss === diversificationTaskController.tails">Demnach werden die Lose, die du in die <strong>Firma Smart</strong> investiert hast, <strong>nicht verdoppelt</strong>.</span>
+          </p>
 
-    <div data-evaluation="diversificationTaskController">
-      <evaluation-text>
-        <p>
-          <strong>
-            <span
-              data-ng-class="{
-                'uk-text-success': diversificationTaskController.throws.one.toss === diversificationTaskController.heads,
-                'uk-text-danger': diversificationTaskController.throws.one.toss === diversificationTaskController.tails
-              }">
-              <span>Der erste Wurf war</span>
-              <span data-ng-if="diversificationTaskController.throws.one.toss === diversificationTaskController.heads"> Kopf.</span>
-              <span data-ng-if="diversificationTaskController.throws.one.toss === diversificationTaskController.tails"> Zahl.</span>
-            </span>
-          </strong>
-          <br>
-          <span data-ng-if="diversificationTaskController.throws.one.toss === diversificationTaskController.heads">Demnach werden die Lose, die du in die <strong>Firma Smart</strong> investiert hast, <strong>verdoppelt</strong>.</span>
-          <span data-ng-if="diversificationTaskController.throws.one.toss === diversificationTaskController.tails">Demnach werden die Lose, die du in die <strong>Firma Smart</strong> investiert hast, <strong>nicht verdoppelt</strong>.</span>
-        </p>
+          <p>
+            <strong>
+              <span
+                data-ng-class="{
+                  'uk-text-success': diversificationTaskController.throws.two.toss === diversificationTaskController.heads,
+                  'uk-text-danger': diversificationTaskController.throws.two.toss === diversificationTaskController.tails
+                }">
+                <span>Der zweite Wurf war</span>
+                <span data-ng-if="diversificationTaskController.throws.two.toss === diversificationTaskController.heads"> Kopf.</span>
+                <span data-ng-if="diversificationTaskController.throws.two.toss === diversificationTaskController.tails"> Zahl.</span>
+              </span>
+            </strong>
+            <br>
+            <span data-ng-if="diversificationTaskController.throws.two.toss === diversificationTaskController.heads">Demnach werden die Lose, die du in die <strong>Firma Phone</strong> investiert hast, <strong>verdoppelt</strong>.</span>
+            <span data-ng-if="diversificationTaskController.throws.two.toss === diversificationTaskController.tails">Demnach werden die Lose, die du in die <strong>Firma Phone</strong> investiert hast, <strong>nicht verdoppelt</strong>.</span>
+          </p>
 
-        <p>
-          <strong>
-            <span
-              data-ng-class="{
-                'uk-text-success': diversificationTaskController.throws.two.toss === diversificationTaskController.heads,
-                'uk-text-danger': diversificationTaskController.throws.two.toss === diversificationTaskController.tails
-              }">
-              <span>Der zweite Wurf war</span>
-              <span data-ng-if="diversificationTaskController.throws.two.toss === diversificationTaskController.heads"> Kopf.</span>
-              <span data-ng-if="diversificationTaskController.throws.two.toss === diversificationTaskController.tails"> Zahl.</span>
-            </span>
-          </strong>
-          <br>
-          <span data-ng-if="diversificationTaskController.throws.two.toss === diversificationTaskController.heads">Demnach werden die Lose, die du in die <strong>Firma Phone</strong> investiert hast, <strong>verdoppelt</strong>.</span>
-          <span data-ng-if="diversificationTaskController.throws.two.toss === diversificationTaskController.tails">Demnach werden die Lose, die du in die <strong>Firma Phone</strong> investiert hast, <strong>nicht verdoppelt</strong>.</span>
-        </p>
+          <p>Du hast <span data-ng-bind="diversificationTaskController.companies.one.count"></span> Los<span data-ng-if="diversificationTaskController.companies.one.count !== 1">e</span> in Smart und <span data-ng-bind="diversificationTaskController.companies.two.count"></span> Los<span data-ng-if="diversificationTaskController.companies.two.count !== 1">e</span> in Phone investiert und erhältst daher</p>
 
-        <p>Du hast <span data-ng-bind="diversificationTaskController.companies.one.count"></span> Los<span data-ng-if="diversificationTaskController.companies.one.count !== 1">e</span> in Smart und <span data-ng-bind="diversificationTaskController.companies.two.count"></span> Los<span data-ng-if="diversificationTaskController.companies.two.count !== 1">e</span> in Phone investiert und erhältst daher</p>
+          <p>
+            <code>
+              <span data-ng-if="diversificationTaskController.throws.one.toss === diversificationTaskController.heads">2</span>
+              <span data-ng-if="diversificationTaskController.throws.one.toss === diversificationTaskController.tails">1</span>
+              <span> x </span>
+              <span data-ng-bind="diversificationTaskController.companies.one.count"></span>
 
-        <p>
-          <code>
-            <span data-ng-if="diversificationTaskController.throws.one.toss === diversificationTaskController.heads">2</span>
-            <span data-ng-if="diversificationTaskController.throws.one.toss === diversificationTaskController.tails">1</span>
-            <span> x </span>
-            <span data-ng-bind="diversificationTaskController.companies.one.count"></span>
+              <span> + </span>
 
-            <span> + </span>
+              <span data-ng-if="diversificationTaskController.throws.two.toss === diversificationTaskController.heads">2</span>
+              <span data-ng-if="diversificationTaskController.throws.two.toss === diversificationTaskController.tails">1</span>
+              <span> x </span>
+              <span data-ng-bind="diversificationTaskController.companies.two.count"></span>
 
-            <span data-ng-if="diversificationTaskController.throws.two.toss === diversificationTaskController.heads">2</span>
-            <span data-ng-if="diversificationTaskController.throws.two.toss === diversificationTaskController.tails">1</span>
-            <span> x </span>
-            <span data-ng-bind="diversificationTaskController.companies.two.count"></span>
+              <span> = </span>
+              <span data-ng-bind="diversificationTaskController.getTicketCount()"></span>
+            </code>
+          </p>
 
-            <span> = </span>
-            <span data-ng-bind="diversificationTaskController.getTicketCount()"></span>
-          </code>
-        </p>
+          <p>Lose aus dieser Übung.</p>
 
-        <p>Lose aus dieser Übung.</p>
+          <p>Was kannst Du aus dieser Übung lernen?</p>
 
-        <p>Was kannst Du aus dieser Übung lernen?</p>
+          <div class="uk-placeholder"></div>
 
-        <div class="uk-placeholder"></div>
+          <p>Es gibt bei dieser Übung kein "Richtig" oder "Falsch". Mit deiner Entscheidung legst du aber fest, wie viel Risiko du eingehen möchtest. Wenn du alle Lose in nur eine der beiden Firmen investierst, hängt dein Gewinn gänzlich von dieser Firma ab. Nehmen wir an, du würdest beide Lose in die Firma "Smart" investieren. Dann ist nur der erste Münzwurf für dich relevant. Ist das Resultat "Kopf", so gewinnst du 2 zusätzliche Tickets. Ist das Resultat aber "Zahl", so gewinnst du nichts dazu. Das Risiko, nichts zu gewinnen, beträgt daher 50%. Das gleiche gilt, wenn du beide Tickets in die Firma "Phone" investierst, wobei dann nur der zweite Münzwurf für dich relevant ist.</p>
 
-        <p>Es gibt bei dieser Übung kein "Richtig" oder "Falsch". Mit deiner Entscheidung legst du aber fest, wie viel Risiko du eingehen möchtest. Wenn du alle Lose in nur eine der beiden Firmen investierst, hängt dein Gewinn gänzlich von dieser Firma ab. Nehmen wir an, du würdest beide Lose in die Firma "Smart" investieren. Dann ist nur der erste Münzwurf für dich relevant. Ist das Resultat "Kopf", so gewinnst du 2 zusätzliche Tickets. Ist das Resultat aber "Zahl", so gewinnst du nichts dazu. Das Risiko, nichts zu gewinnen, beträgt daher 50%. Das gleiche gilt, wenn du beide Tickets in die Firma "Phone" investierst, wobei dann nur der zweite Münzwurf für dich relevant ist.</p>
+          <p>Teilst du deine Tickets hingegen auf beide Firmen auf, kannst du das Risiko deiner Investition verringern: In diesem Fall sind beide Münzwürfe für dich relevant. Im besten Fall entwickeln sich beide Firmen gut und du bekommst 2 zusätzliche Lose. Falls die Firma "Smart" nicht an Wert gewinnt, hast du immer noch die Chance, dass es mit der Firma "Phone" aufwärts geht und du zumindest 1 zusätzliches Los gewinnst. Umgekehrt bekommst du ebenfalls 1 zusätzliches Los, wenn die Firma "Smart" zulegen kann und die Firma "Phone" nicht. Nur wenn sich beide Firmen nicht an Wert gewinnen, also in einem von vier Fällen, bekommst du kein zusätzliches Los. Wenn du daher in beide Firmen investierst, beträgt die Wahrscheinlichkeit, leer auszugehen, nur 25% statt 50%.</p>
 
-        <p>Teilst du deine Tickets hingegen auf beide Firmen auf, kannst du das Risiko deiner Investition verringern: In diesem Fall sind beide Münzwürfe für dich relevant. Im besten Fall entwickeln sich beide Firmen gut und du bekommst 2 zusätzliche Lose. Falls die Firma "Smart" nicht an Wert gewinnt, hast du immer noch die Chance, dass es mit der Firma "Phone" aufwärts geht und du zumindest 1 zusätzliches Los gewinnst. Umgekehrt bekommst du ebenfalls 1 zusätzliches Los, wenn die Firma "Smart" zulegen kann und die Firma "Phone" nicht. Nur wenn sich beide Firmen nicht an Wert gewinnen, also in einem von vier Fällen, bekommst du kein zusätzliches Los. Wenn du daher in beide Firmen investierst, beträgt die Wahrscheinlichkeit, leer auszugehen, nur 25% statt 50%.</p>
+          <p>Bei Finanz-Entscheidungen ist es meistens sehr riskant, alles auf eine Karte zu setzen. Daher sollte man sein Geld besser auf verschiedene Anlagen verteilen. Wenn sich eine Investition nicht so gut entwickelt, kann dies durch Gewinne bei anderen Investitionen ausgeglichen werden. Dieses Prinzip wird Diversifikation genannt.</p>
 
-        <p>Bei Finanz-Entscheidungen ist es meistens sehr riskant, alles auf eine Karte zu setzen. Daher sollte man sein Geld besser auf verschiedene Anlagen verteilen. Wenn sich eine Investition nicht so gut entwickelt, kann dies durch Gewinne bei anderen Investitionen ausgeglichen werden. Dieses Prinzip wird Diversifikation genannt.</p>
+          <div class="uk-overflow-auto">
+            <table class="uk-table uk-table-middle uk-table-divider uk-table-striped uk-width-1-2@m uk-margin-auto">
+              <thead>
+                <tr>
+                  <th class="uk-text-center">Ausgang</th>
+                  <th class="uk-text-center">Firma Smart</th>
+                  <th class="uk-text-center">Firma Phone</th>
+                  <th class="uk-text-center">1 Los auf Smart,<br>1 Los auf Phone</th>
+                  <th class="uk-text-center">2 Lose auf Smart,<br>0 Lose auf Phone</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="uk-text-center">1</td>
+                  <td class="uk-text-center">
+                    <div
+                      class="uk-inline"
+                      data-diversification-task-coin=""
+                      data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
+                  </td>
+                  <td class="uk-text-center">
+                    <div
+                      class="uk-inline"
+                      data-diversification-task-coin=""
+                      data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
+                  </td>
+                  <td class="uk-text-center">
+                    <img width="50" src="img/voucher.svg">
+                    <img width="50" src="img/voucher.svg">
+                  </td>
+                  <td class="uk-text-center">
+                    <img width="50" src="img/voucher.svg">
+                    <img width="50" src="img/voucher.svg">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="uk-text-center">2</td>
+                  <td class="uk-text-center">
+                    <div
+                      class="uk-inline"
+                      data-diversification-task-coin=""
+                      data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
+                  </td>
+                  <td class="uk-text-center">
+                    <div
+                      class="uk-inline"
+                      data-diversification-task-coin=""
+                      data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
+                  </td>
+                  <td class="uk-text-center">
+                    <img width="50" src="img/voucher.svg">
+                  </td>
+                  <td class="uk-text-center">
+                    <img width="50" src="img/voucher.svg">
+                    <img width="50" src="img/voucher.svg">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="uk-text-center">3</td>
+                  <td class="uk-text-center">
+                    <div
+                      class="uk-inline"
+                      data-diversification-task-coin=""
+                      data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
+                  </td>
+                  <td class="uk-text-center">
+                    <div
+                      class="uk-inline"
+                      data-diversification-task-coin=""
+                      data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
+                  </td>
+                  <td class="uk-text-center">
+                    <img width="50" src="img/voucher.svg">
+                  </td>
+                  <td class="uk-text-center">
+                    &mdash;
+                  </td>
+                </tr>
+                <tr>
+                  <td class="uk-text-center">4</td>
+                  <td class="uk-text-center">
+                    <div
+                      class="uk-inline"
+                      data-diversification-task-coin=""
+                      data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
+                  </td>
+                  <td class="uk-text-center">
+                    <div
+                      class="uk-inline"
+                      data-diversification-task-coin=""
+                      data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
+                  </td>
+                  <td class="uk-text-center">
+                    &mdash;
+                  </td>
+                  <td class="uk-text-center">
+                    &mdash;
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-        <div class="uk-overflow-auto">
-          <table class="uk-table uk-table-middle uk-table-divider uk-table-striped uk-width-1-2@m uk-margin-auto">
-            <thead>
-              <tr>
-                <th class="uk-text-center">Ausgang</th>
-                <th class="uk-text-center">Firma Smart</th>
-                <th class="uk-text-center">Firma Phone</th>
-                <th class="uk-text-center">1 Los auf Smart,<br>1 Los auf Phone</th>
-                <th class="uk-text-center">2 Lose auf Smart,<br>0 Lose auf Phone</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="uk-text-center">1</td>
-                <td class="uk-text-center">
-                  <div
-                    class="uk-inline"
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
-                </td>
-                <td class="uk-text-center">
-                  <div
-                    class="uk-inline"
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
-                </td>
-                <td class="uk-text-center">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                </td>
-                <td class="uk-text-center">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                </td>
-              </tr>
-              <tr>
-                <td class="uk-text-center">2</td>
-                <td class="uk-text-center">
-                  <div
-                    class="uk-inline"
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
-                </td>
-                <td class="uk-text-center">
-                  <div
-                    class="uk-inline"
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
-                </td>
-                <td class="uk-text-center">
-                  <img width="50" src="img/voucher.svg">
-                </td>
-                <td class="uk-text-center">
-                  <img width="50" src="img/voucher.svg">
-                  <img width="50" src="img/voucher.svg">
-                </td>
-              </tr>
-              <tr>
-                <td class="uk-text-center">3</td>
-                <td class="uk-text-center">
-                  <div
-                    class="uk-inline"
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
-                </td>
-                <td class="uk-text-center">
-                  <div
-                    class="uk-inline"
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.heads"></div>
-                </td>
-                <td class="uk-text-center">
-                  <img width="50" src="img/voucher.svg">
-                </td>
-                <td class="uk-text-center">
-                  &mdash;
-                </td>
-              </tr>
-              <tr>
-                <td class="uk-text-center">4</td>
-                <td class="uk-text-center">
-                  <div
-                    class="uk-inline"
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
-                </td>
-                <td class="uk-text-center">
-                  <div
-                    class="uk-inline"
-                    data-diversification-task-coin=""
-                    data-diversification-task-coin-start-side="diversificationTaskController.tails"></div>
-                </td>
-                <td class="uk-text-center">
-                  &mdash;
-                </td>
-                <td class="uk-text-center">
-                  &mdash;
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-      </evaluation-text>
+        </evaluation-text>
+      </div>
     </div>
   </div>
 

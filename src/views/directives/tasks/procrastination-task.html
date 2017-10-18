@@ -1,91 +1,94 @@
 <div
   class="procrastination-task"
-  data-ng-switch="procrastinationTaskController.state"
   data-ng-attr-id="{{procrastinationTaskController.domId}}">
 
-  <!-- IDLE -->
-  <div data-ng-switch-when="IDLE">
-    <p>Bei dieser Übung kannst du 5 Lose verdienen, musst dafür aber bis zum nächsten Treffen eine große Aufgabe lösen. Klicke auf das Video, um mehr über diese Übung zu erfahren.</p>
+  <div data-locked-state="procrastinationTaskController.isLocked()">
+    <!-- default texts -->
+  </div>
 
-    <div
-      data-video
-      data-video-id="'zQZfZHJy7NQ'">
-    </div>
+  <div
+    data-ng-switch="procrastinationTaskController.state"
+    data-ng-if="!procrastinationTaskController.isLocked()">
 
-    <p>Bei dieser Aufgabe musst du insgesamt 150 Seifenblasen zerplatzen, bevor sie die Wolken erreichen. Wenn dir mehr als 15 Seifenblasen entwischen, musst wieder von vorne beginnen. Du kannst selbst nun selbst entscheiden, wie du die Aufgabe lösen willst:</p>
+    <!-- IDLE -->
+    <div data-ng-switch-when="IDLE">
+      <p>Bei dieser Übung kannst du 5 Lose verdienen, musst dafür aber bis zum nächsten Treffen eine große Aufgabe lösen. Klicke auf das Video, um mehr über diese Übung zu erfahren.</p>
 
-    <p>Variante 1 – Aufgabe in drei kleinere Schritte aufteilen: Hier musst du in drei Teilaufgaben jeweils 50 Seifenblasen zerplatzen, wobei dir maximal 5 entkommen dürfen. Klicke oder tippe auf den blauen Hintergrund, um das Spiel zu starten.</p>
-
-    <p>Variante 2 – Aufgabe in einem Schritt machen: Hier musst du alles in einem erledigen. Du hast dafür bis zum nächsten Treffen Zeit.</p>
-
-    <p>Zur Übung kannst du nun die Aufgabe kurz kennenlernen und 20 Seifenblasen platzen lassen. Danach kannst du auswählen, wie du die Übung absolvieren willst. Klicke oder Tippe in den Himmel, um das Spiel zu starten.</p>
-
-    <div class="uk-text-center">
       <div
-        data-procrastination-task-game=""
-        data-procrastination-task-game-max-escaped="procrastinationTaskController.warmupMaxEscaped"
-        data-procrastination-task-game-min-catched="procrastinationTaskController.warmupMinCatched"
-        data-procrastination-task-game-on-game-done="procrastinationTaskController.setWarmup(true)"
-        data-procrastination-task-game-on-game-quit="procrastinationTaskController.setWarmup(false)">
+        data-video
+        data-video-id="'zQZfZHJy7NQ'">
       </div>
 
-      <div class="uk-margin-medium">
-        <div data-locked-state="procrastinationTaskController.isLocked()">
-          <!-- use default text -->
+      <p>Bei dieser Aufgabe musst du insgesamt 150 Seifenblasen zerplatzen, bevor sie die Wolken erreichen. Wenn dir mehr als 15 Seifenblasen entwischen, musst wieder von vorne beginnen. Du kannst selbst nun selbst entscheiden, wie du die Aufgabe lösen willst:</p>
+
+      <p>Variante 1 – Aufgabe in drei kleinere Schritte aufteilen: Hier musst du in drei Teilaufgaben jeweils 50 Seifenblasen zerplatzen, wobei dir maximal 5 entkommen dürfen. Klicke oder tippe auf den blauen Hintergrund, um das Spiel zu starten.</p>
+
+      <p>Variante 2 – Aufgabe in einem Schritt machen: Hier musst du alles in einem erledigen. Du hast dafür bis zum nächsten Treffen Zeit.</p>
+
+      <p>Zur Übung kannst du nun die Aufgabe kurz kennenlernen und 20 Seifenblasen platzen lassen. Danach kannst du auswählen, wie du die Übung absolvieren willst. Klicke oder Tippe in den Himmel, um das Spiel zu starten.</p>
+
+      <div class="uk-text-center">
+        <div
+          data-procrastination-task-game=""
+          data-procrastination-task-game-max-escaped="procrastinationTaskController.warmupMaxEscaped"
+          data-procrastination-task-game-min-catched="procrastinationTaskController.warmupMinCatched"
+          data-procrastination-task-game-on-game-done="procrastinationTaskController.setWarmup(true)"
+          data-procrastination-task-game-on-game-quit="procrastinationTaskController.setWarmup(false)">
         </div>
 
-        <button
-          class="uk-button uk-button-success"
-          data-scroll-to="procrastinationTaskController.domId"
-          data-ng-click="procrastinationTaskController.update()"
-          data-ng-disabled="!procrastinationTaskController.canResolve()"
-          data-scroll-to-disabled="!procrastinationTaskController.canResolve()">
-          Weiter
-        </button>
+        <div class="uk-margin-medium">
+          <button
+            class="uk-button uk-button-success"
+            data-scroll-to="procrastinationTaskController.domId"
+            data-ng-click="procrastinationTaskController.update()"
+            data-ng-disabled="!procrastinationTaskController.canResolve()"
+            data-scroll-to-disabled="!procrastinationTaskController.canResolve()">
+            Weiter
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- DECISION -->
+    <div data-ng-switch-when="DECISION">
+      <p>Bitte entscheide dich, wie du die Aufgabe lösen willst:</p>
+      <div class="uk-text-center">
+        <div class="uk-margin">
+          <button
+            class="uk-button uk-margin-small-top uk-margin-small-bottom"
+            data-ng-click="procrastinationTaskController.setMode('SPLIT')"
+            data-ng-class="{
+              'uk-button-primary': procrastinationTaskController.mode === 'SPLIT',
+              'uk-button-default': procrastinationTaskController.mode !== 'SPLIT'
+            }">
+            In drei kleineren Teilen (3 x 50)
+          </button>
+          <button
+            class="uk-button uk-margin-small-top uk-margin-small-bottom"
+            data-ng-click="procrastinationTaskController.setMode('ALL')"
+            data-ng-class="{
+              'uk-button-primary': procrastinationTaskController.mode === 'ALL',
+              'uk-button-default': procrastinationTaskController.mode !== 'ALL'
+            }">
+            Alles auf einmal (1 x 150)
+          </button>
+        </div>
+        <div class="uk-margin">
+          <button
+            class="uk-button uk-button-success"
+            data-scroll-to="procrastinationTaskController.domId"
+            data-ng-click="procrastinationTaskController.update()"
+            data-ng-disabled="!procrastinationTaskController.canResolve()"
+            data-scroll-to-disabled="!procrastinationTaskController.canResolve()">
+            Weiter
+          </button>
+        </div>
       </div>
     </div>
 
-  </div>
-
-  <!-- DECISION -->
-  <div data-ng-switch-when="DECISION">
-    <p>Bitte entscheide dich, wie du die Aufgabe lösen willst:</p>
-    <div class="uk-text-center">
-      <div class="uk-margin">
-        <button
-          class="uk-button uk-margin-small-top uk-margin-small-bottom"
-          data-ng-click="procrastinationTaskController.setMode('SPLIT')"
-          data-ng-class="{
-            'uk-button-primary': procrastinationTaskController.mode === 'SPLIT',
-            'uk-button-default': procrastinationTaskController.mode !== 'SPLIT'
-          }">
-          In drei kleineren Teilen (3 x 50)
-        </button>
-        <button
-          class="uk-button uk-margin-small-top uk-margin-small-bottom"
-          data-ng-click="procrastinationTaskController.setMode('ALL')"
-          data-ng-class="{
-            'uk-button-primary': procrastinationTaskController.mode === 'ALL',
-            'uk-button-default': procrastinationTaskController.mode !== 'ALL'
-          }">
-          Alles auf einmal (1 x 150)
-        </button>
-      </div>
-      <div class="uk-margin">
-        <button
-          class="uk-button uk-button-success"
-          data-scroll-to="procrastinationTaskController.domId"
-          data-ng-click="procrastinationTaskController.update()"
-          data-ng-disabled="!procrastinationTaskController.canResolve()"
-          data-scroll-to-disabled="!procrastinationTaskController.canResolve()">
-          Weiter
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- PLAYING -->
-  <div data-ng-switch-when="PLAYING">
+    <!-- PLAYING -->
+    <div data-ng-switch-when="PLAYING">
       <p data-ng-if="!procrastinationTaskController.resolved">
         <span data-ng-if="procrastinationTaskController.mode==='ALL'">
           <span>Du hast noch </span>
@@ -128,5 +131,7 @@
         </div>
       </div>
     </div>
+
+  </div>
 
 </div>

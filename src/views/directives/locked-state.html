@@ -1,12 +1,12 @@
 <div class="uk-text-center">
   <div
     data-uk-alert=""
-    class="uk-alert-warning uk-inline"
+    class="uk-alert-warning"
     data-ng-if="lockedStateController.isLocked">
     <p
       data-ng-transclude="userText"
       data-ng-if="lockedStateController.user.isUser()">
-      <span>Diese Aufgabe kann derzeit nicht gespielt werden!</span>
+      <span>Diese Übung kannst du dir zu Hause genauer anschauen!</span>
     </p>
     <p
       data-ng-transclude="adminText"
@@ -14,7 +14,7 @@
       <span>Trainer dürfen keine Aufgaben machen!</span>
     </p>
     <p
-      data-ng-transclude="adminText"
+      data-ng-transclude="superAdminText"
       data-ng-if="lockedStateController.user.isSuperAdmin()">
       <span>Administratoren dürfen keine Aufgaben machen!</span>
     </p>

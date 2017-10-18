@@ -159,7 +159,7 @@
    */
   ProcrastinationTask.prototype.isLocked = function() {
     if (this.task === null) {
-      return true;
+      return false;
     }
 
     return !this.task.isActive;
