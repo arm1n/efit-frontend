@@ -96,17 +96,9 @@
 
         mapResults = function(result) {
           var group = result.json.group;
+          var num = result.json.choice;
 
-          switch (result.json.choice) {
-            case 1:
-              map[group].choice1++;
-              break;
-            case 2:
-              map[group].choice2++;
-              break;
-            default:
-          }
-
+          map[group]['choice'+num]++;
           map[group].count++;
         };
 
@@ -132,7 +124,33 @@
 
       //case me.$injector.get('TYPE_FRAMING'):
       //case me.$injector.get('TYPE_SAVINGS_TARGET'):
-      //case me.$injector.get('TYPE_SAVINGS_SUPPORTED'):
+      case me.$injector.get('TYPE_SAVINGS_SUPPORTED'): {
+
+        map.count = 0;
+        map.choice1 = 0;
+        map.choice2 = 0;
+        map.choice3 = 0;
+        map.choice4 = 0;
+
+        mapResults = function(result) {
+          var num = result.json.choice;
+
+          map['choice'+num]++;
+          map.count++;
+        };
+
+        angular.forEach(this.results, mapResults);
+
+        data.push([
+          map.choice1 / map.count,
+          map.choice2 / map.count,
+          map.choice3 / map.count,
+          map.choice4 / map.count
+        ]);
+
+        break;
+      }
+
       //case me.$injector.get('TYPE_SELF_COMMITMENT'):
       case me.$injector.get('TYPE_PROCRASTINATION'): {
         var SPLIT = 'SPLIT';
@@ -200,6 +218,13 @@
           i18n.get('MONEY_LOST'),
           i18n.get('TICKET_LOST')
         ];
+      case this.$injector.get('TYPE_SAVINGS_SUPPORTED'):
+        return [
+          i18n.get('REMINDER_SMS'),
+          i18n.get('CHILDREN_SMS'),
+          i18n.get('PREMIUM_SAVINGS'),
+          i18n.get('SAVINGS_COIN')
+        ];
       case this.$injector.get('TYPE_PROCRASTINATION'):
         return [
           i18n.get('ALL'),
@@ -219,67 +244,55 @@
    */
   Chart.prototype._getOptions = function() {
     var i18n = this.$injector.get('i18n');
+    var options = {
+      seriesBarDistance: 70,
+      chartPadding: {
+        top: 50,
+        left: 0,
+        right: 0,
+        bottom: 0
+      },
+      axisY:{
+        labelInterpolationFnc: function(value) {
+          return (value * 100) + '%';
+        },
+        ticks: [0, 0.2, 0.4, 0.6, 0.8, 1],
+        type: Chartist.FixedScaleAxis,
+        high: 1,
+        low: 0
+      }
+    };
 
     switch(this.task.type) {
       case this.$injector.get('TYPE_ANCHORING'):
-      case this.$injector.get('TYPE_MENTAL_BOOKKEEPING'):
-        return {
-          seriesBarDistance: 70,
-          chartPadding: {
-            top: 50,
-            left: 0,
-            right: 0,
-            bottom: 0
-          },
-          axisY:{
-            labelInterpolationFnc: function(value) {
-              return (value * 100) + '%';
-            },
-            ticks: [0, 0.2, 0.4, 0.6, 0.8, 1],
-            type: Chartist.FixedScaleAxis,
-            high: 1,
-            low: 0
-          },
-          plugins: [
-            Chartist.plugins.legend({
-              legendNames: [
-                i18n.get('BUYING'),
-                i18n.get('NOT_BUYING')
-              ]
-            })
-          ]
-        };
-      case this.$injector.get('TYPE_PROCRASTINATION'):
-        return {
-          seriesBarDistance: 70,
-          chartPadding: {
-            top: 50,
-            left: 0,
-            right: 0,
-            bottom: 0
-          },
-          axisY:{
-            labelInterpolationFnc: function(value) {
-              return (value * 100) + '%';
-            },
-            ticks: [0, 0.2, 0.4, 0.6, 0.8, 1],
-            type: Chartist.FixedScaleAxis,
-            high: 1,
-            low: 0
-          },
-          plugins: [
-            Chartist.plugins.legend({
-              legendNames: [
-                i18n.get('Target reached'),
-                i18n.get('Target dismissed')
-              ]
-            })
-          ]
-        };
+      case this.$injector.get('TYPE_MENTAL_BOOKKEEPING'): {
+        options.plugins = [
+          Chartist.plugins.legend({
+            legendNames: [
+              i18n.get('BUYING'),
+              i18n.get('NOT_BUYING')
+            ]
+          })
+        ];
 
+        break;
+      }
+      case this.$injector.get('TYPE_PROCRASTINATION'): {
+        options.plugins = [
+          Chartist.plugins.legend({
+            legendNames: [
+              i18n.get('Target reached'),
+              i18n.get('Target dismissed')
+            ]
+          })
+        ];
+
+        break;
+      }
       default:
-        return {};
     }
+
+    return options;
   };
 
   /**
@@ -300,6 +313,7 @@
       switch(me.task.type) {
         case me.$injector.get('TYPE_ANCHORING'):
         case me.$injector.get('TYPE_MENTAL_BOOKKEEPING'):
+        case me.$injector.get('TYPE_SAVINGS_SUPPORTED'):
         case me.$injector.get('TYPE_PROCRASTINATION'):
           me._chart = new Chartist.Bar(element, data, options);
           break;

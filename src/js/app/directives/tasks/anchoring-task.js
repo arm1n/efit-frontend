@@ -149,7 +149,7 @@
   };
 
   /**
-   * Description.
+   * Sets current selection on `choice`.
    *
    * @public
    * @method update
@@ -210,8 +210,8 @@
       },
       restrict: 'A',
       transclude: true,
-      controller: AnchoringTask,
       bindToController: true,
+      controller: AnchoringTask,
       controllerAs: 'anchoringTaskController',
       templateUrl: 'views/directives/tasks/anchoring-task.html'
     };

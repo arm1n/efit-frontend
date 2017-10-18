@@ -386,8 +386,8 @@
       },
       restrict: 'A',
       transclude: true,
-      controller: InterestTask,
       bindToController: true,
+      controller: InterestTask,
       controllerAs: 'interestTaskController',
       templateUrl: 'views/directives/tasks/interest-task.html'
     };
@@ -506,8 +506,8 @@
       },
       restrict: 'A',
       transclude: true,
-      controller: InterestTaskExercise,
       bindToController: true,
+      controller: InterestTaskExercise,
       controllerAs: 'interestTaskExerciseController',
       templateUrl: 'views/directives/tasks/interest-task-exercise.html'
     };

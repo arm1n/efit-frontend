@@ -595,8 +595,8 @@
       },
       restrict: 'A',
       transclude: true,
-      controller: ProcrastinationTask,
       bindToController: true,
+      controller: ProcrastinationTask,
       controllerAs: 'procrastinationTaskController',
       templateUrl: 'views/directives/tasks/procrastination-task.html'
     };
@@ -1286,11 +1286,11 @@
       },
       restrict: 'A',
       transclude: true,
+      bindToController: true,
+      controller: ProcrastinationTaskBubble,
       require: {
         'gameController': '^procrastinationTaskGame'
       },
-      bindToController: true,
-      controller: ProcrastinationTaskBubble,
       controllerAs: 'procrastinationTaskBubbleController',
       templateUrl: 'views/directives/tasks/procrastination-task-bubble.html'
     };

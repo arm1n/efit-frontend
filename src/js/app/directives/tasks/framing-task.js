@@ -204,8 +204,8 @@
       },
       restrict: 'A',
       transclude: true,
-      controller: FramingTask,
       bindToController: true,
+      controller: FramingTask,
       controllerAs: 'framingTaskController',
       templateUrl: 'views/directives/tasks/framing-task.html'
     };

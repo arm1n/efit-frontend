@@ -331,8 +331,8 @@
       },
       restrict: 'A',
       transclude: true,
-      controller: SavingsTargetTask,
       bindToController: true,
+      controller: SavingsTargetTask,
       controllerAs: 'savingsTargetTaskController',
       templateUrl: 'views/directives/tasks/savings-target-task.html'
     };
