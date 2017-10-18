@@ -51,8 +51,10 @@
   Tabber.prototype.setActive = function(tab) {
     switch (tab) {
       case 'DESCRIPTION':
-      case 'EXERCISE':
+      case 'EXERCISE': {
         this.activeTab = tab;
+        break;
+      }
       default:
     }
   };

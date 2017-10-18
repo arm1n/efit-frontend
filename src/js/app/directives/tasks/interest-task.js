@@ -15,7 +15,6 @@
    */
   var InterestTask = function($scope, $element, $attrs, $injector) {
     var type = $injector.get('TYPE_INTEREST');
-    var user = $injector.get('user');
 
     this.$scope = $scope;
     this.$attrs = $attrs;

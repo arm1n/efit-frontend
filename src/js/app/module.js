@@ -1,4 +1,4 @@
-/* global angular, FastClick */
+/* global angular */
 (function(global, angular){
   'use strict';
 

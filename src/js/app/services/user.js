@@ -54,7 +54,6 @@
    */
   User.prototype.load = function() {
     var User = this.$injector.get('User');
-    var jwt = this.$injector.get('jwt');
 
     var me = this;
     var successCallback = function(user) {
@@ -106,7 +105,6 @@
    * @return {void}
    */
   User.prototype.unload = function() {
-    var jwt = this.$injector.get('jwt');
     var sse = this.$injector.get('sse');
 
     if (this._eventSource) {

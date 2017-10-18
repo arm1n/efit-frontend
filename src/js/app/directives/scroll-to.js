@@ -112,15 +112,15 @@
     this._source = jQuery('<a href="'+href+'"></a>');
 
     this.options = this.options || {};
-    this.options.easing = angular.isString(this.options.easing)
-      ? this.options.easing
-      : 'easeOutExpo';
-    this.options.offset = angular.isNumber(this.options.offset)
-      ? this.options.offset
-      : 100;
-    this.options.duration = angular.isNumber(this.options.duration)
-      ? this.options.duration
-      : 500;
+    this.options.easing = angular.isString(this.options.easing) ?
+      this.options.easing :
+      'easeOutExpo';
+    this.options.offset = angular.isNumber(this.options.offset) ?
+      this.options.offset :
+      100;
+    this.options.duration = angular.isNumber(this.options.duration) ?
+      this.options.duration :
+      500;
 
     this.$element.on('click', this._onClick);
     this._source.on('scrolled', this._onScrolled);

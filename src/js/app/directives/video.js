@@ -1,5 +1,5 @@
-/* global ANGULAR_MODULE, angular */
-(function(module, angular, global) {
+/* global ANGULAR_MODULE, angular, YT */
+(function(module, angular) {
   'use strict';
 
   // --------------------------------------------------

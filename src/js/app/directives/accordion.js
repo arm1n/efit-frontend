@@ -1,4 +1,4 @@
-/* global ANGULAR_MODULE, angular */
+/* global ANGULAR_MODULE, angular, UIkit */
 (function(module, angular) {
   'use strict';
 
@@ -76,7 +76,7 @@
    * @return {Void}
    */
   Accordion.prototype.addCollapsible = function(collapsible) {
-    this._collapsibles.push(collapsible)
+    this._collapsibles.push(collapsible);
   };
 
   /**
@@ -130,7 +130,7 @@
 
       // ignore closed items
       if (!item.open) {
-        return
+        return;
       }
 
       // toggle open items
@@ -207,7 +207,7 @@
     var defaultId = 'collapsible-' + this.$scope.$id;
 
     this.accordion.addCollapsible(this);
-    this.domId = this.id || domId;
+    this.domId = this.id || defaultId;
   };
 
   /**

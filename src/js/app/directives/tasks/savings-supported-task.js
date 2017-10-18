@@ -1,4 +1,4 @@
-/* global ANGULAR_MODULE, angular, Scratchcard */
+/* global ANGULAR_MODULE, angular */
 (function(module, angular) {
   'use strict';
 
