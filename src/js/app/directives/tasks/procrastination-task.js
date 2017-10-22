@@ -920,7 +920,7 @@
       this.escaped++;
 
       var max = this.maxEscaped;
-      if (this.escaped >= max) {
+      if (this.escaped > max) {
         this.quit();
       }
     }
