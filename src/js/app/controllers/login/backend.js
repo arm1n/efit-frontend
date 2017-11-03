@@ -45,6 +45,7 @@
   LoginBackend.prototype.signin = function()
     {
       var notification = this.$injector.get('notification');
+      var $timeout = this.$injector.get('$timeout');
       var $state = this.$injector.get('$state');
       var auth = this.$injector.get('auth');
       var i18n = this.$injector.get('i18n');
@@ -58,7 +59,12 @@
       {
         var message = i18n.get('You are logged in now!');
         notification.success(message);
-        $state.go('backend');
+
+        // force invokation of redirect
+        // as it sometimes won't change
+        $timeout(function(){
+          $state.go('backend');
+        });
       };
 
       var failureCallback = function()
