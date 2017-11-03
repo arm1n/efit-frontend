@@ -36,12 +36,17 @@
    */
   Backend.prototype.logout = function()
     {
+      var $timeout = this.$injector.get('$timeout');
       var $state = this.$injector.get('$state');
       var auth = this.$injector.get('auth');
 
       var successCallback = function()
         {
-          $state.go('login.backend');
+          // force invokation of redirect
+          // as it sometimes won't change
+          $timeout(function(){
+            $state.go('login.backend');
+          });
         };
 
       var failureCallback = function()

@@ -122,11 +122,13 @@
         url: '/',
         resolve: {
           current: [
-            'user', '$state', '$q',
-            function(user, $state){
+            'user', '$state', '$timeout',
+            function(user, $state, $timeout){
               var promise = user.load().$promise;
               return promise.catch(function(){
-                $state.go('login.frontend');
+                $timeout(function(){
+                  $state.go('login.frontend');
+                });
               });
             }
           ]
