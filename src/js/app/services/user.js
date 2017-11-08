@@ -266,13 +266,20 @@
    * @return {string}
    */
   User.prototype.getGroupAsString = function() {
+    var random = this.$injector.get('random');
+
     switch(this.group) {
       case this.$injector.get('GROUP_A'):
         return 'GROUP_A';
       case this.$injector.get('GROUP_B'):
         return 'GROUP_B';
       default:
-        return null;
+        // assign random group for admins
+        // so that UI doesn't stay empty!
+        return random.pick([
+          'GROUP_A',
+          'GROUP_B'
+        ]);
     }
   };
 
@@ -363,7 +370,7 @@
     };
 
     var _watchTicketsExpression = function() {
-      return me.tickets;
+      return me.tickets.length;
     };
 
     var _watchTicketsCallback = function(newTickets, oldTickets) {
@@ -371,10 +378,8 @@
         return;
       }
 
-      var oldCount = oldTickets && oldTickets.length;
-      var newCount = newTickets && newTickets.length;
-
-      var tickets = newCount - oldCount;
+      var tickets = newTickets - oldTickets;
+      console.log(newTickets,oldTickets);
       if (tickets <= 0) {
         return;
       }
@@ -386,7 +391,7 @@
       notification.primary(message);
     };
 
-    this._unwatchTickets = $rootScope.$watchCollection(
+    this._unwatchTickets = $rootScope.$watch(
       _watchTicketsExpression,
       _watchTicketsCallback
     );
