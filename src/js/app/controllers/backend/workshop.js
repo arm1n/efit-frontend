@@ -194,14 +194,29 @@
         {
           me.drawingTickets = random.shuffle(tickets);
 
+          var ticketHash = {};
+
           var rightSide = me.drawingTickets.map(
-            function(ticket) { return ticket.id; }
+            function(ticket) {
+              ticketHash[ticket.id] = ticket.username;
+
+              return ticket.id;
+            }
           );
           var halfSize = Math.ceil(tickets.length/2);
           var leftSide = rightSide.splice(0, halfSize);
 
           me.drawingTicketsOne = leftSide.concat(rightSide);
           me.drawingTicketsTwo = rightSide.concat(leftSide);
+
+          var indexOne = me.drawingTicketsOne.length - 1;
+          var indexTwo = me.drawingTicketsTwo.length - 1;
+
+          var ticketOne = me.drawingTicketsOne[indexOne];
+          var ticketTwo = me.drawingTicketsTwo[indexTwo];
+
+          me.drawingUserOne = ticketHash[ticketOne];
+          me.drawingUserTwo = ticketHash[ticketTwo];
 
           me.drawingWorkshop = workshop;
         };
@@ -218,14 +233,29 @@
     };
 
   /**
-   * Sets `$$shuffle` flag for drawing workshop to kick off drawing directive.
+   * Sets `$$shuffleOne` and `$$shuffleTwo` flag for drawing workshop to kick off drawing directive.
    *
    * @public
    * @method makeWorkshopDrawing
    * @return {void}
    */
   Workshop.prototype.makeWorkshopDrawing = function() {
-    this.drawingWorkshop.$$shuffle = true;
+    this.drawingWorkshop.$$shuffleOne = true;
+    this.drawingWorkshop.$$shuffleTwo = true;
+  };
+
+  /**
+   * Unsets drawing workshop flags to ensure clean state in next drawing (if any).
+   *
+   * @public
+   * @method resetWorkshopDrawing
+   * @return {void}
+   */
+  Workshop.prototype.resetWorkshopDrawing = function() {
+    this.drawingWorkshop.$$shuffleOne = null;
+    this.drawingWorkshop.$$shuffleTwo = null;
+    this.drawingWorkshop.$$finishedOne = null;
+    this.drawingWorkshop.$$finishedTwo = null;
   };
 
   /**

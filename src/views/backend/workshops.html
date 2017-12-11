@@ -261,7 +261,9 @@
 </div>
 
 <!-- MODAL: -->
-<div data-modal="workshopController.drawingWorkshop">
+<div
+  data-modal="workshopController.drawingWorkshop"
+  data-modal-on-before-hide="workshopController.resetWorkshopDrawing()">
   <div class="uk-modal-dialog uk-modal-body text-center">
     <h2 class="uk-modal-title">
       Gewinnerziehung für {{workshopController.drawingWorkshop.name}}
@@ -269,15 +271,27 @@
     <div data-ng-if="workshopController.drawingTickets.length > 0">
       <p>Zusammen gab es in eurer Klasse {{workshopController.drawingTickets.length}} Lose. Die Gewinnerlose sind:</p>
       <div class="uk-margin">
-        <div
-          class="uk-badge uk-badge-large uk-margin-xsmall-right"
-          data-random-number="workshopController.drawingTicketsOne"
-          data-random-number-shuffle="workshopController.drawingWorkshop.$$shuffle">
+        <div class="uk-inline uk-margin-small-right">
+          <div
+            class="uk-badge uk-badge-large"
+            data-random-number="workshopController.drawingTicketsOne"
+            data-random-number-shuffle="workshopController.drawingWorkshop.$$shuffleOne"
+            data-random-number-finished="workshopController.drawingWorkshop.$$finishedOne">
+          </div>
+          <div class="uk-margin-xsmall-top" data-ng-if="workshopController.drawingWorkshop.$$finishedOne">
+            <span class="uk-text-bold">{{workshopController.drawingUserOne}}</span>
+          </div>
         </div>
-        <div
-          class="uk-badge uk-badge-large uk-margin-xsmall-left"
-          data-random-number="workshopController.drawingTicketsTwo"
-          data-random-number-shuffle="workshopController.drawingWorkshop.$$shuffle">
+        <div class="uk-inline uk-margin-small-left">
+          <div
+            class="uk-badge uk-badge-large"
+            data-random-number="workshopController.drawingTicketsTwo"
+            data-random-number-shuffle="workshopController.drawingWorkshop.$$shuffleTwo"
+            data-random-number-finished="workshopController.drawingWorkshop.$$finishedTwo">
+          </div>
+          <div class="uk-margin-xsmall-top" data-ng-if="workshopController.drawingWorkshop.$$finishedTwo">
+            <span class="uk-text-bold">{{workshopController.drawingUserTwo}}</span>
+          </div>
         </div>
       </div>
 

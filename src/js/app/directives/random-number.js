@@ -13,18 +13,17 @@
   /**
    * @constructor
    */
-  var RandomNumber = function($scope, $attrs, $element, $injector, $transclude) {
+  var RandomNumber = function($scope, $attrs, $element, $injector) {
     this.$scope = $scope;
     this.$attrs = $attrs;
     this.$element = $element;
     this.$injector = $injector;
-    this.$transclude = $transclude;
 
     this._timer = null;
     this._shuffle = this._shuffle.bind(this);
   };
 
-  RandomNumber.$inject = ['$scope', '$attrs', '$element', '$injector', '$transclude'];
+  RandomNumber.$inject = ['$scope', '$attrs', '$element', '$injector'];
 
   //
   // PROPERTIES
@@ -35,6 +34,9 @@
 
   /** @var {boolean} shuffle Flag to kick off shuffling. */
   RandomNumber.prototype.shuffle = true;
+
+  /** @var {boolean} finished Flag truthy after iteration. */
+  RandomNumber.prototype.finished = false;
 
   /** @var {string} value Current display value of component. */
   RandomNumber.prototype.value = '?';
@@ -58,6 +60,7 @@
         function(){ return me.shuffle; },
         function(shuffle) {
           if (shuffle) {
+            me.finished = false;
             me._shuffle(0);
             return;
           }
@@ -95,6 +98,7 @@
     this.value = this.numbers[index];
 
     if (index >= maximum) {
+      this.finished = true;
       this._stop();
       return;
     }
@@ -124,9 +128,11 @@
     return {
       scope: {
         numbers: '=randomNumber',
-        shuffle: '=?randomNumberShuffle'
+        shuffle: '=?randomNumberShuffle',
+        finished: '=?randomNumberFinished'
       },
       restrict: 'A',
+      transclude: true,
       bindToController: true,
       controller: RandomNumber,
       controllerAs: 'randomNumberController',

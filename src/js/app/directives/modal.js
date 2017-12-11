@@ -125,7 +125,7 @@
 
       me._element.on('hide', me._onHide);
       me._element.on('hidden', me._onHidden);
-      me._element.on('beforeHide', me._onBeforeHide);
+      me._element.on('beforehide', me._onBeforeHide);
 
       // replace with actual element
       me.$element.append(clone);
