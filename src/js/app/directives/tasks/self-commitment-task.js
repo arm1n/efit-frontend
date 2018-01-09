@@ -40,8 +40,7 @@
 
   /** @var {object} watched Hash storing watched video ids. */
   SelfCommitmentTask.prototype.videos = {
-    //'ImPxD_FDpKM': false,
-    //'gUYjYEGbxEY': false
+    'XkuPL-tgFxw': false
   };
 
   /** @var {boolean} resolved If player has resolved the game. */
