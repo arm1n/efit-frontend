@@ -49,6 +49,9 @@
   /** @var {array} drawingTickets Randomly picked tickets of drawing. */
   Workshop.prototype.drawingTickets = null;
 
+  /** @var {array} drawingTicketsAll Total amount of drawing tickets. */
+  Workshop.prototype.drawingTicketsAll = null;
+
   /** @var {array} drawingTicketsOne Randomized tickets for first run. */
   Workshop.prototype.drawingTicketsOne = null;
 
@@ -192,10 +195,14 @@
 
       var successCallback = function(tickets)
         {
-          me.drawingTickets = random.shuffle(tickets);
+          me.drawingTicketsAll = tickets;
+
+          me.drawingTickets = random.shuffle(me.drawingTicketsAll);
+          me.drawingTickets = me.drawingTickets.slice(
+            Math.max(tickets.length - 20, 0)
+          );
 
           var ticketHash = {};
-
           var rightSide = me.drawingTickets.map(
             function(ticket) {
               ticketHash[ticket.id] = ticket.username;
@@ -203,7 +210,7 @@
               return ticket.id;
             }
           );
-          var halfSize = Math.ceil(tickets.length/2);
+          var halfSize = Math.ceil(me.drawingTickets.length/2);
           var leftSide = rightSide.splice(0, halfSize);
 
           me.drawingTicketsOne = leftSide.concat(rightSide);
@@ -218,7 +225,13 @@
           me.drawingUserOne = ticketHash[ticketOne];
           me.drawingUserTwo = ticketHash[ticketTwo];
 
-          me.drawingWorkshop = workshop;
+          if (me.drawingUserOne !== me.drawingUserTwo) {
+            me.drawingWorkshop = workshop;
+            return;
+          }
+
+          // >>> TAIL RECURSION
+          successCallback(tickets);
         };
 
       var failureCallback = function()

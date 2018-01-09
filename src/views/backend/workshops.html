@@ -268,8 +268,8 @@
     <h2 class="uk-modal-title">
       Gewinnerziehung für {{workshopController.drawingWorkshop.name}}
     </h2>
-    <div data-ng-if="workshopController.drawingTickets.length > 0">
-      <p>Zusammen gab es in eurer Klasse {{workshopController.drawingTickets.length}} Lose. Die Gewinnerlose sind:</p>
+    <div data-ng-if="workshopController.drawingTicketsAll.length > 0">
+      <p>Zusammen gab es in eurer Klasse {{workshopController.drawingTicketsAll.length}} Lose. Die Gewinnerlose sind:</p>
       <div class="uk-margin">
         <div class="uk-inline uk-margin-small-right">
           <div
@@ -305,7 +305,7 @@
     </div>
     <div
       class="uk-alert uk-alert-danger"
-      data-ng-if="workshopController.drawingTickets.length === 0">
+      data-ng-if="workshopController.drawingTicketsAll.length === 0">
       Es sind noch keine Tickets für die Ziehung verfügbar.
     </div>
   </div>
