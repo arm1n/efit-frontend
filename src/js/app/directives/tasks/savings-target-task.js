@@ -15,48 +15,30 @@
    */
   var SavingsTargetTask = function($scope, $element, $attrs, $injector) {
     var type = $injector.get('TYPE_SAVINGS_TARGET');
+    var user = $injector.get('user');
 
     this.$attrs = $attrs;
     this.$scope = $scope;
     this.$element = $element;
     this.$injector = $injector;
 
-    this.user = this.$injector.get('user');
-    this.task = this.user.getTaskByType(type);
-    this.result = this.user.getPendingByType(type);
-
-    this._isLocked = null;
+    this.task = user.getTaskByType(type);
   };
 
   SavingsTargetTask.$inject = ['$scope','$element','$attrs', '$injector'];
 
   // SERVER
 
-  /** @var {object} user Alias to user service. */
-  SavingsTargetTask.prototype.user = null;
-
   /** @var {object} task Task's resource from server. */
   SavingsTargetTask.prototype.task = null;
 
-  /** @var {object} result Task's pending result from server. */
-  SavingsTargetTask.prototype.result = null;
-
   // GAMEPLAY
-
-  /** @var {number} step Current step . */
-  SavingsTargetTask.prototype.step = 1;
-
-  /** @var {number} total Players wish for saving target. */
-  SavingsTargetTask.prototype.total = 3;
 
   /** @var {string} wish Players wish for saving target. */
   SavingsTargetTask.prototype.wish = null;
 
   /** @var {number} amount Players first amount for saving target. */
   SavingsTargetTask.prototype.amount = null;
-
-  /** @var {number} amountRepeated Players second amount for saving target. */
-  SavingsTargetTask.prototype.amountRepeated = null;
 
   /** @var {boolean} resolved If player has resolved the game. */
   SavingsTargetTask.prototype.resolved = false;
@@ -95,26 +77,13 @@
    * @return {void}
    */
   SavingsTargetTask.prototype.getPayload = function() {
-    var payload = {
+    return {
       task: this.task,
       json: {
-        step: this.step,
         wish: this.wish,
-        total: this.total,
-        amount: this.amount,
-        amountRepeated: this.amountRepeated
-      },
-      isPending: this._isPending()
+        amount: this.amount
+      }
     };
-
-    if (this.result !== null) {
-      payload = angular.extend(
-        this.result,
-        payload
-      );
-    }
-
-    return payload;
   };
 
   /**
@@ -129,20 +98,7 @@
       return false;
     }
 
-    // if result was created and
-    // we are waiting for paused
-    // state, we skip unlocking
-    // with internal `_isLocked`
-    if (this.task.isActive) {
-      return this._isLocked;
-    }
-
-    // reset `_isLocked` flag if
-    // `isActive` changed again
-    this._isLocked = null;
-
-    // inactive
-    return true;
+    return !this.task.isActive;
   };
 
   /**
@@ -158,15 +114,15 @@
       return false;
     }
 
-    if (this.form.$invalid) {
-      return false;
-    }
-
     if (this.isLocked()) {
       return false;
     }
 
     if (this.resolved) {
+      return false;
+    }
+
+    if (this.form.$invalid) {
       return false;
     }
 
@@ -181,23 +137,8 @@
    * @return {void}
    */
   SavingsTargetTask.prototype.init = function() {
-    if (this.result !== null) {
-      var json = this.result.json;
-
-      // `amountRepeated` cannot be desisted cause it's the
-      // condition in last step before setting `isPending`
-      this.amount = json.amount;
-      this.total = json.total;
-      this.wish = json.wish;
-      this.step = json.step;
-
-      // set `_isLocked` only until last step cause the step
-      // before last one gets manually updated AFTER unlock!
-      var timestampTask = this.task.updatedAt;
-      var timestampResult = this.result.updatedAt;
-      this._isLocked = timestampResult > timestampTask;
-    }
-
+    this.wish = null;
+    this.amount = null;
     this.resolved = false;
   };
 
@@ -213,28 +154,13 @@
   };
 
   /**
-   * Increases `step` and invokes `resolve()`.
+   * Noop in this task - written by ngModel.
    *
    * @public
    * @method update
    * @return {void}
    */
-  SavingsTargetTask.prototype.update = function(){
-    if (this.step < this.total) {
-      this.step++;
-    }
-
-    var me = this;
-    var successCallback = function(){};
-    var failureCallback = function(){
-      me.step--;
-    };
-
-    this.resolve().then(
-      successCallback,
-      failureCallback
-    );
-  };
+  SavingsTargetTask.prototype.update = function(){};
 
   /**
    * Sets `resolved` flag. Calls `onResolve`
@@ -245,8 +171,6 @@
    * @return {void}
    */
   SavingsTargetTask.prototype.resolve = function(){
-    var notification = this.$injector.get('notification');
-    var i18n = this.$injector.get('i18n');
     var $q = this.$injector.get('$q');
 
     if (!this.canResolve()) {
@@ -256,37 +180,16 @@
       return defer.promise;
     }
 
-    var callback = this.result === null ?
-      this.onResolve :
-      this.onUpdate;
-
-    var payload = this.getPayload();
-    var result = callback({
-      payload: payload
+    var result = this.onResolve({
+      payload: this.getPayload()
     });
 
-    // switch UI immediately
-    if (payload.isPending) {
-      this._isLocked = true;
-    }
-
     var me = this;
-    var successCallback = function(result) {
-      if (result.isPending) {
-        if (me.step < me.total) {
-          var message = i18n.get('Thank you for your input!');
-          notification.success(message);
-        }
-
-        me.result = result;
-        return;
-      }
-
+    var successCallback = function() {
       me.resolved = true;
     };
-
     var failureCallback = function() {
-      me._isLocked = null;
+
     };
 
     var promise = $q.when(result);
@@ -298,35 +201,12 @@
     return promise;
   };
 
-  /**
-   * Calculates difference between `amount` and `amountRepeated`.
-   *
-   * @public
-   * @method getDifference
-   * @return {void}
-   */
-  SavingsTargetTask.prototype.getDifference = function(){
-    return this.amountRepeated - this.amount;
-  };
-
-  /**
-   * Checks if `amountRepeated` is already set.
-   *
-   * @private
-   * @method _isPending
-   * @return {boolean}
-   */
-  SavingsTargetTask.prototype._isPending = function(){
-    return this.amountRepeated === null;
-  };
-
   //
   // REGISTRY
   //
   angular.module(module).directive('savingsTargetTask', function(){
     return {
       scope: {
-        onUpdate: '&savingsTargetTaskOnUpdate',
         onResolve: '&savingsTargetTaskOnResolve'
       },
       restrict: 'A',
