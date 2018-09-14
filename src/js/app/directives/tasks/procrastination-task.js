@@ -281,8 +281,6 @@
     var i18n = this.$injector.get('i18n');
     var $q = this.$injector.get('$q');
 
-    console.log('>>>RESOLVE!');
-
     if (!this.canResolve()) {
       var defer = $q.defer();
       defer.reject();
