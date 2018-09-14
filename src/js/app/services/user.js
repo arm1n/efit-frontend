@@ -379,7 +379,6 @@
       }
 
       var tickets = newTickets - oldTickets;
-      console.log(newTickets,oldTickets);
       if (tickets <= 0) {
         return;
       }
