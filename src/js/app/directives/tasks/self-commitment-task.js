@@ -231,23 +231,6 @@
   };
 
   /**
-   * Checks if user is allowed to watch videos:
-   * - (Super-)Admins are always allowed
-   * - Users only if not in workshop
-   *
-   * @public
-   * @method canWatch
-   * @return {boolean}
-   */
-  SelfCommitmentTask.prototype.canWatch = function(){
-    if (!this.user.isUser()) {
-      return true;
-    }
-
-    return !this.user.isInWorkshop();
-  };
-
-  /**
    * Checks if all videos has been watched.
    *
    * @private
