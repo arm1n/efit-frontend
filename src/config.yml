@@ -36,4 +36,4 @@ dev:
   # functionality of backend (server sent events)
   API_URL: "http://localhost:8000/api"
 prod:
-  API_URL: "https://efit-production.scalingo.io/api"
+  API_URL: "https://efit-production.osc-fr1.scalingo.io/api"
