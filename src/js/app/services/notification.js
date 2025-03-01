@@ -29,8 +29,8 @@
    * @return {object} Notification object
    */
   Notification.prototype.notify = function(message, status, options) {
-    status = status || 'default';
-    options = options || {};
+    status = status || 'default';
+    options = options || {};
 
     options.message = message;
     options.status = status;

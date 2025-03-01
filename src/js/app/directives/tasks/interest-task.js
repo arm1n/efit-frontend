@@ -315,10 +315,10 @@
   InterestTask.prototype.setResult = function(value, exercise){
     switch(exercise) {
       case 'exercise1':
-        this.exercise1Answer = value || null;
+        this.exercise1Answer = value || null;
         break;
       case 'exercise2':
-        this.exercise2Answer = value || null;
+        this.exercise2Answer = value || null;
         break;
       default:
     }
@@ -414,7 +414,7 @@
 
     var me = this;
     this._unwatch = $scope.$watch(
-      function(){ return me.sum; },
+      function(){ return me.sum; },
       function(sum) {
         if (!sum) {
           me.sum = 0;

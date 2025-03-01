@@ -34,7 +34,7 @@
       u = 2 * Math.random() - 1;
       v = 2 * Math.random() - 1;
       s = u*u + v*v;
-    } while (s >= 1 || s===0);
+    } while (s >= 1 || s===0);
 
     var m = Math.sqrt(-2 * Math.log(s) / s);
     this._spareRandomCache = v * m;

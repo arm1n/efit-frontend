@@ -89,7 +89,7 @@
         // noop
       };
 
-    var promise = Result.update({ id: payload.id }, payload).$promise;
+    var promise = Result.update({ id: payload.id }, payload).$promise;
     promise.then(
       successCallback,
       failureCallback

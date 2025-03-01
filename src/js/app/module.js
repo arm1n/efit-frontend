@@ -79,7 +79,7 @@
 
           var stateName = state.name.replace(/\./g, '/');
 
-          var templateUrl = config.templateUrl || [
+          var templateUrl = config.templateUrl || [
             VIEWS_PATH,
             stateName,
             viewName,
@@ -375,9 +375,9 @@
         appState.routerBusy = true;
 
         var state = transition.to();
-        var data = state.data || {};
-        var role = data.role || null;
-        var redirects = data.redirects || {};
+        var data = state.data || {};
+        var role = data.role || null;
+        var redirects = data.redirects || {};
 
         // no authentication check for states
         // without any authorization settings
@@ -389,7 +389,7 @@
             return true;
           }
 
-          var roles = user.roles || [];
+          var roles = user.roles || [];
           for (role in redirects) {
             if (roles.indexOf(role)>=0) {
               var target = redirects[role];
@@ -469,7 +469,7 @@
         function() {
           return appState.isBusy();
         },
-        function(isBusy) {
+        function(isBusy) {
           $rootScope.isBusy = isBusy;
           $rootScope.httpBusy = appState.httpBusy;
           $rootScope.routerBusy = appState.routerBusy;

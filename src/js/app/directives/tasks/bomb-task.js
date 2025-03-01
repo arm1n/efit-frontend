@@ -322,7 +322,7 @@
     var index = this.collection.indexOf(column);
 
     if (active) {
-      if (index<0) {
+      if (index<0) {
         this.collection.push(column);
         this.collectedBoxes++;
       }
