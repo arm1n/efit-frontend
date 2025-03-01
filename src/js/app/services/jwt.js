@@ -125,7 +125,7 @@
     {
       var $log = this.$injector.get('$log');
 
-      token = token || this.getToken();
+      token = token || this.getToken();
       if (!token) {
         $log.error('No token given or available!');
         return null;
@@ -155,7 +155,7 @@
   JWT.prototype.isExpired = function(token, offset)
     {
       offset = offset || 0;
-      token = token || this.getToken();
+      token = token || this.getToken();
 
       var date = this.getExpirationDate(token);
       if (date === null) {

@@ -400,7 +400,7 @@
 
       task.isActive = !task.isActive;
 
-      var resource = Task.update({ id: task.id}, task);
+      var resource = Task.update({ id: task.id}, task);
       resource.$promise.then(
         successCallback,
         failureCallback
@@ -420,7 +420,7 @@
     {
       var $state = this.$injector.get('$state');
       var expand = !workshop.$$expanded ?
-        workshop.id : 
+        workshop.id :
         null;
 
       $state.go('backend.workshops', {
@@ -521,7 +521,7 @@
         if (me._expanded) {
           var url = API_URL + '/sse/workshop/' + me._expanded.id + '/results';
           var onMessage = _onMessage.bind(me, me._expanded);
-          var options = { onMessage: onMessage, sleep: 5 };
+          var options = { onMessage: onMessage, sleep: 5 };
           me._resultsSource = sse.addSource(url, options);
         }
       };
@@ -567,7 +567,7 @@
       // map all `tasks` to internal hash and set `$$results`
       var me = this;
       angular.forEach(workshop.tasks, function(task){
-        var old = me._tasks[task.id] || null;
+        var old = me._tasks[task.id] || null;
         task.$$results = old !== null ?
           old.$$results
           : 0;

@@ -29,7 +29,7 @@
 
     var me = this;
     this._unwatch = $scope.$watch(
-      function(){ return me.disabled; },
+      function(){ return me.disabled; },
       function(disabled) {
         if (disabled) {
           me.$element.addClass(me._disabledClass);
@@ -186,8 +186,8 @@
       angular.element(event.target) :
       this._clone;
 
-    var x = (this._coordinates.x || 0) + event.dx;
-    var y = (this._coordinates.y || 0) + event.dy;
+    var x = (this._coordinates.x || 0) + event.dx;
+    var y = (this._coordinates.y || 0) + event.dy;
 
     this._translate(target,x,y);
 
@@ -382,7 +382,7 @@
 
     var me = this;
     this._unwatch = $scope.$watch(
-      function(){ return me.disabled; },
+      function(){ return me.disabled; },
       function(disabled) {
         if (disabled) {
           me.$element.addClass(me._disabledClass);

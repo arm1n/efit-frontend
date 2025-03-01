@@ -32,11 +32,11 @@
    * @return {void}
    */
   SSE.prototype.addSource = function(url, config) {
-    config = config || {};
+    config = config || {};
 
-    config.retry = config.retry || null;
-    config.event = config.event || null;
-    config.sleep = config.sleep || null;
+    config.retry = config.retry || null;
+    config.event = config.event || null;
+    config.sleep = config.sleep || null;
     config.onError = config.onError || function(){};
     config.onMessage = config.onMessage || function(){};
 

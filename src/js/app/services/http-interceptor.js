@@ -188,12 +188,12 @@
     var notification = this.$injector.get('notification');
     var i18n = this.$injector.get('i18n');
 
-    var config = rejection.config || {};
+    var config = rejection.config || {};
     if (config.skipGlobalErrorMessage) {
       return;
     }
 
-    var data = rejection.data || {};
+    var data = rejection.data || {};
     if (!data.message) {
       return;
     }

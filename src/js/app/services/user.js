@@ -213,7 +213,7 @@
       role = [role];
     }
 
-    var roles = this._payload.roles || [];
+    var roles = this._payload.roles || [];
     for (var i=0; i<role.length; i++) {
       if (roles.indexOf(role[i])>=0) {
         return true;
@@ -243,7 +243,7 @@
    * @return {object|null}
    */
   User.prototype.getTaskByType = function(type) {
-    return this._tasks[type] || null;
+    return this._tasks[type] || null;
   };
 
   /**
@@ -255,7 +255,7 @@
    * @return {object|null}
    */
   User.prototype.getPendingByType = function(type) {
-    return this._pending[type] || null;
+    return this._pending[type] || null;
   };
 
   /**
@@ -312,7 +312,7 @@
    */
   User.prototype._initState = function() {
     var STATE_BEGINNER = this.$injector.get('STATE_BEGINNER');
-    this.state = this._payload.state || STATE_BEGINNER;
+    this.state = this._payload.state || STATE_BEGINNER;
   };
 
   /**
@@ -323,7 +323,7 @@
    * @return {void}
    */
   User.prototype._initGroup = function() {
-    this.group = this._payload.group || null;
+    this.group = this._payload.group || null;
   };
 
   /**
@@ -335,7 +335,7 @@
    */
   User.prototype._initTickets = function() {
     var tickets = this._payload.tickets;
-    this.tickets = tickets || [];
+    this.tickets = tickets || [];
   };
 
   /**
@@ -508,7 +508,7 @@
   User.prototype._addResult = function(result) {
     var task = this.getTaskByType(result.task.type);
     if (task !== null) {
-      var current = task.$$results || 0;
+      var current = task.$$results || 0;
       task.$$results = current + 1;
     }
 

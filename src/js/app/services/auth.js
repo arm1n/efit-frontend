@@ -38,8 +38,8 @@
     {
       var $http = this.$injector.get('$http');
 
-      firewall = firewall || 'frontend';
-      config = config || {};
+      firewall = firewall || 'frontend';
+      config = config || {};
 
       var me = this;
       var successCallback = function(response)
@@ -86,8 +86,8 @@
     {
       var $http = this.$injector.get('$http');
 
-      firewall = firewall || 'frontend';
-      config = config || {};
+      firewall = firewall || 'frontend';
+      config = config || {};
 
       var me = this;
       var successCallback = function(response)
@@ -214,7 +214,7 @@
    */
   Auth.prototype.getUser = function(acceptExpired)
     {
-      acceptExpired = acceptExpired || false;
+      acceptExpired = acceptExpired || false;
 
       var jwt = this.$injector.get('jwt');
 
@@ -271,7 +271,7 @@
 
       // primitive method for role check
       var resolveRole = function(user) {
-        var roles = user.roles || [];
+        var roles = user.roles || [];
         if (angular.isString(role)) {
           role = [role];
         }

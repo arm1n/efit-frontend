@@ -543,7 +543,7 @@
    */
   ProcrastinationTask.prototype._onInterval = function() {
     var $interval = this.$injector.get('$interval');
-    if (!this.isInvalid() || !this.canResolve()) {
+    if (!this.isInvalid() || !this.canResolve()) {
       return;
     }
 

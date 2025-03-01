@@ -111,7 +111,7 @@
     var href = '#' + this._target.id;
     this._source = jQuery('<a href="'+href+'"></a>');
 
-    this.options = this.options || {};
+    this.options = this.options || {};
     this.options.easing = angular.isString(this.options.easing) ?
       this.options.easing :
       'easeOutExpo';

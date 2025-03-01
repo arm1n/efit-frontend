@@ -207,7 +207,7 @@
     var defaultId = 'collapsible-' + this.$scope.$id;
 
     this.accordion.addCollapsible(this);
-    this.domId = this.id || defaultId;
+    this.domId = this.id || defaultId;
   };
 
   /**

@@ -406,7 +406,7 @@
 
     var me = this;
     var onProgress = function() {
-      if (progress>me.threshold && progress<1) {
+      if (progress>me.threshold && progress<1) {
         // call with $timeout() cause consumer
         // could also change `complete` flag!
         me.card.complete = true;

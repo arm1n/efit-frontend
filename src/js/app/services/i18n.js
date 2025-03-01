@@ -44,7 +44,7 @@
   I18N.prototype.load = function(locale, config)
     {
       locale = locale || this.getLocale();
-      config = config || {};
+      config = config || {};
 
       if (this.translations[locale]) {
         return;
@@ -121,7 +121,7 @@
         text = this.translations[locale][key];
       } catch(e) {}
 
-      return string.sprintf(text || key, params);
+      return string.sprintf(text || key, params);
     };
 
   /**
