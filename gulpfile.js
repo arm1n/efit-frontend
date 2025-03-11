@@ -325,7 +325,7 @@ gulp.task('sync', function() {
     // would cause multiple events in
     // app (f.e. using ng-click)!!!!!
     ghostMode: false,
-    // open: false,
+    open: false,
   });
 });
 
@@ -364,4 +364,4 @@ gulp.task('deploy', ['build'], function() {
 //
 // TASK: DEFAULT
 //
-gulp.task('default', ['config', 'views', 'sync', 'watch']);
+gulp.task('default', ['config', 'scss', 'views', 'sync', 'watch']);
