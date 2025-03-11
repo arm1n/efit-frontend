@@ -38,3 +38,6 @@ src/vendor
 src/css
 .publish
 dist
+
+# JetBrains IDE
+.idea/
