@@ -1,0 +1,170 @@
+{
+  "___FRONTEND___": "",
+
+  "Loading...": "Lade...",
+
+  "___AUTH_MESSAGES___": "",
+
+  "You are logged in now!": "Sie sind nun angemeldet!",
+  "You have successfully signed in!": "Du hast dich erfolgreich angemeldet!",
+  "You have successfully signed up!": "Du hast dich erfolgreich f\u00fcr den Workshop angemeldet!",
+
+  "___GAME_MESSAGES___": "",
+
+  "Congratulations, you have reached the state %s!": "Gratulation, du hast den Status %s erreicht!",
+  "Congratulations, you have earned 1 new ticket!": "Gratulation, du hast ein neues Los verdient!",
+  "Congratulations, you have earned %s new tickets!": "Gratulation, du hast %s neue Lose verdient!",
+  "No task found for this result!": "Aufgabe f\u00fcr das Ergebnis wurde nicht gefunden!",
+  "Task for result is currently locked!": "Die Aufgabe ist derzeit gesperrt!",
+  "Only one result permitted during workshop!": "Du kannst eine Aufgabe nur einmal w\u00e4hrend des Workshops machen!",
+  "Only users can post results!": "Nur Sch\u00fcler d\u00fcrfen Aufgaben absenden!",
+
+  "WITH_ANCHOR": "MIT Anker von 99 Euro",
+  "WITHOUT_ANCHOR": "Ohne Anker",
+
+  "MONEY_LOST": "Geld verloren",
+  "TICKET_LOST": "Ticket verloren",
+
+  "BUYING": "Kaufen",
+  "NOT_BUYING": "Nicht kaufen",
+
+  "REMINDER_SMS": "Regelm\u00e4\u00dfige Erinnerungs-SMS",
+  "CHILDREN_SMS": "Erinnerungs-SMS der eigenen Kinder",
+  "PREMIUM_SAVINGS": "Pr\u00e4mie von +20% auf den gesparten Betrag",
+  "SAVINGS_COIN": "Sparm\u00fcnze",
+
+  "Thank you for your input!": "Vielen Dank f\u00fcr deine Eingabe!",
+
+  "day": "Tag",
+  "days": "Tage",
+  "hour": "Stunde",
+  "hours": "Stunden",
+  "minute": "Minute",
+  "minutes": "Minuten",
+  "second": "Sekunde",
+  "seconds": "Sekunden",
+  "ALL": "Alles auf einmal (1 x 150)",
+  "SPLIT": "In drei kleineren Teilen (3 x 50)",
+  "Target reached": "Ziel erreicht",
+  "Target dismissed": "Ziel nicht erreicht",
+  "Super, you have succeeded exercise %s of %s!": "Super, du hast Teilaufgabe %s von %s gel\u00f6st!",
+  "Super, you have successfully done this exercise and retrieve 5 tickets!": "Super, du hast die Aufgabe erfolgreich gel\u00f6st und erh\u00e4lst 5 Lose!",
+  "Sorry, but the time has expired for this exercise and you retrieve only 1 ticket!": "Sorry, aber die Zeit f\u00fcr diese Aufgabe ist abgelaufen und du erh\u00e4lst nur 1 Los!",
+
+  "___USER_STATES___": "",
+
+  "STATE_BEGINNER": "Einsteiger/in",
+  "STATE_AMATEUR": "Amateur/in",
+  "STATE_ADVANCED": "Fortgeschrittene/r",
+  "STATE_EXPERT": "Expert/in",
+
+  "___USER_GROUPS___": "",
+
+  "GROUP_A": "Gruppe A",
+  "GROUP_B": "Gruppe B",
+
+  "___TASK_TYPES___": "",
+
+  "INTEREST": "Zinsen",
+  "DIVERSIFICATION": "Aufteilen oder nicht?",
+  "RISK": "Die eigene Risikoeinstellung kennenlernen",
+  "ANCHORING": "Anker lichten, Leinen los!",
+  "MENTAL_BOOKKEEPING": "Den \u00dcberblick bewahren",
+  "FRAMING": "Bilder und Rahmen",
+  "SAVINGS_TARGET": "Tr\u00e4ume erf\u00fcllen",
+  "SAVINGS_SUPPORTED": "Ziele erreichen",
+  "SELF_COMMITMENT": "Sein eigener Boss sein",
+  "PROCRASTINATION": "Aufschieberitis",
+
+  "___TASK_BLOCKS___": "",
+
+  "FINANCIAL_KNOWLEDGE": "Die Finanzwelt verstehen",
+  "CONSUMER_BEHAVIOUR": "Bessere Entscheidungen treffen",
+  "SELF_CONTROL": "Alles im Griff haben",
+
+  "__TASK_MISC___": "",
+
+  "Choice 1": "Option 1",
+  "Choice 2": "Option 2",
+
+  "___WORKSHOP_MESSAGES___": "",
+
+  "Workshop has been created successfully!": "Der Workshop wurde erfolgreich angelegt!",
+  "Workshop has been deleted successfully!": "Der Workshop wurde erfolgreich gel\u00f6scht!",
+  "Workshop has been unlocked successfully. Students can register now!": "Der Workshop wurde erfolgreich freigegeben. Die Sch\u00fcler k\u00f6nnen sich nun registrieren!",
+  "Workshop has been locked successfully. Students can now only use their access from home!": "Der Workshop wurde erfolgreich gesperrt. Die Sch\u00fcler k\u00f6nnen sich nun nur mehr von zuhause anmelden!",
+  "Task has been unlocked successfully. Students can send results now!": "Die Aufgabe wurde erfolgreich freigeben. Die Sch\u00fcler k\u00f6nnen nun Ergebnisse absenden!",
+  "Task has been locked successfully. Students cannot send results currently!": "Die Aufgabe wurde erfolgreich gesperrt. Die Sch\u00fcler k\u00f6nnen derzeit keine Ergebnisse absenden!",
+
+  "___FORM_MESSAGES___": "",
+
+  "This field is required!":"Dieses Feld ist verpflichtend!",
+  "This field has a too low input value!": "Dieses Feld hat einen zu kleinen Wert!",
+  "This field has a too hight input value!": "Dieses Feld hat einen zu gro\u00dfen Wert!",
+  "This field requires a valid url!":"Dieses Feld ben\u00f6tigt eine korrekte URL!",
+  "This field requires a valid email!":"Dieses Feld ben\u00f6tigt eine korrekte Email!",
+  "This field requires numeric input!":"Dieses Feld ben\u00f6tigt eine numerische Eingabe!",
+  "This field requires special pattern!":"Dieses Feld ben\u00f6tigt ein spezielles Eingabemuster!",
+  "This field exceeds allowed maximum length!":"Dieses Feld \u00fcberschreitet die erlaubte Maximall\u00e4nge!",
+  "This field undercuts required minimum length!":"Dieses Feld unterschreitet die erforderliche Minimuml\u00e4nge!",
+
+  "___BACKEND___": "",
+
+  "___EMAIL_MESSAGES___": "",
+
+  "Your email has been sent!": "Danke, wir melden uns so schnell wie m\u00f6glich bei dir!",
+  "Your email could not be sent!": "Deine Email konnte leider nicht verschickt werden - versuche es bitte sp\u00e4ter noch einmal!",
+
+  "___AUTH_MESSAGES___": "",
+
+  "Bad credentials.": "Die Zugangsdaten sind ung\u00fcltig!",
+  "Your credentials are invalid!": "Die Zugangsdaten sind ung\u00fcltig!",
+  "The token was not found!": "Kein Sicherheitstoken gefunden!",
+  "The token is invalid!": "Der Sicherheitsschl\u00fcssel ist ung\u00fcltig!",
+  "The token has expired!": "Der Sicherheitsschl\u00fcssel ist abgelaufen!",
+  "You need to sign in for gaining access!": "Anmeldung erforderlich f\u00fcr Zugang!",
+  "No code has been submitted!": "Es wurde kein Code \u00fcbermittelt!",
+  "This code is invalid!": "Dieser Code ist leider ung\u00fcltig!",
+
+  "Password is too long!": "Das Passwort ist zu lang!",
+  "Password is too short!": "Das Passwort ist zu kurz!",
+  "Username is too short!": "Der Benutzername ist zu kurz!",
+  "Workshop doesn't exist!": "Der Code des Workshops ist ung\u00fcltig!",
+  "Workshop is currently locked!": "Der Workshop ist derzeit gesperrt!",
+  "Username already exists on the system!": "Dieser pers\u00f6nliche Code existiert bereits im System!",
+  "Username already registered to another workshop!": "Dieser pers\u00f6nliche Code ist bereits einem anderen Workshop zugewiesen!",
+  "Workshop is still active!": "Dein Workshop ist noch aktiv, du kannst dich nicht von zuhause anmelden!",
+
+  "___WORKSHOP_MESSAGES___": "",
+
+  "Workshop name is required!": "Ein Workshop erfordert einen Namen!",
+  "Workshop name is too short!": "Der Name des Workshops ist zu kurz!",
+  "Workshop code is required!": "Ein Workshop erfordert einen Code!",
+  "Workshop code is too short!": "Der Code des Workshops ist zu kurz!",
+  "Workshop code allows letters and numbers only!": "Der Code des Workshops darf nur Buchstaben und Zahlen enthalten!",
+  "Workshop code already exists on the system!": "Der Code des Workshops existiert bereits im System!",
+
+  "___ADMIN_MESSAGES___": "",
+
+  "Admin has been created successfully!": "Der Trainer wurde erfolgreich angelegt!",
+  "Admin has been deleted successfully!": "Der Trainer wurde erfolgreich gel\u00f6scht!",
+  "Password has been successfully updated!": "Das Passwort wurde erfolgreich aktualisiert!",
+
+  "___FALLBACK_MESSAGES___": "",
+
+  "The request data contains invalid data!": "Die Anfrage enth\u00e4lt fehlerhafte Daten!",
+  "This operation requires authorization!": "Sie sind nicht berecht f\u00fcr diese Operation!",
+  "You have no access to this resource!": "Sie haben keinen Zugriff auf diese Ressource!",
+  "The resource could not be found!": "Die Ressource wurde nicht gefunden!",
+  "This method is not allowed!": "Diese Methode ist nicht erlaubt!",
+  "The resource is not acceptable!": "Die Ressource kann nicht akzeptiert werden!",
+  "The resource has gone!": "Die Ressource ist nicht mehr verf\u00fcgbar!",
+  "There is a conflict with this resource!": "Es besteht ein Ressourcen-Konflikt!",
+  "The resource requires length data!": "Die Ressource erfordert eine Minimuml\u00e4nge!",
+  "The resource precondition failed!": "Die Voraussetzung f\u00fcr diese Ressource ist fehlgeschlagen!",
+  "This media type is not supported!": "Dieser Medientyp wird nicht unterst\u00fctzt!",
+  "This entity is not processable!": "Die Entit\u00e4t kann nicht verarbeitet werden!",
+  "There were too many requests!": "Es sind zu viele gleichzeitige Anfragen aufgetreten!",
+  "This service is unavailable!": "Der Service ist nicht verf\u00fcgbar!",
+  "An unknown server error occured!": "Ein unbekannter Serverfehler ist aufgetreten!"
+}
